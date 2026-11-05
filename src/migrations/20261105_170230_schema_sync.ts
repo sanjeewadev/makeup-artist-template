@@ -712,6 +712,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE INDEX \`_contact_v_updated_at_idx\` ON \`_contact_v\` (\`updated_at\`);`)
   await db.run(sql`ALTER TABLE \`users\` ADD \`name\` text;`)
   await db.run(sql`ALTER TABLE \`users\` ADD \`role\` text DEFAULT 'editor' NOT NULL;`)
+  // Preserve access for accounts created before role-based permissions existed.
+  await db.run(sql`UPDATE \`users\` SET \`role\` = 'admin';`)
   await db.run(sql`ALTER TABLE \`media\` ADD \`caption\` text;`)
   await db.run(sql`ALTER TABLE \`media\` ADD \`credit\` text;`)
   await db.run(sql`ALTER TABLE \`payload_locked_documents_rels\` ADD \`portfolio_categories_id\` integer REFERENCES portfolio_categories(id);`)
