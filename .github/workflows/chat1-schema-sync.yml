@@ -1,0 +1,65 @@
+name: Chat 1 schema sync
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - 'src/access/**'
+      - 'src/collections/**'
+      - 'src/fields/**'
+      - 'src/globals/**'
+      - 'src/payload.config.ts'
+      - '.github/workflows/chat1-schema-sync.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: "!contains(github.event.head_commit.message, 'chore: sync Payload schema artifacts')"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout dev
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Configure CI Payload secret
+        run: echo "PAYLOAD_SECRET=chat1-ci-generation-only" > .env
+
+      - name: Generate Payload types
+        run: pnpm generate:types:payload
+
+      - name: Generate D1 migration
+        run: pnpm payload migrate:create chat1-foundation
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type check
+        run: pnpm exec tsc --noEmit
+
+      - name: Commit generated schema artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/payload-types.ts src/migrations
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git commit -m "chore: sync Payload schema artifacts"
+            git push origin HEAD:dev
+          fi
