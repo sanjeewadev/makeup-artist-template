@@ -36,3 +36,5 @@ The Chat 1 schema is validated by generating Payload types and a D1 migration, t
 Chat 2 — Design System & Homepage
 
 No Tailwind. The public frontend will use standard CSS and CSS Modules.
+
+Validation trigger: repository CI enabled on the default branch.
