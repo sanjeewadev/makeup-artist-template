@@ -1,17 +1,8 @@
-name: Chat 1 schema sync
+name: Payload schema sync
 
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - dev
-    paths:
-      - 'src/access/**'
-      - 'src/collections/**'
-      - 'src/fields/**'
-      - 'src/globals/**'
-      - 'src/payload.config.ts'
-      - '.github/workflows/chat1-schema-sync.yml'
-  pull_request:
     branches:
       - dev
 
@@ -20,7 +11,7 @@ permissions:
 
 jobs:
   sync:
-    if: github.event_name == 'pull_request' || !contains(github.event.head_commit.message, 'chore: sync Payload schema artifacts')
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.head_commit.message, 'schema: sync')
     runs-on: ubuntu-latest
 
     steps:
@@ -41,13 +32,13 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Configure CI Payload secret
-        run: echo "PAYLOAD_SECRET=chat1-ci-generation-only" > .env
+        run: echo "PAYLOAD_SECRET=schema-sync-ci-only" > .env
 
       - name: Generate Payload types
         run: pnpm generate:types:payload
 
       - name: Generate D1 migration
-        run: pnpm payload migrate:create chat1-foundation
+        run: pnpm payload migrate:create schema-sync
 
       - name: Lint
         run: pnpm lint
@@ -61,7 +52,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add src/payload-types.ts src/migrations
           if git diff --cached --quiet; then
-            echo "No generated changes to commit."
+            echo "No generated schema changes."
           else
             git commit -m "chore: sync Payload schema artifacts"
             git push origin HEAD:dev
