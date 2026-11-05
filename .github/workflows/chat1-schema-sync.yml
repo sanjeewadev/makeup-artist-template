@@ -11,13 +11,16 @@ on:
       - 'src/globals/**'
       - 'src/payload.config.ts'
       - '.github/workflows/chat1-schema-sync.yml'
+  pull_request:
+    branches:
+      - dev
 
 permissions:
   contents: write
 
 jobs:
   sync:
-    if: "!contains(github.event.head_commit.message, 'chore: sync Payload schema artifacts')"
+    if: github.event_name == 'pull_request' || !contains(github.event.head_commit.message, 'chore: sync Payload schema artifacts')
     runs-on: ubuntu-latest
 
     steps:
