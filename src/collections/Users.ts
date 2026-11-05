@@ -41,7 +41,13 @@ export const Users: CollectionConfig = {
     tokenExpiration: 2 * 60 * 60,
   },
   access: {
-    admin: admins,
+    admin: ({ req }) =>
+      Boolean(
+        req.user &&
+          typeof req.user === 'object' &&
+          'role' in req.user &&
+          req.user.role === 'admin',
+      ),
     create: createFirstUserOrAdmin,
     read: adminsOrSelf,
     update: adminsOrSelf,

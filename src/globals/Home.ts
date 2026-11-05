@@ -13,7 +13,7 @@ export const Home: GlobalConfig = {
     readVersions: ({ req }) => Boolean(req.user),
   },
   versions: {
-    maxPerDoc: 30,
+    max: 30,
   },
   fields: [
     {

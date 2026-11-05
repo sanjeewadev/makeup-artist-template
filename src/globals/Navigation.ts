@@ -34,7 +34,7 @@ export const Navigation: GlobalConfig = {
     readVersions: ({ req }) => Boolean(req.user),
   },
   versions: {
-    maxPerDoc: 25,
+    max: 25,
   },
   fields: [
     {

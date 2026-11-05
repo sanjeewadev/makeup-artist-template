@@ -15,7 +15,7 @@ export const SiteSettings: GlobalConfig = {
     readVersions: ({ req }) => Boolean(req.user),
   },
   versions: {
-    maxPerDoc: 25,
+    max: 25,
   },
   fields: [
     {
