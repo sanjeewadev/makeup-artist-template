@@ -113,6 +113,14 @@ Before release, the project should include:
 - Payload permissions appropriate for public/read and authenticated/write flows
 - Automated checks for important frontend and CMS behavior
 
+## Milestone status
+
+- Chat 1 — Foundation & Payload CMS: **complete**
+- Chat 2 — Design System & Homepage: next
+- Chat 3 — Portfolio Experience: planned
+- Chat 4 — Services, About & Contact: planned
+- Chat 5 — Journal + CMS Experience: planned
+
 ## Delivery phases
 
 1. Foundation and documentation

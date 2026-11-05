@@ -4,9 +4,9 @@
 
 Active development happens on `dev`.
 
-Do not develop directly on `main`.
+Do not develop directly on `main`. Feature work is integrated into `dev` first and only promoted to `main` when a milestone is release-ready.
 
-To set up the local tracking branch after cloning or after `dev` is created remotely:
+To set up the local tracking branch:
 
 ```powershell
 git fetch origin
@@ -24,17 +24,19 @@ git pull origin dev
 
 Use the versions declared by `package.json`.
 
-At the current baseline:
+Current baseline:
 
 - Node: `^22.23.4 || >=24.22.1`
 - pnpm: `^9 || ^10 || ^11`
 
-Verify before debugging dependency or Cloudflare issues:
+Verify before debugging dependency, Payload, or Cloudflare issues:
 
 ```powershell
 node -v
 pnpm -v
 ```
+
+Node versions below the declared engine range are unsupported even if the dev server appears to start.
 
 ## Local development
 
@@ -51,54 +53,101 @@ Payload admin:
 
 `http://localhost:3000/admin`
 
+The first Payload user is automatically promoted to the `admin` role. Later team members default to `editor` unless an administrator assigns another role.
+
+## Styling rule: no Tailwind
+
+Tailwind is intentionally not part of this project.
+
+Public-site styling will use:
+
+- Standard CSS
+- CSS Modules for component-level styles
+- CSS custom properties for design tokens
+- Native modern CSS layout and responsive features
+
+Do not introduce Tailwind, Tailwind UI, utility-class styling systems, or generated utility frameworks without an explicit project decision.
+
+Payload Admin keeps its own styling system and may use the existing `src/app/(payload)/custom.scss` for carefully scoped admin customizations.
+
 ## Payload schema workflow
 
-Whenever collection/global fields change:
+Schema source lives in:
 
-1. Update the schema.
-2. Generate Payload/Cloudflare types as appropriate.
-3. Create/update migrations when the database schema changes.
-4. Run lint/tests.
-5. Commit generated schema artifacts that belong in the repository.
+- `src/collections/`
+- `src/globals/`
+- `src/fields/`
+- `src/access/`
+- `src/payload.config.ts`
 
-Relevant scripts are defined in `package.json`.
+After a schema change, regenerate types:
+
+```powershell
+pnpm generate:types:payload
+```
+
+When the D1 database shape changes, create a migration with a descriptive name:
+
+```powershell
+pnpm payload migrate:create descriptive-name
+```
+
+Then validate:
+
+```powershell
+pnpm lint
+pnpm typecheck
+```
+
+Generated Payload types and migrations are committed to Git because they are part of the deployable application contract.
+
+Do not hand-edit `src/payload-types.ts` or generated migration snapshots.
 
 ## Cloudflare architecture
 
 Production persistence is intentionally separated:
 
-- D1: CMS records and structured content
+- D1: structured CMS records
 - R2: uploaded photography and media
-- Worker/OpenNext: Next.js + Payload runtime
+- Cloudflare Worker/OpenNext: Next.js + Payload runtime
 
-Do not replace this with a local SQLite file in production.
+Do not replace production D1 with a local SQLite file.
 
-## Security rules
+The starter deliberately disables Sharp-dependent upload transforms because the target runtime is Cloudflare Workers. Image presentation/optimization decisions belong in the frontend layer.
 
-- Never commit `.env` or real secrets.
-- Keep `.env.example` limited to safe placeholders.
-- Public CMS reads should be explicitly allowed where required.
-- CMS writes remain authenticated.
-- When Payload Local API calls operate on behalf of a user, use `overrideAccess: false`.
-- Validate all public form input server-side.
+## Access-control rules
+
+- Public visitors may read public site content.
+- Draft-enabled collections expose only published documents publicly.
+- Authenticated CMS users can manage content.
+- User management is administrator-only in the Admin UI.
+- Editors cannot promote themselves or change roles.
+- Enquiries are not writable through the anonymous Payload REST API.
+- The future public enquiry flow must validate input server-side before using trusted server-side Payload access.
+- Never trust public form input.
+- Never commit `.env`, production secrets, Cloudflare credentials, or service tokens.
+- When a Local API operation acts on behalf of a signed-in user, use `overrideAccess: false` so Payload access control is enforced.
 
 ## Design implementation rules
 
+These become active in Chat 2:
+
 - Build reusable primitives before page-specific duplication.
-- Avoid hard-coded artist identity; use Payload globals for brand/contact data.
-- Keep public-page styling independent from Payload admin styling.
-- Prefer CSS and platform capabilities before adding large UI libraries.
-- Any animation dependency must earn its cost.
-- Every major layout must be verified at mobile, tablet, laptop, and wide desktop sizes.
+- Never hard-code a specific makeup artist identity when it belongs in Payload Site Settings.
+- Keep public-site styling isolated from Payload Admin styling.
+- Prefer native CSS/platform capabilities before adding UI dependencies.
+- Every animation dependency must justify its cost.
+- Every major layout must be verified on mobile, tablet, laptop, and wide desktop.
 
-## Before merging to main
+## Quality checks
 
-At minimum:
+Before a normal development commit is considered healthy:
 
 ```powershell
 pnpm lint
-pnpm test
-pnpm build
+pnpm typecheck
 ```
 
-Cloudflare deployment checks are added as production configuration is finalized.
+Before promoting a release to `main`, also run the appropriate tests and production build checks for that milestone.
+
+GitHub Actions runs lint and TypeScript checks on development pushes and pull requests.
