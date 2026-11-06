@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 import { authenticated, authenticatedOrPublished } from '../access'
 import { seoGroup } from '../fields/seo'
 import { slugField } from '../fields/slug'
+import { servicePreviewURL } from '../lib/admin-preview'
 
 export const Services: CollectionConfig = {
   slug: 'services',
@@ -12,10 +13,12 @@ export const Services: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    group: 'Content',
+    group: 'Services & Reviews',
     defaultColumns: ['title', 'featured', 'sortOrder', '_status', 'updatedAt'],
     listSearchableFields: ['title', 'slug', 'shortDescription'],
     description: 'Client-facing makeup services and packages.',
+    hideAPIURL: true,
+    preview: (doc) => servicePreviewURL(doc),
   },
   access: {
     create: authenticated,
