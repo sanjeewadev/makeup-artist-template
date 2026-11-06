@@ -1,45 +1,72 @@
 .cta {
+  border-top: 1px solid var(--color-line);
   display: grid;
-  gap: clamp(3rem, 10vw, 10rem);
-  grid-template-columns: minmax(10rem, 0.28fr) 1fr;
+  gap: clamp(3rem, 9vw, 9rem);
+  grid-template-columns: minmax(10rem, 0.22fr) 1fr;
   margin: 0 auto;
   max-width: var(--site-max);
   padding: var(--section-space) var(--gutter);
+  position: relative;
+}
+
+.cta::after {
+  color: rgba(23, 20, 17, 0.045);
+  content: '↗';
+  font-family: var(--font-display);
+  font-size: clamp(9rem, 20vw, 20rem);
+  line-height: 0.6;
+  pointer-events: none;
+  position: absolute;
+  right: var(--gutter);
+  top: 20%;
 }
 
 .index {
   color: var(--color-muted);
-  font-size: 0.62rem;
-  font-weight: 600;
+  font-size: var(--label-size);
+  font-weight: 650;
   letter-spacing: 0.14em;
   margin: 0;
   text-transform: uppercase;
 }
 
 .content {
-  max-width: 64rem;
+  max-width: 72rem;
+  position: relative;
+  z-index: 1;
 }
 
 .content h2 {
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 6.4vw, 6.5rem);
+  font-size: clamp(4rem, 7.5vw, 8rem);
   font-weight: 400;
-  letter-spacing: -0.055em;
-  line-height: 0.94;
-  margin: 0 0 1.5rem;
-  max-width: 10ch;
+  letter-spacing: -0.065em;
+  line-height: 0.82;
+  margin: 0 0 2rem;
+  max-width: 9ch;
 }
 
 .content > p {
+  border-top: 1px solid var(--color-line);
   color: var(--color-muted);
-  line-height: 1.8;
-  margin: 0 0 2.3rem;
-  max-width: 34rem;
+  line-height: 1.85;
+  margin: 0 0 2.5rem;
+  max-width: 35rem;
+  padding-top: 1.2rem;
 }
 
 @media (max-width: 760px) {
   .cta {
     gap: 2rem;
     grid-template-columns: 1fr;
+  }
+
+  .cta::after {
+    font-size: 45vw;
+    top: 35%;
+  }
+
+  .content h2 {
+    font-size: clamp(4rem, 17vw, 6.5rem);
   }
 }
