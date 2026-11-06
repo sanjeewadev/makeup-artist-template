@@ -168,7 +168,7 @@ export const getPortfolioProjectPageData = cache(
         const demoProject = demoIndex >= 0 ? demoPortfolioProjects[demoIndex] : null
         const totalProjects = demoPortfolioProjects.length
         const previousProject =
-          demoProject && totalProjects > 1
+          demoProject && totalProjects > 2
             ? demoPortfolioProjects[(demoIndex - 1 + totalProjects) % totalProjects] || null
             : null
         const nextProject =
@@ -197,7 +197,7 @@ export const getPortfolioProjectPageData = cache(
       const currentIndex = allProjects.docs.findIndex((item) => item.id === project.id)
       const totalProjects = allProjects.docs.length
       const previousProject =
-        totalProjects > 1
+        totalProjects > 2
           ? allProjects.docs[(currentIndex - 1 + totalProjects) % totalProjects] || null
           : null
       const nextProject =
@@ -217,7 +217,7 @@ export const getPortfolioProjectPageData = cache(
       const demoProject = demoIndex >= 0 ? demoPortfolioProjects[demoIndex] : null
       const totalProjects = demoPortfolioProjects.length
       const previousProject =
-        demoProject && totalProjects > 1
+        demoProject && totalProjects > 2
           ? demoPortfolioProjects[(demoIndex - 1 + totalProjects) % totalProjects] || null
           : null
       const nextProject =
