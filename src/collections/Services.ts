@@ -16,7 +16,7 @@ export const Services: CollectionConfig = {
     group: 'Services & Reviews',
     defaultColumns: ['title', 'featured', 'sortOrder', '_status', 'updatedAt'],
     listSearchableFields: ['title', 'slug', 'shortDescription'],
-    description: 'Client-facing services. Write each one to help a visitor decide whether the experience fits their occasion—not as a dense price list.'
+    description: 'Client-facing services. Write each one to help a visitor decide whether the experience fits their occasion—not as a dense price list.',
     hideAPIURL: true,
     preview: (doc) => servicePreviewURL(doc),
   },
@@ -52,14 +52,14 @@ export const Services: CollectionConfig = {
       required: true,
       maxLength: 320,
       admin: {
-        description: 'Write a concise 1–2 sentence decision hook: who/what the service is for, the feeling it creates, or the kind of occasion it suits.'
+        description: 'Write a concise 1–2 sentence decision hook: who/what the service is for, the feeling it creates, or the kind of occasion it suits.',
       },
     },
     {
       name: 'description',
       type: 'richText',
       admin: {
-        description: 'Use this for the useful details that help someone enquire confidently: experience, likely inclusions, preparation, timing context, or what makes this service different. Avoid legal/booking terms here.'
+        description: 'Use this for the useful details that help someone enquire confidently: experience, likely inclusions, preparation, timing context, or what makes this service different. Avoid legal/booking terms here.',
       },
     },
     {
@@ -67,7 +67,7 @@ export const Services: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       admin: {
-        description: 'Choose photography that communicates the experience of this service—not just another generic portrait. Process/getting-ready imagery is especially useful for Bridal or group services.'
+        description: 'Choose photography that communicates the experience of this service—not just another generic portrait. Process/getting-ready imagery is especially useful for Bridal or group services.',
       },
     },
     {
@@ -76,7 +76,7 @@ export const Services: CollectionConfig = {
       type: 'text',
       maxLength: 80,
       admin: {
-        description: 'Optional public guidance only. Examples: “From $250”, “By enquiry”, or “Custom quote”. Do not imply a final price if travel, timing, group size, or brief can change it.'
+        description: 'Optional public guidance only. Examples: “From $250”, “By enquiry”, or “Custom quote”. Do not imply a final price if travel, timing, group size, or brief can change it.',
       },
     },
     {
@@ -85,7 +85,7 @@ export const Services: CollectionConfig = {
       type: 'text',
       maxLength: 80,
       admin: {
-        description: 'Optional public guidance such as “90–120 min”, “Bridal morning”, or “Half / full day”. Keep it human-readable rather than operational.'
+        description: 'Optional public guidance such as “90–120 min”, “Bridal morning”, or “Half / full day”. Keep it human-readable rather than operational.',
       },
     },
     {
