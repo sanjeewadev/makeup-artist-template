@@ -121,7 +121,7 @@ Before release, the project should include:
 - Chat 4 — Services, About & Contact: **complete**
 - Chat 5 — Journal + CMS Experience: **complete**
 - Chat 6 — Signature Art Direction & Next-Level UI/UX: **complete**
-- Chat 7 — $2K Visual Identity & Photography Direction: **complete**\n- Chat 8 — Cinematic Homepage 3.0: **complete**\n- Chat 9 — Portfolio as the Main Sales Weapon: **complete**\n- Chat 10 — Services + Booking Conversion: **complete**\n- Chat 11 — Artist Brand, Trust & Social Proof: **complete**\n- Chat 12 — Editorial Journal + Serious SEO: **complete**
+- Chat 7 — $2K Visual Identity & Photography Direction: **complete**\n- Chat 8 — Cinematic Homepage 3.0: **complete**\n- Chat 9 — Portfolio as the Main Sales Weapon: **complete**\n- Chat 10 — Services + Booking Conversion: **complete**\n- Chat 11 — Artist Brand, Trust & Social Proof: **complete**\n- Chat 12 — Editorial Journal + Serious SEO: **complete**\n- Chat 13 — Premium Motion & Detail Obsession: **complete**
 
 ## Delivery phases
 
@@ -203,3 +203,32 @@ See `docs/ARTIST-BRAND-TRUST.md`.
 Chat 12 turns the Journal into an editorial authority surface and hardens technical search/share behavior across the public website: topic discovery, related reading, canonical URLs, social metadata, structured data, sitemap/no-index integration, crawler-safe public media, and practical CMS publishing guidance.
 
 See `docs/EDITORIAL-SEO-AUTHORITY.md`.
+
+
+## Premium motion completion
+
+Chat 13 unifies the site's interaction language: route transitions, loading states, image arrival, scroll-aware navigation, mobile-menu staging, tactile buttons, lightbox/disclosure/pending feedback, and reduced-motion behavior.
+
+See `docs/PREMIUM-MOTION-DETAILS.md`.
+
+## Final milestone
+
+Chat 14 — Commercial Finish & Client Handoff
+
+This is the release-quality pass rather than another major design rebuild. It should cover:
+
+- final responsive/device QA
+- browser compatibility review
+- accessibility regression pass
+- production environment/domain checklist
+- Cloudflare D1/R2/Workers readiness
+- real-client content replacement checklist
+- image/alt/credit review
+- contact/WhatsApp/enquiry workflow verification
+- sitemap/robots/canonical verification
+- optional analytics decision
+- optional enquiry-email notification decision
+- CMS/client operating guide
+- launch checklist
+- backup/rollback/release notes
+- final dev-to-main release procedure
