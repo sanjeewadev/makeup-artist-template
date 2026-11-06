@@ -1,3 +1,7 @@
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+
 import { CmsImage } from '@/components/media/CmsImage'
 import type { Media, PortfolioProject } from '@/payload-types'
 
@@ -26,40 +30,128 @@ const layoutClass = (item: GalleryItem, index: number) => {
 }
 
 export function ProjectGallery({ gallery }: ProjectGalleryProps) {
-  if (!gallery?.length) return null
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const dialogRef = useRef<HTMLDialogElement>(null)
+
+  const items =
+    gallery
+      ?.map((item) => ({ image: mediaFrom(item.image), item }))
+      .filter((entry): entry is { image: Media; item: GalleryItem } => Boolean(entry.image)) ?? []
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+
+    if (!dialog) return
+
+    if (activeIndex !== null && !dialog.open) {
+      dialog.showModal()
+    }
+
+    if (activeIndex === null && dialog.open) {
+      dialog.close()
+    }
+  }, [activeIndex])
+
+  if (!items.length) return null
+
+  const activeEntry = activeIndex === null ? null : items[activeIndex]
+
+  const move = (direction: -1 | 1) => {
+    setActiveIndex((current) => {
+      if (current === null) return 0
+      return (current + direction + items.length) % items.length
+    })
+  }
 
   return (
-    <div className={styles.gallery}>
-      {gallery.map((item, index) => {
-        const image = mediaFrom(item.image)
-
-        if (!image) return null
-
-        return (
+    <>
+      <div className={styles.gallery}>
+        {items.map(({ image, item }, index) => (
           <figure
             className={styles.figure + ' ' + layoutClass(item, index)}
             key={item.id || String(index)}
           >
-            <div className={styles.imageFrame}>
-              <CmsImage
-                image={image}
-                sizes={
-                  item.presentation === 'wide' || index % 6 === 0
-                    ? '(max-width: 760px) 100vw, 90vw'
-                    : '(max-width: 760px) 100vw, 48vw'
-                }
-              />
-            </div>
+            <button
+              aria-label={'View larger: ' + (item.caption || image.alt)}
+              className={styles.imageButton}
+              onClick={() => setActiveIndex(index)}
+              type="button"
+            >
+              <span className={styles.imageFrame}>
+                <CmsImage
+                  image={image}
+                  sizes={
+                    item.presentation === 'wide' || index % 6 === 0
+                      ? '(max-width: 760px) 100vw, 90vw'
+                      : '(max-width: 760px) 100vw, 48vw'
+                  }
+                />
+                <span className={styles.viewCue} aria-hidden="true">
+                  View / {String(index + 1).padStart(2, '0')}
+                </span>
+              </span>
+            </button>
+
             <figcaption>
               <span>
-                {String(index + 1).padStart(2, '0')} / {String(gallery.length).padStart(2, '0')}
+                {String(index + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
               </span>
               <span>{item.caption || image.alt}</span>
               {image.credit && <span>{image.credit}</span>}
             </figcaption>
           </figure>
-        )
-      })}
-    </div>
+        ))}
+      </div>
+
+      <dialog
+        aria-label="Project image viewer"
+        className={styles.lightbox}
+        onClose={() => setActiveIndex(null)}
+        ref={dialogRef}
+      >
+        {activeEntry && (
+          <div className={styles.lightboxInner}>
+            <button
+              aria-label="Close image viewer"
+              className={styles.lightboxClose}
+              onClick={() => dialogRef.current?.close()}
+              type="button"
+            >
+              Close <span aria-hidden="true">×</span>
+            </button>
+
+            <div className={styles.lightboxStage}>
+              <div className={styles.lightboxImage}>
+                <CmsImage
+                  image={activeEntry.image}
+                  sizes="(max-width: 760px) 96vw, 82vw"
+                />
+              </div>
+            </div>
+
+            <div className={styles.lightboxFooter}>
+              <div>
+                <span>
+                  {String(activeIndex + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
+                </span>
+                <p>{activeEntry.item.caption || activeEntry.image.alt}</p>
+                {activeEntry.image.credit && <small>{activeEntry.image.credit}</small>}
+              </div>
+
+              {items.length > 1 && (
+                <div className={styles.lightboxNav}>
+                  <button aria-label="Previous image" onClick={() => move(-1)} type="button">
+                    ←
+                  </button>
+                  <button aria-label="Next image" onClick={() => move(1)} type="button">
+                    →
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </dialog>
+    </>
   )
 }
