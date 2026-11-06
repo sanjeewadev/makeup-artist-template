@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import type { Navigation, SiteSetting } from '@/payload-types'
 import { LinkButton } from '@/components/ui/LinkButton'
@@ -74,8 +74,6 @@ function NavLink({
 
 export function SiteHeader({ navigation, siteSettings }: SiteHeaderProps) {
   const pathname = usePathname()
-  const detailsRef = useRef<HTMLDetailsElement>(null)
-  const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   const links = navigation?.headerLinks?.length ? navigation.headerLinks : fallbackLinks
@@ -85,32 +83,13 @@ export function SiteHeader({ navigation, siteSettings }: SiteHeaderProps) {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 28)
-    onScroll()
 
     window.addEventListener('scroll', onScroll, { passive: true })
 
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
-    if (detailsRef.current?.open) {
-      detailsRef.current.open = false
-    }
-    setMenuOpen(false)
-  }, [pathname])
 
-  useEffect(() => {
-    if (!menuOpen) {
-      document.body.style.removeProperty('overflow')
-      return
-    }
-
-    document.body.style.overflow = 'hidden'
-
-    return () => {
-      document.body.style.removeProperty('overflow')
-    }
-  }, [menuOpen])
 
   return (
     <header className={styles.header} data-scrolled={scrolled ? 'true' : 'false'}>
@@ -137,13 +116,10 @@ export function SiteHeader({ navigation, siteSettings }: SiteHeaderProps) {
           </LinkButton>
         </div>
 
-        <details
-          className={styles.mobileNav}
-          onToggle={(event) => setMenuOpen(event.currentTarget.open)}
-          ref={detailsRef}
-        >
+        <details className={styles.mobileNav} key={pathname}>
           <summary aria-label="Open navigation">
-            <span>{menuOpen ? 'Close' : 'Menu'}</span>
+            <span className={styles.menuClosedLabel}>Menu</span>
+            <span className={styles.menuOpenLabel}>Close</span>
             <span aria-hidden="true" className={styles.menuMark}>
               <i />
               <i />
