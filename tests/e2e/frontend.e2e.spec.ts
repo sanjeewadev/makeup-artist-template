@@ -32,6 +32,13 @@ test.describe('Frontend', () => {
     await expect(page.locator('footer')).toBeVisible()
   })
 
+  test('renders the journal experience', async ({ page }) => {
+    await page.goto('http://localhost:3000/journal')
+
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Beauty, beyond')
+    await expect(page.locator('footer')).toBeVisible()
+  })
+
   test('renders the enquiry form', async ({ page }) => {
     await page.goto('http://localhost:3000/contact')
 
