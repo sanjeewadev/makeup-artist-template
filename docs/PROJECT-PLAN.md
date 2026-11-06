@@ -121,7 +121,7 @@ Before release, the project should include:
 - Chat 4 — Services, About & Contact: **complete**
 - Chat 5 — Journal + CMS Experience: **complete**
 - Chat 6 — Signature Art Direction & Next-Level UI/UX: **complete**
-- Chat 7 — $2K Visual Identity & Photography Direction: **complete**\n- Chat 8 — Cinematic Homepage 3.0: **complete**
+- Chat 7 — $2K Visual Identity & Photography Direction: **complete**\n- Chat 8 — Cinematic Homepage 3.0: **complete**\n- Chat 9 — Portfolio as the Main Sales Weapon: **complete**
 
 ## Delivery phases
 
@@ -175,3 +175,10 @@ Chat 8 turns the homepage into a full premium narrative rather than a generic co
 It now connects Portfolio proof, service experience, artist credibility, client testimonials, Journal authority, and enquiry conversion into one intentional sequence.
 
 See `docs/CINEMATIC-HOMEPAGE.md`.
+
+
+## Portfolio sales-experience completion
+
+Chat 9 turns Portfolio into the primary proof surface for the $2K website: cover-story presentation, contextual filtering, richer project metadata, case-study storytelling, full-screen image viewing, stronger enquiry bridging, and continuous previous/next project browsing.
+
+See `docs/PORTFOLIO-SALES-EXPERIENCE.md`.
