@@ -24,6 +24,25 @@ export function PortfolioBrowser({ categories, projects }: PortfolioBrowserProps
     [activeCategory, projects],
   )
 
+  const activeContext = useMemo(() => {
+    if (activeCategory === 'all') {
+      return {
+        description:
+          'A complete edit of bridal, editorial, engagement, and occasion work—each project treated as a full visual story rather than a single finished face.',
+        title: 'All stories',
+      }
+    }
+
+    const category = categories.find((item) => item.slug === activeCategory)
+
+    return {
+      description:
+        category?.description ||
+        'A focused edit from the portfolio, curated around the occasion and the visual language of the work.',
+      title: category?.title || 'Selected work',
+    }
+  }, [activeCategory, categories])
+
   const setFilter = (slug: string) => {
     startTransition(() => {
       setActiveCategory(slug)
@@ -78,17 +97,21 @@ export function PortfolioBrowser({ categories, projects }: PortfolioBrowserProps
         })}
       </div>
 
-      <div
-        aria-live="polite"
-        className={styles.grid}
-        key={activeCategory}
-      >
+      <div className={styles.activeContext} key={'context-' + activeCategory}>
+        <div>
+          <span>Current edit</span>
+          <h2>{activeContext.title}</h2>
+        </div>
+        <p>{activeContext.description}</p>
+        <strong>
+          {String(visibleProjects.length).padStart(2, '0')} stor
+          {visibleProjects.length === 1 ? 'y' : 'ies'}
+        </strong>
+      </div>
+
+      <div aria-live="polite" className={styles.grid} key={activeCategory}>
         {visibleProjects.map((project, index) => (
-          <Link
-            className={styles.card}
-            href={'/portfolio/' + project.slug}
-            key={project.id}
-          >
+          <Link className={styles.card} href={'/portfolio/' + project.slug} key={project.id}>
             <div className={styles.imageFrame}>
               {project.image?.url ? (
                 <Image
@@ -97,7 +120,7 @@ export function PortfolioBrowser({ categories, projects }: PortfolioBrowserProps
                   fill
                   priority={activeCategory === 'all' && index < 2}
                   sizes={
-                    index % 5 === 0
+                    index % 6 === 0 || index % 6 === 4
                       ? '(max-width: 720px) 100vw, 58vw'
                       : '(max-width: 720px) 100vw, 34vw'
                   }
@@ -108,19 +131,25 @@ export function PortfolioBrowser({ categories, projects }: PortfolioBrowserProps
               )}
 
               <div className={styles.overlay}>
-                <span>View project</span>
+                <span>View story</span>
                 <span aria-hidden="true">↗</span>
+              </div>
+
+              <div className={styles.imageIndex}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <span>{String(project.galleryCount + 1).padStart(2, '0')} frames</span>
               </div>
             </div>
 
             <div className={styles.meta}>
-              <div>
+              <div className={styles.metaMain}>
                 <p>{project.categoryTitle}</p>
-                <h2>{project.title}</h2>
+                <h3>{project.title}</h3>
+                {project.excerpt && <span className={styles.excerpt}>{project.excerpt}</span>}
               </div>
               <div className={styles.metaSide}>
+                {project.year && <span>{project.year}</span>}
                 {project.location && <span>{project.location}</span>}
-                <span>{String(index + 1).padStart(2, '0')}</span>
               </div>
             </div>
           </Link>
