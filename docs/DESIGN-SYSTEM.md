@@ -1,34 +1,56 @@
 # Design System
 
-## Direction
+## Signature direction
 
-The public site uses a restrained luxury-editorial visual language.
+The public site uses a high-fashion beauty editorial language rather than generic luxury-template styling.
 
-The design should feel closer to a beauty editorial or independent fashion publication than a generic salon template.
+The target is:
+
+**high-fashion beauty editorial × luxury bridal atelier × contemporary art direction**
+
+Detailed Chat 6 rules live in `docs/SIGNATURE-ART-DIRECTION.md`.
 
 Core principles:
 
 - Photography carries the emotional weight.
-- Typography creates hierarchy before boxes, shadows, or decoration.
+- Typography establishes identity before UI decoration.
+- Each major page receives its own composition rather than repeating one layout formula.
 - Space is an active design element.
 - Fine rules and quiet contrast organize information.
-- Motion is subtle and never competes with makeup imagery.
-- The composition can be asymmetrical, but reading order must remain clear.
-- Mobile is designed intentionally rather than treated as a compressed desktop.
+- Motion is restrained and subordinate to photography.
+- Mobile is intentionally art-directed rather than merely stacked.
+- No Tailwind.
 
 ## Typography
 
 ### Display
 
-Cormorant Garamond, loaded through `next/font`.
+Cormorant Garamond, loaded through `next/font` with normal and italic styles.
 
-Use for display headings, editorial statements, large brand moments, and testimonial quotations.
+Use for:
+
+- primary page titles
+- editorial statements
+- artist-profile moments
+- project/story titles
+- testimonials
+- selected emotional emphasis
+
+Italic display text is an accent. Do not make every heading italic.
 
 ### Sans
 
 Manrope, loaded through `next/font`.
 
-Use for body copy, labels, navigation, buttons, metadata, and forms.
+Use for:
+
+- body copy
+- labels
+- navigation
+- buttons
+- metadata
+- forms
+- utility information
 
 ## Color tokens
 
@@ -36,72 +58,83 @@ Defined in `src/app/(frontend)/styles.css`.
 
 - `--color-paper`: warm ivory base
 - `--color-paper-soft`: lighter editorial surface
-- `--color-paper-deep`: deeper warm neutral
-- `--color-ink`: near-black warm ink
+- `--color-paper-deep`: photography/loading neutral
+- `--color-ink`: warm near-black
+- `--color-ink-soft`: softer dark body/display tone
 - `--color-muted`: secondary copy
-- `--color-accent`: muted rose/clay
-- `--color-accent-dark`: dark interactive accent
-- `--color-line`: subtle separators
+- `--color-accent`: clay / muted rose editorial accent
+- `--color-accent-dark`: deeper interaction/accent tone
+- `--color-line`: quiet separators
+- `--color-line-strong`: stronger field/detail separators
 
-Avoid adding bright accent colors without revisiting the complete palette.
+Avoid adding bright accent colors without revisiting the complete art direction.
 
 ## Layout tokens
 
 - `--site-max`: maximum editorial canvas
 - `--gutter`: fluid horizontal page gutter
-- `--section-space`: fluid vertical section rhythm
+- `--section-space`: major vertical section rhythm
+- `--section-space-small`: secondary section rhythm
+- `--label-size`: shared editorial metadata size
+- `--ease-editorial`: shared premium motion curve
 
-Use shared tokens before introducing page-specific spacing constants.
+Prefer these tokens before introducing page-specific constants.
 
 ## Buttons
 
 Three variants exist in `LinkButton`:
 
-- Solid — primary conversion action
+- Solid — primary conversion
 - Outline — secondary/high-contrast action
 - Text — editorial inline action
 
-Buttons use typography and motion rather than large radii, shadows, or gradients.
+Button design uses typography, fine borders, and a restrained circular arrow detail rather than rounded pill styling or shadows.
 
-## Photography treatment
+## Photography
 
 Images should:
 
-- Fill their art-directed frame with `object-fit: cover`
-- Use generous crops and portrait-forward ratios
-- Avoid unnecessary rounded corners
-- Use subtle hover scale only where the image is interactive
-- Always have meaningful alternative text from Payload
-- Use Payload Media records as the source of truth
-
-When CMS photography is missing, the homepage uses neutral editorial placeholders rather than hard-coded third-party stock photography.
+- use intentional crops
+- vary scale where the page composition calls for it
+- avoid unnecessary rounded corners
+- use subtle hover scale only when interactive
+- preserve Payload alternative text
+- use Payload Media as the source of truth
+- avoid stock imagery hard-coded into the template
 
 ## Motion
 
-Motion is CSS-only in Chat 2.
+Motion is CSS-led.
 
-- Soft initial rise/fade on the hero
-- Small arrow movement on hover
-- Subtle image scale on interactive portfolio cards
-- Underline/navigation transitions
+Current behavior includes:
 
-All motion is removed or effectively disabled under `prefers-reduced-motion: reduce`.
+- clipped/faded hero image entrance
+- editorial text rise
+- image micro-scale
+- directional underline motion
+- subtle arrow motion
+- full-screen mobile-menu transitions
+- progressive section reveal using CSS view timelines when supported
+
+Every motion treatment must respect `prefers-reduced-motion`.
 
 ## Accessibility
 
-- Skip link provided
+- Skip link
 - Visible focus treatment
-- Semantic header/nav/main/footer structure
-- Mobile navigation uses native `details/summary`
-- Reduced-motion preference respected
-- Image alt text comes from required Media fields
+- Semantic header/nav/main/footer
+- Native `details/summary` mobile navigation
+- Reduced-motion support
+- Payload alt text
+- Accessible form errors and pending states
+- Editorial 404 states that retain usable navigation
 
 ## CSS architecture
 
 Tailwind is prohibited.
 
-- `styles.css` — global tokens, reset, accessibility, shared motion
-- CSS Modules — component/page-specific styling
-- Payload Admin custom SCSS remains separate from the public design system
+- `styles.css` — tokens, reset, global accessibility, shared progressive motion
+- CSS Modules — page and component art direction
+- Payload Admin SCSS — isolated CMS branding
 
-Do not place page-specific selectors into the global stylesheet unless they are genuinely reusable across the whole site.
+Do not collapse page-specific composition into a generic card/component system simply to reduce CSS.
