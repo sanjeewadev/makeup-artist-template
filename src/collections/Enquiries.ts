@@ -13,7 +13,7 @@ export const Enquiries: CollectionConfig = {
     group: 'Business',
     defaultColumns: ['name', 'service', 'eventDate', 'status', 'createdAt'],
     listSearchableFields: ['name', 'email', 'phone', 'location', 'message'],
-    description: 'Prospective-client enquiries received from the website.',
+    description: 'Prospective-client consultation requests. Review new enquiries promptly, use Status consistently, and keep private follow-up context in Internal notes.'
     hideAPIURL: true,
   },
   access: {
@@ -110,7 +110,7 @@ export const Enquiries: CollectionConfig = {
       ],
       admin: {
         position: 'sidebar',
-        description: 'Update this as the enquiry moves from new to replied or closed.',
+        description: 'Use consistently: New = unread/untriaged, In progress = being discussed, Replied = response sent, Closed = no further action, Spam = unwanted submission.'
       },
     },
     {
@@ -133,7 +133,7 @@ export const Enquiries: CollectionConfig = {
       type: 'textarea',
       maxLength: 2000,
       admin: {
-        description: 'Private notes for the artist/team. Never shown on the public website.',
+        description: 'Private follow-up notes for the artist/team: quote context, availability, pending questions, or next action. Never shown publicly.'
       },
     },
   ],
