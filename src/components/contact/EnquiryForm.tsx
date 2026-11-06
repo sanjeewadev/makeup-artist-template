@@ -50,9 +50,7 @@ export function EnquiryForm({
         <p className={styles.successLabel}>Enquiry received</p>
         <h2>Thank you.</h2>
         <p>{successMessage}</p>
-        <button onClick={() => window.location.reload()} type="button">
-          Send another enquiry
-        </button>
+        <a href="/contact">Send another enquiry</a>
       </div>
     )
   }
