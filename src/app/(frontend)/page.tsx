@@ -87,14 +87,20 @@ export default async function HomePage() {
   const leadServiceImage =
     leadService && isResolvedRelationship<Media>(leadService.image) ? leadService.image : null
 
+  // A warm bridal portrait is a better closing mood than the final
+  // (potentially cool-toned editorial) project in the collection.
+  // This still selects the client's own photography when available.
+  const closingProject =
+    projects.find(
+      (project) =>
+        typeof project.category === 'object' &&
+        project.category?.slug === 'bridal' &&
+        isResolvedRelationship<Media>(project.heroImage),
+    ) || projects.find((project) => isResolvedRelationship<Media>(project.heroImage))
   const closingImage =
-    projects
-      .slice()
-      .reverse()
-      .map((project) =>
-        isResolvedRelationship<Media>(project.heroImage) ? project.heroImage : null,
-      )
-      .find((image): image is Media => Boolean(image)) || heroImage
+    closingProject && isResolvedRelationship<Media>(closingProject.heroImage)
+      ? closingProject.heroImage
+      : heroImage
 
   return (
     <div className={styles.home}>
