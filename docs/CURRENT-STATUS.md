@@ -252,3 +252,54 @@ Final Chat 8 code validation:
 - ESLint: pass
 - TypeScript: pass
 - Production Next.js build: pass
+
+
+## Chat 9 — Portfolio as the Main Sales Weapon
+
+**Status: complete**
+
+Chat 9 upgrades the Portfolio from an editorial gallery into a complete proof, browsing, case-study, and conversion experience.
+
+### Implemented
+
+- Enriched Portfolio data without adding new database fields
+- Featured Portfolio cover story on the archive
+- Secondary cover-story detail photography
+- Cover metadata for location, year, and story depth
+- Category descriptions surfaced publicly
+- Contextual category filter introductions
+- Visible project counts by filter
+- Richer Portfolio card metadata
+- Gallery-frame counts on archive cards
+- Year and location context
+- Excerpts on large editorial cards
+- Stronger mobile archive behavior
+- Project position, e.g. Story 03 / 10
+- Project story-depth metadata
+- Category/setting/story Project Notes rail
+- Case-study treatment for project Story content
+- Stronger gallery introduction and image count
+- Persistent gallery sequence counters
+- Accessible full-screen project image viewer
+- Escape-to-close modal behavior
+- Previous/next image controls
+- Captions and photo credits in the viewer
+- Project-specific enquiry bridge
+- Services cross-link after project viewing
+- Large previous/next Portfolio story navigation
+- Duplicate two-project navigation protection
+- Premium Portfolio editing guidance in Payload
+- No new schema fields or migrations required
+- No Tailwind
+
+Detailed rules:
+
+- `docs/PORTFOLIO-SALES-EXPERIENCE.md`
+
+### Validation
+
+Final Chat 9 code validation:
+
+- ESLint: pass
+- TypeScript: pass
+- Production Next.js build: pass
