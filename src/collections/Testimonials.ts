@@ -10,10 +10,11 @@ export const Testimonials: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'clientName',
-    group: 'Content',
+    group: 'Services & Reviews',
     defaultColumns: ['clientName', 'service', 'featured', '_status', 'updatedAt'],
     listSearchableFields: ['clientName', 'quote', 'location'],
     description: 'Client reviews that can be featured throughout the website.',
+    hideAPIURL: true,
   },
   access: {
     create: authenticated,
@@ -34,17 +35,26 @@ export const Testimonials: CollectionConfig = {
       type: 'text',
       required: true,
       maxLength: 120,
+      admin: {
+        description: 'Client name shown with the testimonial.',
+      },
     },
     {
       name: 'quote',
       type: 'textarea',
       required: true,
       maxLength: 1200,
+      admin: {
+        description: 'Use the client’s own words and keep the strongest part of the review.',
+      },
     },
     {
       name: 'service',
       type: 'relationship',
       relationTo: 'services',
+      admin: {
+        description: 'Optional service connected to this review.',
+      },
     },
     {
       name: 'location',
@@ -55,6 +65,9 @@ export const Testimonials: CollectionConfig = {
       name: 'portrait',
       type: 'upload',
       relationTo: 'media',
+      admin: {
+        description: 'Optional client portrait. Only use with permission.',
+      },
     },
     {
       name: 'featured',
@@ -62,6 +75,7 @@ export const Testimonials: CollectionConfig = {
       defaultValue: false,
       admin: {
         position: 'sidebar',
+        description: 'Featured reviews are preferred for high-visibility testimonial sections.',
       },
     },
     {
