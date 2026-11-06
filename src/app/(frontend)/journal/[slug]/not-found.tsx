@@ -1,18 +1,13 @@
-import Link from 'next/link'
+import { EditorialNotFound } from '@/components/site/EditorialNotFound'
 
 export default function JournalNotFound() {
   return (
-    <section
-      style={{
-        margin: '0 auto',
-        maxWidth: 'var(--site-max)',
-        padding: 'var(--section-space) var(--gutter)',
-      }}
-    >
-      <p>Journal / 404</p>
-      <h1>That story is no longer available.</h1>
-      <p>The journal may have been updated or this link may be out of date.</p>
-      <Link href="/journal">Return to the journal →</Link>
-    </section>
+    <EditorialNotFound
+      eyebrow="Journal / Missing story"
+      message="The journal may have been updated, or this story may no longer be published."
+      returnHref="/journal"
+      returnLabel="Return to journal"
+      title="This story has left the page."
+    />
   )
 }
