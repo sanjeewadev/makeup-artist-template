@@ -93,7 +93,7 @@
   color: var(--color-muted);
   display: flex;
   flex-direction: column;
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   font-weight: 650;
   gap: 0.4rem;
   letter-spacing: 0.13em;
@@ -154,7 +154,7 @@
 
 .contactMethods span {
   color: rgba(241, 236, 229, 0.42);
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -216,7 +216,7 @@
 
 .nextSteps li span {
   color: rgba(241, 236, 229, 0.36);
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   font-weight: 650;
 }
 
@@ -290,7 +290,7 @@
 .selectedService > a {
   border-bottom: 1px solid currentColor;
   color: var(--color-ink);
-  font-size: 0.56rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.12em;
   padding-bottom: 0.25rem;
