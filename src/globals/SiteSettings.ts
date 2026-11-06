@@ -7,7 +7,7 @@ export const SiteSettings: GlobalConfig = {
   label: 'Site Settings',
   admin: {
     group: 'Site Settings',
-    description: 'Brand identity, contact details, social profiles, and default search metadata.',
+    description: 'Source of truth for the artist/business identity, direct contact details, real social profiles, and default search metadata.'
     hideAPIURL: true,
   },
   access: {
@@ -33,7 +33,7 @@ export const SiteSettings: GlobalConfig = {
       type: 'text',
       maxLength: 120,
       admin: {
-        description: 'Artist name shown in public-facing brand areas when provided.',
+        description: 'Use the exact professional name the artist wants clients to see across the website.'
       },
     },
     {
@@ -41,7 +41,7 @@ export const SiteSettings: GlobalConfig = {
       type: 'text',
       maxLength: 180,
       admin: {
-        description: 'Short brand line used as supporting identity copy.',
+        description: 'A short, ownable brand line. Avoid vague luxury language that could belong to any makeup artist.'
       },
     },
     {
@@ -49,7 +49,7 @@ export const SiteSettings: GlobalConfig = {
       type: 'textarea',
       maxLength: 500,
       admin: {
-        description: 'Concise description of the artist/business used as a site-wide fallback.',
+        description: 'Two or three concise sentences describing the real practice, type of work, and point of view. This now supports high-visibility brand areas such as the footer.'
       },
     },
     {
@@ -105,7 +105,7 @@ export const SiteSettings: GlobalConfig = {
       name: 'socialLinks',
       type: 'array',
       admin: {
-        description: 'Social profiles shown in the footer and other contact areas.',
+        description: 'Only add real, active public profiles the artist wants clients to visit. These are used as visible trust/contact signals in the footer and About page.'
       },
       maxRows: 10,
       fields: [
