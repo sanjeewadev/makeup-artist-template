@@ -1,5 +1,5 @@
 .image {
-  opacity: 0;
+  opacity: 1;
 }
 
 .loaded {
@@ -8,7 +8,7 @@
 
 @keyframes image-arrive {
   from {
-    opacity: 0;
+    opacity: 0.08;
   }
 
   to {
@@ -17,10 +17,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .image {
-    opacity: 1;
-  }
-
   .loaded {
     animation: none;
   }
