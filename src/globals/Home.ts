@@ -4,8 +4,9 @@ export const Home: GlobalConfig = {
   slug: 'home',
   label: 'Home',
   admin: {
-    group: 'Pages',
+    group: 'Website Pages',
     description: 'Editorial content and selections for the home page. Layout is controlled by the frontend.',
+    hideAPIURL: true,
   },
   access: {
     read: () => true,
@@ -19,6 +20,9 @@ export const Home: GlobalConfig = {
     {
       name: 'hero',
       type: 'group',
+      admin: {
+        description: 'The first major message and photograph visitors see on the homepage.',
+      },
       fields: [
         {
           name: 'eyebrow',
@@ -61,6 +65,9 @@ export const Home: GlobalConfig = {
     {
       name: 'introduction',
       type: 'group',
+      admin: {
+        description: 'Short editorial introduction explaining the artist’s approach.',
+      },
       fields: [
         {
           name: 'eyebrow',
@@ -92,11 +99,17 @@ export const Home: GlobalConfig = {
       type: 'relationship',
       relationTo: 'services',
       hasMany: true,
+      admin: {
+        description: 'Select a small set of services to feature on the homepage.',
+      },
     },
     {
       name: 'featuredTestimonial',
       type: 'relationship',
       relationTo: 'testimonials',
+      admin: {
+        description: 'Choose one standout testimonial for the homepage statement section.',
+      },
     },
     {
       name: 'closingCTA',
