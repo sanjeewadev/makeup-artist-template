@@ -14,6 +14,7 @@ export const Enquiries: CollectionConfig = {
     defaultColumns: ['name', 'service', 'eventDate', 'status', 'createdAt'],
     listSearchableFields: ['name', 'email', 'phone', 'location', 'message'],
     description: 'Prospective-client enquiries received from the website.',
+    hideAPIURL: true,
   },
   access: {
     create: authenticated,
@@ -109,6 +110,7 @@ export const Enquiries: CollectionConfig = {
       ],
       admin: {
         position: 'sidebar',
+        description: 'Update this as the enquiry moves from new to replied or closed.',
       },
     },
     {
@@ -122,6 +124,7 @@ export const Enquiries: CollectionConfig = {
       ],
       admin: {
         position: 'sidebar',
+        description: 'Shows whether the enquiry came from the website or was entered manually.',
       },
     },
     {
