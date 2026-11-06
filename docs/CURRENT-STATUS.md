@@ -400,3 +400,66 @@ Final Chat 11 code validation:
 - ESLint: pass
 - TypeScript: pass
 - Production Next.js build: pass
+
+
+## Chat 12 — Editorial Journal + Serious SEO
+
+**Status: complete**
+
+Chat 12 upgrades the Journal into a reader-focused editorial authority system and makes the public site's technical SEO consistent.
+
+### Implemented
+
+- Journal topic aggregation from existing tags
+- Reader-facing Journal topic filter
+- Topic counts
+- No duplicate topic/query URLs created
+- Stronger Journal featured-story context
+- Journal story/topic count context
+- Related-story matching by shared topics
+- Graceful related-reading fallback
+- Stronger article author context
+- About-the-artist internal link from articles
+- Services + availability article conversion bridge
+- Related-reading editorial cards
+- Global metadataBase using production site URL
+- Central canonical URL helper
+- Robust protocol handling for production URL
+- Global OpenGraph defaults
+- Global Twitter card defaults
+- Default social-image fallback from Site Settings
+- Global WebSite JSON-LD
+- Artist / Person JSON-LD
+- BlogPosting JSON-LD for Journal stories
+- BreadcrumbList JSON-LD for Journal stories
+- Canonical URLs for Home, Portfolio, projects, Services, About, Journal, articles, and Contact
+- Rich article OpenGraph metadata
+- Rich Portfolio-project OpenGraph metadata
+- Absolute social image URLs for Payload media
+- Draft Journal preview no-index protection
+- Draft Portfolio preview no-index protection
+- Dynamic sitemap respects project/post no-index settings
+- Dynamic sitemap respects About/Contact no-index settings
+- Site-wide default no-index suppresses sitemap output
+- robots.txt central public-host configuration
+- Public Payload media explicitly crawlable
+- Admin/API/preview routes remain blocked from crawlers
+- Better SEO-field CMS guidance
+- Stronger Journal editorial-writing guidance
+- Consistent topic/tag CMS guidance
+- Explicit production-domain environment guidance
+- No new database fields or migrations
+- No thin SEO landing-page system
+- No Tailwind
+
+Detailed rules:
+
+- `docs/EDITORIAL-SEO-AUTHORITY.md`
+
+### Validation
+
+Final Chat 12 code validation:
+
+- ESLint: pass
+- TypeScript: pass
+- Production Next.js build: pass
