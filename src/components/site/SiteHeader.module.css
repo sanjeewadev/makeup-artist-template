@@ -51,7 +51,7 @@
 
 .brand small {
   color: var(--color-muted);
-  font-size: 0.5rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.2em;
   margin-top: 0.35rem;
@@ -78,7 +78,7 @@
 
 .desktopNav a {
   color: var(--color-muted);
-  font-size: 0.63rem;
+  font-size: 0.76rem;
   font-weight: 650;
   letter-spacing: 0.13em;
   padding: 0.5rem 0;
