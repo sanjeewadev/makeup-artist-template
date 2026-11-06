@@ -121,6 +121,7 @@ Before release, the project should include:
 - Chat 4 — Services, About & Contact: **complete**
 - Chat 5 — Journal + CMS Experience: **complete**
 - Chat 6 — Signature Art Direction & Next-Level UI/UX: **complete**
+- Chat 7 — $2K Visual Identity & Photography Direction: **complete**
 
 ## Delivery phases
 
@@ -156,3 +157,12 @@ See `docs/SIGNATURE-ART-DIRECTION.md` for the protected visual rules.
 The requested five development chats are complete on `dev`.
 
 The remaining delivery phases in this broader product plan—production deployment, final real-content QA, optional email notification integration, and release/handoff—are release tasks rather than missing website feature milestones.
+
+
+## $2K photography direction completion
+
+Chat 7 expands the visual-content system behind the signature design.
+
+The template now carries a much denser demo photography library, ten believable Portfolio stories, richer Services/Journal/testimonial content, homepage image-essay pacing, photo credits, and formal real-client photography guidance.
+
+See `docs/PHOTOGRAPHY-DIRECTION.md`.
