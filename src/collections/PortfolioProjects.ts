@@ -41,6 +41,9 @@ export const PortfolioProjects: CollectionConfig = {
       required: true,
       maxLength: 140,
       index: true,
+      admin: {
+        description: 'Public project title used on portfolio cards and the project page.',
+      },
     },
     slugField(),
     {
@@ -49,12 +52,18 @@ export const PortfolioProjects: CollectionConfig = {
       relationTo: 'portfolio-categories',
       required: true,
       index: true,
+      admin: {
+        description: 'Controls which public portfolio filter this project appears under.',
+      },
     },
     {
       name: 'clientName',
       label: 'Client / project name',
       type: 'text',
       maxLength: 120,
+      admin: {
+        description: 'Optional client, wedding, campaign, or project name shown in project details.',
+      },
     },
     {
       name: 'excerpt',
@@ -69,15 +78,24 @@ export const PortfolioProjects: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       required: true,
+      admin: {
+        description: 'Primary image used on portfolio cards and the project-page hero.',
+      },
     },
     {
       name: 'story',
       type: 'richText',
+      admin: {
+        description: 'Optional story behind the look, occasion, brief, or creative direction.',
+      },
     },
     {
       name: 'gallery',
       type: 'array',
       minRows: 1,
+      admin: {
+        description: 'Ordered gallery shown on the project page. Use presentation hints to shape the editorial layout.',
+      },
       fields: [
         {
           name: 'image',
@@ -130,6 +148,7 @@ export const PortfolioProjects: CollectionConfig = {
       defaultValue: false,
       admin: {
         position: 'sidebar',
+        description: 'Featured projects can be selected or prioritized in prominent site sections.',
       },
     },
     {
