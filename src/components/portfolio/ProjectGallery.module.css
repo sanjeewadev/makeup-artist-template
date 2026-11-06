@@ -1,6 +1,6 @@
 .gallery {
   display: grid;
-  gap: clamp(2rem, 5vw, 6rem) clamp(1rem, 2.8vw, 3rem);
+  gap: clamp(3rem, 7vw, 8rem) clamp(1rem, 3vw, 3.5rem);
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
@@ -22,11 +22,19 @@
 }
 
 .portrait:nth-child(odd) {
-  grid-column-start: 2;
+  grid-column-start: 1;
+}
+
+.portrait:nth-child(even) {
+  grid-column: 8 / span 5;
+}
+
+.landscape:nth-child(odd) {
+  grid-column: 5 / span 8;
 }
 
 .landscape:nth-child(even) {
-  grid-column-end: 13;
+  grid-column: 1 / span 8;
 }
 
 .imageFrame {
@@ -36,41 +44,47 @@
 }
 
 .wide .imageFrame {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 8.8;
 }
 
 .portrait .imageFrame {
-  aspect-ratio: 4 / 5.4;
+  aspect-ratio: 4 / 5.6;
 }
 
 .landscape .imageFrame {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 2.9;
 }
 
 .imageFrame > img {
   object-fit: cover;
-  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    filter 700ms ease,
+    transform 1100ms var(--ease-editorial);
 }
 
 .figure:hover .imageFrame > img {
+  filter: saturate(0.93);
   transform: scale(1.012);
 }
 
 .figure figcaption {
+  align-items: start;
+  border-top: 1px solid var(--color-line);
   color: var(--color-muted);
-  display: flex;
-  font-size: 0.6rem;
+  display: grid;
+  font-size: 0.55rem;
+  font-weight: 650;
   gap: 1.5rem;
-  justify-content: space-between;
-  letter-spacing: 0.08em;
+  grid-template-columns: 2rem 1fr;
+  letter-spacing: 0.1em;
   line-height: 1.5;
-  padding-top: 0.8rem;
+  margin-top: 0.7rem;
+  padding-top: 0.65rem;
   text-transform: uppercase;
 }
 
 .figure figcaption span:last-child {
   max-width: 34rem;
-  text-align: right;
 }
 
 @media (max-width: 760px) {
@@ -79,22 +93,22 @@
   }
 
   .figure {
-    margin-bottom: 3rem;
+    margin-bottom: 3.8rem;
   }
 
   .wide .imageFrame,
   .portrait .imageFrame,
   .landscape .imageFrame {
     aspect-ratio: auto;
-    min-height: 65vw;
+    min-height: 70vw;
   }
 
   .portrait .imageFrame {
-    min-height: 118vw;
+    min-height: 122vw;
   }
 
   .landscape .imageFrame {
-    min-height: 72vw;
+    min-height: 74vw;
   }
 }
 
