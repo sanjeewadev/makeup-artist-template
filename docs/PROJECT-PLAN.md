@@ -121,7 +121,7 @@ Before release, the project should include:
 - Chat 4 — Services, About & Contact: **complete**
 - Chat 5 — Journal + CMS Experience: **complete**
 - Chat 6 — Signature Art Direction & Next-Level UI/UX: **complete**
-- Chat 7 — $2K Visual Identity & Photography Direction: **complete**
+- Chat 7 — $2K Visual Identity & Photography Direction: **complete**\n- Chat 8 — Cinematic Homepage 3.0: **complete**
 
 ## Delivery phases
 
@@ -166,3 +166,12 @@ Chat 7 expands the visual-content system behind the signature design.
 The template now carries a much denser demo photography library, ten believable Portfolio stories, richer Services/Journal/testimonial content, homepage image-essay pacing, photo credits, and formal real-client photography guidance.
 
 See `docs/PHOTOGRAPHY-DIRECTION.md`.
+
+
+## Cinematic homepage completion
+
+Chat 8 turns the homepage into a full premium narrative rather than a generic collection of website sections.
+
+It now connects Portfolio proof, service experience, artist credibility, client testimonials, Journal authority, and enquiry conversion into one intentional sequence.
+
+See `docs/CINEMATIC-HOMEPAGE.md`.
