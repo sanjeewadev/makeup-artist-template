@@ -121,7 +121,7 @@ Before release, the project should include:
 - Chat 4 — Services, About & Contact: **complete**
 - Chat 5 — Journal + CMS Experience: **complete**
 - Chat 6 — Signature Art Direction & Next-Level UI/UX: **complete**
-- Chat 7 — $2K Visual Identity & Photography Direction: **complete**\n- Chat 8 — Cinematic Homepage 3.0: **complete**\n- Chat 9 — Portfolio as the Main Sales Weapon: **complete**\n- Chat 10 — Services + Booking Conversion: **complete**
+- Chat 7 — $2K Visual Identity & Photography Direction: **complete**\n- Chat 8 — Cinematic Homepage 3.0: **complete**\n- Chat 9 — Portfolio as the Main Sales Weapon: **complete**\n- Chat 10 — Services + Booking Conversion: **complete**\n- Chat 11 — Artist Brand, Trust & Social Proof: **complete**
 
 ## Delivery phases
 
@@ -189,3 +189,10 @@ See `docs/PORTFOLIO-SALES-EXPERIENCE.md`.
 Chat 10 turns the service journey into a premium consultation flow: service discovery, process education, detailed service stories, practical FAQs, selected-service continuity, and a four-part availability brief backed by the existing trusted server-side enquiry workflow.
 
 See `docs/SERVICES-BOOKING-CONVERSION.md`.
+
+
+## Artist-brand and trust completion
+
+Chat 11 makes authentic identity and proof part of the product: a stronger artist profile, Portfolio evidence, Service context, genuine testimonial attribution, real social profiles, global footer identity, and explicit safeguards against fabricated credibility.
+
+See `docs/ARTIST-BRAND-TRUST.md`.
