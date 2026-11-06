@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { CmsImage } from '@/components/media/CmsImage'
@@ -11,6 +12,12 @@ import type { Media, Service } from '@/payload-types'
 import styles from './home.module.css'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+}
 
 const formatJournalDate = (value: string | null | undefined) => {
   if (!value) return null
