@@ -98,7 +98,7 @@
 
 .heroIdentity > p {
   color: var(--color-muted);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.12em;
   margin: 0;
@@ -134,7 +134,7 @@
     linear-gradient(145deg, #c5b1a4 0%, #927267 42%, #4d3a34 100%);
   color: rgba(255, 255, 255, 0.7);
   display: flex;
-  font-size: 0.56rem;
+  font-size: 0.72rem;
   inset: 0;
   letter-spacing: 0.13em;
   padding: 1.2rem;
@@ -146,7 +146,7 @@
   bottom: 1.2rem;
   color: rgba(255, 255, 255, 0.85);
   display: flex;
-  font-size: 0.55rem;
+  font-size: 0.72rem;
   font-weight: 650;
   justify-content: space-between;
   left: 1.2rem;
@@ -356,7 +356,7 @@
   background: color-mix(in srgb, var(--color-paper) 94%, transparent);
   bottom: 0.7rem;
   color: var(--color-muted);
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   font-weight: 650;
   left: 0.7rem;
   letter-spacing: 0.12em;
@@ -380,7 +380,7 @@
 
 .proofMeta > p {
   color: var(--color-muted);
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   font-weight: 650;
   grid-column: 1 / -1;
   letter-spacing: 0.12em;
@@ -400,7 +400,7 @@
 .proofMeta > span {
   align-self: end;
   color: var(--color-muted);
-  font-size: 0.53rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -455,7 +455,7 @@
 
 .credential > span {
   color: rgba(241, 236, 229, 0.4);
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
 }
 
@@ -534,7 +534,7 @@
 
 .practiceServices > a > span:first-child {
   color: var(--color-muted);
-  font-size: 0.52rem;
+  font-size: 0.72rem;
 }
 
 .practiceServices strong {
@@ -624,7 +624,7 @@
 
 .socialLinks a > span:first-child {
   color: var(--color-muted);
-  font-size: 0.52rem;
+  font-size: 0.72rem;
 }
 
 .socialLinks strong {
