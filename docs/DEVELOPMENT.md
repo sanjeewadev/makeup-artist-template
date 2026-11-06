@@ -166,3 +166,46 @@ Service CTAs may preselect a published service with:
 The server action is the security boundary. Do not replace it with anonymous Payload collection create access.
 
 WhatsApp numbers should be stored in Site Settings using international format. Automated notification email remains optional until a production email adapter is configured.
+
+
+## Draft preview
+
+Draft preview is available for Journal posts, Portfolio projects, and Services.
+
+Generate a local preview secret:
+
+```powershell
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+Add it to `.env`:
+
+```text
+PREVIEW_SECRET=your-generated-secret
+```
+
+Do not commit the real value.
+
+Payload preview links enter Next.js Draft Mode through `/preview`. Normal public requests remain published-only.
+
+For production, configure the same secret in the Cloudflare environment.
+
+## Canonical site URL
+
+Set:
+
+```text
+NEXT_PUBLIC_SITE_URL=https://your-domain.example
+```
+
+before launch. This value is used by sitemap and robots metadata.
+
+## Payload admin components
+
+The Admin Panel uses custom logo/icon/dashboard components.
+
+If these component paths change or new Payload custom components are added, regenerate the import map:
+
+```powershell
+pnpm generate:importmap
+```
