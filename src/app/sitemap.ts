@@ -9,23 +9,43 @@ export const dynamic = 'force-dynamic'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const site = getSiteURL()
 
-  const staticEntries: MetadataRoute.Sitemap = [
-    ['', 'weekly', 1],
-    ['/portfolio', 'weekly', 0.9],
-    ['/services', 'monthly', 0.85],
-    ['/about', 'monthly', 0.8],
-    ['/journal', 'weekly', 0.85],
-    ['/contact', 'monthly', 0.7],
-  ].map(([path, changeFrequency, priority]) => ({
-    changeFrequency: changeFrequency as MetadataRoute.Sitemap[number]['changeFrequency'],
-    priority: priority as number,
-    url: site + path,
-  }))
+  const baseStaticEntries: MetadataRoute.Sitemap = [
+    {
+      changeFrequency: 'weekly',
+      priority: 1,
+      url: site,
+    },
+    {
+      changeFrequency: 'weekly',
+      priority: 0.9,
+      url: site + '/portfolio',
+    },
+    {
+      changeFrequency: 'monthly',
+      priority: 0.85,
+      url: site + '/services',
+    },
+    {
+      changeFrequency: 'monthly',
+      priority: 0.8,
+      url: site + '/about',
+    },
+    {
+      changeFrequency: 'weekly',
+      priority: 0.85,
+      url: site + '/journal',
+    },
+    {
+      changeFrequency: 'monthly',
+      priority: 0.7,
+      url: site + '/contact',
+    },
+  ]
 
   try {
     const payload = await getPayload({ config })
 
-    const [projects, posts] = await Promise.all([
+    const [projects, posts, siteSettings, about, contact] = await Promise.all([
       payload.find({
         collection: 'portfolio-projects',
         depth: 0,
@@ -40,7 +60,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         overrideAccess: false,
         sort: '-publishedAt',
       }),
+      payload.findGlobal({
+        slug: 'site-settings',
+        depth: 0,
+        overrideAccess: false,
+      }),
+      payload.findGlobal({
+        slug: 'about',
+        depth: 0,
+        overrideAccess: false,
+      }),
+      payload.findGlobal({
+        slug: 'contact',
+        depth: 0,
+        overrideAccess: false,
+      }),
     ])
+
+    if (siteSettings.defaultSEO?.noIndex) return []
+
+    const staticEntries = baseStaticEntries.filter((entry) => {
+      if (entry.url.endsWith('/about')) return !about.seo?.noIndex
+      if (entry.url.endsWith('/contact')) return !contact.seo?.noIndex
+      return true
+    })
 
     const projectEntries: MetadataRoute.Sitemap = projects.docs
       .filter((project) => !project.seo?.noIndex)
@@ -62,6 +105,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     return [...staticEntries, ...projectEntries, ...journalEntries]
   } catch {
-    return staticEntries
+    return baseStaticEntries
   }
 }
