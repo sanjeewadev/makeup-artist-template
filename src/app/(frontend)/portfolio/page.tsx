@@ -22,7 +22,7 @@ export default async function PortfolioPage() {
         <div className={styles.index}>Portfolio / Selected work</div>
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}>Faces, light, detail</p>
-          <h1>A study in beauty, in context.</h1>
+          <h1>A study in beauty, <em>in context.</em></h1>
           <div className={styles.leadRow}>
             <p>
               Bridal, editorial, and occasion work presented as complete stories rather than
@@ -42,7 +42,7 @@ export default async function PortfolioPage() {
 
       <section className={styles.footerStatement}>
         <span>Every face is different.</span>
-        <p>The work should feel personal before it feels polished.</p>
+        <p>The work should feel <em>personal</em> before it feels polished.</p>
       </section>
     </div>
   )
