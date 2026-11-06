@@ -1,4 +1,5 @@
 import { cache } from 'react'
+import { draftMode } from 'next/headers'
 import { getPayload } from 'payload'
 
 import type { About, Contact, Service, SiteSetting, Testimonial } from '@/payload-types'
@@ -22,6 +23,8 @@ export type ContactPageData = {
 }
 
 export const getServicesPageData = cache(async (): Promise<ServicesPageData> => {
+  const preview = (await draftMode()).isEnabled
+
   try {
     const payload = await getPayload({ config })
 
@@ -29,8 +32,9 @@ export const getServicesPageData = cache(async (): Promise<ServicesPageData> => 
       payload.find({
         collection: 'services',
         depth: 2,
+        draft: preview,
         limit: 100,
-        overrideAccess: false,
+        overrideAccess: preview,
         sort: 'sortOrder',
       }),
       payload.find({
