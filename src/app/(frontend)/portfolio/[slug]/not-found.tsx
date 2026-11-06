@@ -1,16 +1,13 @@
-import Link from 'next/link'
-
-import styles from './project.module.css'
+import { EditorialNotFound } from '@/components/site/EditorialNotFound'
 
 export default function ProjectNotFound() {
   return (
-    <section className={styles.story}>
-      <p className={styles.sectionIndex}>Portfolio / 404</p>
-      <div className={styles.storyContent}>
-        <h1>That project is no longer available.</h1>
-        <p>The portfolio may have been updated or this link may be out of date.</p>
-        <Link href="/portfolio">Return to the portfolio →</Link>
-      </div>
-    </section>
+    <EditorialNotFound
+      eyebrow="Portfolio / Missing project"
+      message="The portfolio may have changed, or this project may no longer be publicly available."
+      returnHref="/portfolio"
+      returnLabel="Return to portfolio"
+      title="This look is no longer in the edit."
+    />
   )
 }
