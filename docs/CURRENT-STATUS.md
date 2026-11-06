@@ -303,3 +303,54 @@ Final Chat 9 code validation:
 - ESLint: pass
 - TypeScript: pass
 - Production Next.js build: pass
+
+
+## Chat 10 — Services + Booking Conversion
+
+**Status: complete**
+
+Chat 10 upgrades the service and enquiry journey from a polished catalogue/form into a complete premium consultation and lead-conversion experience.
+
+### Implemented
+
+- Service-area context on Services
+- Service count and commercial context in Services hero
+- Visual Find Your Service chapter
+- Service comparison using photography, duration, and price/quote labels
+- Four-step public process explanation
+- Expanded detailed Service-story presentation
+- Service-specific conversion copy
+- “Useful first message” preparation guidance
+- Practical Services FAQ
+- Low-pressure consultation CTA
+- Contact reframed as private consultation / availability request
+- Four-part enquiry brief
+- Visual service radio-card selection
+- “Not sure yet” service path
+- Event date, people, and venue planning section
+- Dedicated contact-preference section
+- More useful creative-direction message prompt
+- Selected-service continuity from Services to Contact
+- Selected service summary on Contact
+- Direct-contact and WhatsApp options preserved
+- Three-step “After you send” explanation
+- Stronger success-state next-step explanation
+- Clear non-booking / no-pressure language
+- Contact closing guidance for undecided/early-stage clients
+- Better Service CMS writing guidance
+- Better Contact CMS copy guidance
+- Clearer Enquiry status-management workflow
+- No new database fields or migrations
+- No Tailwind
+
+Detailed rules:
+
+- `docs/SERVICES-BOOKING-CONVERSION.md`
+
+### Validation
+
+Final Chat 10 code validation:
+
+- ESLint: pass
+- TypeScript: pass
+- Production Next.js build: pass
