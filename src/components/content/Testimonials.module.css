@@ -11,16 +11,19 @@
 }
 
 .heading {
+  align-items: end;
+  border-top: 1px solid var(--color-line);
   display: grid;
-  gap: clamp(3rem, 10vw, 10rem);
-  grid-template-columns: minmax(10rem, 0.28fr) 1fr;
-  margin-bottom: clamp(3rem, 7vw, 6rem);
+  gap: clamp(3rem, 9vw, 9rem);
+  grid-template-columns: minmax(10rem, 0.22fr) 1fr;
+  margin-bottom: clamp(4rem, 8vw, 7rem);
+  padding-top: 1.1rem;
 }
 
 .heading > p {
   color: var(--color-muted);
-  font-size: 0.62rem;
-  font-weight: 600;
+  font-size: var(--label-size);
+  font-weight: 650;
   letter-spacing: 0.14em;
   margin: 0;
   text-transform: uppercase;
@@ -28,12 +31,13 @@
 
 .heading h2 {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 6vw, 6rem);
+  font-size: clamp(4rem, 7vw, 7.2rem);
+  font-style: italic;
   font-weight: 400;
-  letter-spacing: -0.05em;
-  line-height: 0.95;
+  letter-spacing: -0.06em;
+  line-height: 0.84;
   margin: 0;
-  max-width: 10ch;
+  max-width: 9ch;
 }
 
 .list {
@@ -45,23 +49,28 @@
   border-bottom: 1px solid var(--color-line);
   display: grid;
   gap: 2rem;
-  grid-template-columns: 4rem 1fr minmax(11rem, 0.28fr);
-  padding: clamp(2rem, 4vw, 3.5rem) 0;
+  grid-template-columns: 3rem 1fr minmax(11rem, 0.25fr);
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0;
 }
 
 .number {
   color: var(--color-muted);
-  font-size: 0.58rem;
+  font-size: 0.54rem;
   letter-spacing: 0.1em;
 }
 
 .item blockquote {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3.4vw, 3.4rem);
-  letter-spacing: -0.035em;
-  line-height: 1.08;
+  font-size: clamp(2.3rem, 4.5vw, 4.8rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
   margin: 0;
-  max-width: 20ch;
+  max-width: 17ch;
+}
+
+.item:nth-child(even) blockquote {
+  font-style: italic;
 }
 
 .person {
@@ -73,10 +82,10 @@
 
 .portrait {
   border-radius: 50%;
-  height: 3.4rem;
+  height: 3.2rem;
   overflow: hidden;
   position: relative;
-  width: 3.4rem;
+  width: 3.2rem;
 }
 
 .portrait > img {
@@ -90,13 +99,13 @@
 
 .person strong {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 500;
 }
 
 .person span {
   color: var(--color-muted);
-  font-size: 0.65rem;
+  font-size: 0.61rem;
   margin-top: 0.18rem;
 }
 
