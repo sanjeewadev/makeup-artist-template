@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     host: site,
     rules: {
-      allow: '/',
+      allow: ['/', '/api/media/file/'],
       disallow: ['/admin/', '/api/', '/preview'],
       userAgent: '*',
     },
