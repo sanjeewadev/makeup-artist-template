@@ -3,6 +3,7 @@ import { draftMode } from 'next/headers'
 import { Cormorant_Garamond, Manrope } from 'next/font/google'
 import React from 'react'
 
+import { MotionFrame } from '@/components/motion/MotionFrame'
 import { PreviewBanner } from '@/components/site/PreviewBanner'
 import { SiteFooter } from '@/components/site/SiteFooter'
 import { SiteHeader } from '@/components/site/SiteHeader'
@@ -114,7 +115,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <div className="site-frame">
           {preview.isEnabled && <PreviewBanner />}
           <SiteHeader navigation={navigation} siteSettings={siteSettings} />
-          <main id="main-content">{children}</main>
+          <main id="main-content">
+            <MotionFrame>{children}</MotionFrame>
+          </main>
           <SiteFooter navigation={navigation} siteSettings={siteSettings} />
         </div>
       </body>
