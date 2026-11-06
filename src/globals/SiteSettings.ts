@@ -6,8 +6,9 @@ export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: 'Site Settings',
   admin: {
-    group: 'Settings',
+    group: 'Site Settings',
     description: 'Brand identity, contact details, social profiles, and default search metadata.',
+    hideAPIURL: true,
   },
   access: {
     read: () => true,
@@ -23,21 +24,33 @@ export const SiteSettings: GlobalConfig = {
       type: 'text',
       required: true,
       maxLength: 120,
+      admin: {
+        description: 'Main website/business name used in browser titles and fallback branding.',
+      },
     },
     {
       name: 'artistName',
       type: 'text',
       maxLength: 120,
+      admin: {
+        description: 'Artist name shown in public-facing brand areas when provided.',
+      },
     },
     {
       name: 'tagline',
       type: 'text',
       maxLength: 180,
+      admin: {
+        description: 'Short brand line used as supporting identity copy.',
+      },
     },
     {
       name: 'shortDescription',
       type: 'textarea',
       maxLength: 500,
+      admin: {
+        description: 'Concise description of the artist/business used as a site-wide fallback.',
+      },
     },
     {
       name: 'logo',
@@ -58,6 +71,9 @@ export const SiteSettings: GlobalConfig = {
     {
       name: 'contact',
       type: 'group',
+      admin: {
+        description: 'Primary contact details used on the Contact page and footer.',
+      },
       fields: [
         {
           name: 'email',
@@ -67,6 +83,9 @@ export const SiteSettings: GlobalConfig = {
           name: 'phone',
           type: 'text',
           maxLength: 50,
+          admin: {
+            description: 'Use international format for the WhatsApp number, for example +94771234567.',
+          },
         },
         {
           name: 'whatsapp',
@@ -85,6 +104,9 @@ export const SiteSettings: GlobalConfig = {
     {
       name: 'socialLinks',
       type: 'array',
+      admin: {
+        description: 'Social profiles shown in the footer and other contact areas.',
+      },
       maxRows: 10,
       fields: [
         {
