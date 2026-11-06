@@ -313,6 +313,16 @@
   opacity: 0.65;
 }
 
+.submit:disabled > span:last-child {
+  animation: pending-turn 1.1s linear infinite;
+}
+
+@keyframes pending-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .success {
   border-bottom: 1px solid var(--color-line);
   border-top: 1px solid var(--color-line);
@@ -412,6 +422,10 @@
   .field textarea,
   .submit {
     transition: none;
+  }
+
+  .submit:disabled > span:last-child {
+    animation: none;
   }
 
   .serviceChoice:has(input:checked) > span:last-child,
