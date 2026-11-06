@@ -21,7 +21,10 @@ export const Home: GlobalConfig = {
       name: 'hero',
       type: 'group',
       admin: {
-        description: 'The first major message and photograph visitors see on the homepage.',
+        description: 'The cinematic opening message and lead photograph. Use one exceptional portrait with enough negative space for oversized typography.',
+      },
+      admin: {
+        description: 'Final full-photography booking invitation. Keep the message simple and confident; this is the strongest conversion moment on the page.',
       },
       fields: [
         {
@@ -66,7 +69,7 @@ export const Home: GlobalConfig = {
       name: 'introduction',
       type: 'group',
       admin: {
-        description: 'Short editorial introduction explaining the artist’s approach.',
+        description: 'The belief/manifesto chapter immediately after the hero. Keep it concise, personal, and focused on the artist’s point of view.',
       },
       fields: [
         {
@@ -91,7 +94,7 @@ export const Home: GlobalConfig = {
       relationTo: 'portfolio-projects',
       hasMany: true,
       admin: {
-        description: 'Choose a small set of projects to art-direct on the home page.',
+        description: 'Choose 4–6 strong projects. The first becomes the full-screen Signature Story; the following projects feed the photography essay and Selected Work chapters.',
       },
     },
     {
@@ -100,7 +103,7 @@ export const Home: GlobalConfig = {
       relationTo: 'services',
       hasMany: true,
       admin: {
-        description: 'Select a small set of services to feature on the homepage.',
+        description: 'Choose 4–5 services. The first service image becomes the sticky visual in the dark service chapter; the list order controls the homepage sequence.',
       },
     },
     {
@@ -108,7 +111,7 @@ export const Home: GlobalConfig = {
       type: 'relationship',
       relationTo: 'testimonials',
       admin: {
-        description: 'Choose one standout testimonial for the homepage statement section.',
+        description: 'Choose the strongest client quote. It is prioritized in the homepage trust sequence, with other featured testimonials filling the remaining positions.',
       },
     },
     {
