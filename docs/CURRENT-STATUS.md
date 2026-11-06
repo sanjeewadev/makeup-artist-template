@@ -192,3 +192,63 @@ Final Chat 7 code validation:
 - ESLint: pass
 - TypeScript: pass
 - Production Next.js build: pass
+
+
+## Chat 8 — Cinematic Homepage 3.0
+
+**Status: complete**
+
+Chat 8 rebuilds the homepage as a complete luxury brand and conversion narrative.
+
+### Implemented
+
+- Expanded homepage data layer
+- Up to six real Portfolio projects on the homepage
+- Up to five real Services
+- Multiple real testimonials
+- About/artist profile content
+- Recent Journal content
+- Real CMS content prioritized even when Featured flags are not set
+- Cinematic hero with secondary photographic accent
+- Service-area context in hero
+- Refined manifesto chapter
+- Full-screen Signature Story driven by the first selected Portfolio project
+- Project detail inset inside the Signature Story
+- CMS-driven photography essay
+- Expanded asymmetric Selected Work chapter
+- Dark Service Experience chapter
+- Sticky service photography stage
+- Artist-profile chapter on the homepage
+- Artist credentials preview
+- Three-part client trust sequence
+- Journal authority / internal-linking chapter
+- Full-photography closing enquiry scene
+- Mobile-specific recomposition for all new homepage chapters
+- Home CMS guidance explaining project/service/testimonial ordering
+- Real-client fallback logic hardened
+- No Tailwind
+
+### Homepage narrative
+
+- 00 — Introduction
+- 01 — Point of view
+- 02 — Signature story
+- 03 — In the details
+- 04 — Selected beauty stories
+- 05 — The experience
+- 06 — Behind the work
+- 07 — Client notes
+- 08 — From the Journal
+- 09 — Availability
+
+Detailed rules:
+
+- `docs/CINEMATIC-HOMEPAGE.md`
+
+### Validation
+
+Final Chat 8 code validation:
+
+- ESLint: pass
+- TypeScript: pass
+- Production Next.js build: pass
