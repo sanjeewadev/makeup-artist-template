@@ -1,109 +1,107 @@
 # Current Status
 
-## Chat 5 — Journal + CMS Experience
+## Chat 6 — Signature Art Direction & Next-Level UI/UX
 
 **Status: complete**
 
-All five requested development milestones are now implemented on the `dev` branch.
+The technical/product foundation from Chats 1–5 remains intact. Chat 6 is a full public-facing art-direction upgrade.
 
-### Chat 5 implemented
+### Signature direction
 
-- `/journal` luxury editorial Journal index
-- Featured-story lead layout
-- Responsive Journal archive grid
-- Journal empty state
-- `/journal/[slug]` article pages
-- Reading-time calculation
-- Published date and tags
-- CMS-rich-text article rendering
-- Article enquiry CTA
-- Next-story navigation
-- Journal-specific 404 state
-- Per-article SEO metadata
-- Open Graph article metadata
-- Article structured data
-- Dynamic public sitemap
-- Robots rules protecting admin/API/preview routes
-- `NEXT_PUBLIC_SITE_URL` canonical-site configuration
-- Automatic first-publication timestamp for Journal posts
-- Secure Draft Preview for Journal posts
-- Secure Draft Preview for Portfolio projects
-- Secure Draft Preview for Services
-- Next.js Draft Mode preview/exit routes
-- Visible preview-mode banner
-- `PREVIEW_SECRET` configuration
-- Payload Preview buttons
-- Branded Studio CMS logo/icon
-- Client-friendly dashboard shortcuts
-- Cleaner Payload Admin grouping
-- API URL noise hidden from client edit screens
-- Expanded inline field descriptions
-- Media/Portfolio/Services/Journal/Enquiries editing guidance
-- Journal route smoke coverage
-- Journal/CMS documentation
+The website now targets:
+
+**high-fashion beauty editorial × luxury bridal atelier × contemporary independent publication**
+
+### Chat 6 implemented
+
+- Refined global color/token system
+- Normal + italic Cormorant Garamond display system
+- Stronger typography scale and tighter editorial line-height
+- New directional motion curve
+- Clipped hero photography reveal
+- Progressive CSS scroll reveals where supported
+- Full-screen editorial mobile navigation
+- Quieter desktop navigation
+- Stronger fashion-wordmark footer
+- Refined button / circular-arrow interaction language
+- Completely rebuilt homepage composition
+- Layered homepage hero
+- Signature display typography over photography
+- Re-art-directed selected-work sequencing
+- Dark service chapter
+- Clay testimonial statement
+- Rebuilt homepage closing CTA
+- Re-art-directed Portfolio landing
+- Sticky portfolio category rail
+- More varied editorial Portfolio grid
+- Stronger portfolio image overlays
+- Rebuilt project-page hero overlap
+- More expressive project-story typography
+- More dramatic gallery scale/spacing
+- Stronger next-project transition
+- Services transformed into an editorial catalogue
+- About transformed into an artist profile
+- Credentials moved into a dark editorial chapter
+- Testimonials upgraded into large pull quotes
+- Shared CTA upgraded into a signature editorial moment
+- Contact transformed into a concierge experience
+- Dark direct-contact panel
+- Refined luxury enquiry-form typography/interactions
+- Journal transformed into an independent beauty publication
+- Journal article composition upgraded
+- Long-form rich-text hierarchy upgraded
+- Editorial public 404 system
+- Portfolio and Journal missing-content states upgraded
+- Mobile-specific art direction across the redesigned surfaces
+- Reduced-motion behavior preserved
 - No Tailwind
 
-### CMS organization
+### Design rules
 
-Payload Admin is organized into:
+The public site should not regress into a repeated split-layout/card template.
 
-- Website Pages
-- Portfolio
-- Services & Reviews
-- Journal
-- Media Library
-- Business
-- Site Settings
-- Team
+Each page now has a distinct role:
 
-### Preview security
+- Home — signature introduction
+- Portfolio — curated fashion archive
+- Project — visual story
+- Services — luxury catalogue
+- About — artist profile
+- Contact — concierge enquiry
+- Journal — beauty publication
+- Article — editorial long-form story
 
-Preview URLs require `PREVIEW_SECRET`.
+Detailed rules are documented in:
 
-Only approved public paths are accepted by the preview endpoint.
-
-Draft data is fetched with trusted server-side Payload access only after Next.js Draft Mode has been enabled through the secret preview route. Normal visitors still receive published-only content.
-
-### SEO foundation
-
-The public site now includes:
-
-- page-level metadata
-- content-level SEO overrides
-- Open Graph metadata
-- Article JSON-LD
-- dynamic sitemap
-- robots configuration
-
-Set `NEXT_PUBLIC_SITE_URL` to the production origin before launch.
+- `docs/DESIGN-SYSTEM.md`
+- `docs/SIGNATURE-ART-DIRECTION.md`
 
 ### Validation
 
-Final Chat 5 code validation is green on the latest code head:
+Final integrated Chat 6 validation is green on the latest code head:
 
 - ESLint: pass
 - TypeScript: pass
 - Production Next.js build: pass
 
-### Five-chat build status
+### Milestone status
 
 - Chat 1 — Foundation & Payload CMS: complete
 - Chat 2 — Design System & Homepage: complete
 - Chat 3 — Portfolio Experience: complete
 - Chat 4 — Services, About & Contact: complete
 - Chat 5 — Journal + CMS Experience: complete
+- Chat 6 — Signature Art Direction & Next-Level UI/UX: complete
 
-## Remaining release work outside the five-chat scope
+## Remaining work outside Chat 6
 
-The application build is complete for the scope requested in these five chats.
+The next meaningful step is release/content work rather than another required feature milestone:
 
-Before a real client launch, remaining release/handoff work may include:
-
-- final Cloudflare production deployment/configuration
-- production D1/R2 bindings and secrets
-- production domain
-- real artist branding/content/photos
-- final browser/device QA with real content
-- analytics/consent if desired
-- optional production email adapter for enquiry notifications
-- final main-branch release/merge
+- add real artist identity/content/photography
+- inspect the new art direction with real photography
+- final browser/device QA
+- Cloudflare production configuration
+- production domain/secrets
+- optional analytics
+- optional enquiry notification email adapter
+- final release merge to `main`
