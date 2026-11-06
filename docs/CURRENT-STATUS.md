@@ -105,3 +105,37 @@ The next meaningful step is release/content work rather than another required fe
 - optional analytics
 - optional enquiry notification email adapter
 - final release merge to `main`
+
+
+## Demo Photography Completion
+
+**Status: complete**
+
+The public website is now fully populated on a fresh/empty CMS with curated demo beauty photography and realistic sample content.
+
+Implemented:
+
+- Pexels-hosted editorial beauty/bridal photography allowlisted through Next.js Image
+- Homepage hero photography
+- Homepage selected Portfolio projects
+- Complete demo Portfolio archive
+- Four navigable demo Portfolio project pages
+- Multi-image project galleries
+- Demo Bridal / Editorial / Occasion categories
+- Three demo Services with photography
+- Demo artist/About portrait and story
+- Three demo testimonials with portrait photography
+- Three complete demo Journal articles with imagery
+- Journal next-story imagery
+- Demo service options in the Contact enquiry flow
+- Real CMS content automatically takes priority over demo content
+- No fake demo records are inserted into Payload
+- Demo image sources documented in `docs/DEMO-PHOTOGRAPHY.md`
+
+Final image-enabled code validation:
+
+- ESLint: pass
+- TypeScript: pass
+- Production Next.js build: pass
+
+For a real client launch, replace the demo layer by publishing real Payload content and media. The relevant demo content disappears automatically as real CMS content becomes available.
