@@ -143,3 +143,25 @@ Future content, deployment, analytics, or integration work should preserve this 
 Changes that introduce a new UI library, utility framework, major visual effect, or generic component system should be treated as a design decision rather than an implementation shortcut.
 
 Tailwind remains prohibited.
+
+
+## Chat 7 photography expansion
+
+The signature design now assumes a deeper image library rather than repeated hero portraits.
+
+Use the shot hierarchy defined in `docs/PHOTOGRAPHY-DIRECTION.md`:
+
+- hero portrait
+- finished beauty portrait
+- artist-at-work
+- getting-ready
+- close detail
+- wide environmental frame
+- still life / tools
+- quieter transition frame
+
+The homepage may use a short photography essay derived from real Portfolio galleries.
+
+Project galleries should surface useful captions and photographer credits where available.
+
+A real-client photography replacement should preserve this role-based structure rather than simply swapping every demo URL one-for-one.
