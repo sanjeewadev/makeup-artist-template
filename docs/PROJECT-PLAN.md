@@ -120,6 +120,7 @@ Before release, the project should include:
 - Chat 3 — Portfolio Experience: **complete**
 - Chat 4 — Services, About & Contact: **complete**
 - Chat 5 — Journal + CMS Experience: **complete**
+- Chat 6 — Signature Art Direction & Next-Level UI/UX: **complete**
 
 ## Delivery phases
 
@@ -143,6 +144,12 @@ Before release, the project should include:
 - Feature work should land on `dev` first.
 - `main` should only receive reviewed, release-ready work.
 
+
+## Signature redesign completion
+
+Chat 6 adds the signature public-facing art direction without changing the technical foundation or CMS content model.
+
+See `docs/SIGNATURE-ART-DIRECTION.md` for the protected visual rules.
 
 ## Five-chat scope completion
 
