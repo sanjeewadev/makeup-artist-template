@@ -107,11 +107,6 @@ export async function getHomePageData(): Promise<HomePageData> {
           limit: 6,
           overrideAccess: false,
           sort: 'sortOrder',
-          where: {
-            featured: {
-              equals: true,
-            },
-          },
         }),
         payload.find({
           collection: 'services',
@@ -126,11 +121,6 @@ export async function getHomePageData(): Promise<HomePageData> {
           limit: 4,
           overrideAccess: false,
           sort: 'sortOrder',
-          where: {
-            featured: {
-              equals: true,
-            },
-          },
         }),
         payload.find({
           collection: 'journal-posts',
