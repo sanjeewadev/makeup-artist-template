@@ -119,7 +119,7 @@ Before release, the project should include:
 - Chat 2 — Design System & Homepage: **complete**
 - Chat 3 — Portfolio Experience: **complete**
 - Chat 4 — Services, About & Contact: **complete**
-- Chat 5 — Journal + CMS Experience: next
+- Chat 5 — Journal + CMS Experience: **complete**
 
 ## Delivery phases
 
@@ -142,3 +142,10 @@ Before release, the project should include:
 - `dev` is the integration branch for active development.
 - Feature work should land on `dev` first.
 - `main` should only receive reviewed, release-ready work.
+
+
+## Five-chat scope completion
+
+The requested five development chats are complete on `dev`.
+
+The remaining delivery phases in this broader product plan—production deployment, final real-content QA, optional email notification integration, and release/handoff—are release tasks rather than missing website feature milestones.
