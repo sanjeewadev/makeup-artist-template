@@ -6,9 +6,10 @@ export const Media: CollectionConfig = {
   slug: 'media',
   admin: {
     useAsTitle: 'filename',
-    group: 'Content',
+    group: 'Media Library',
     defaultColumns: ['filename', 'alt', 'mimeType', 'filesize', 'updatedAt'],
     description: 'Photography and other visual assets used across the website.',
+    hideAPIURL: true,
   },
   access: {
     create: authenticated,
@@ -31,12 +32,18 @@ export const Media: CollectionConfig = {
       name: 'caption',
       type: 'textarea',
       maxLength: 500,
+      admin: {
+        description: 'Optional editorial caption. Only used where a page chooses to display it.',
+      },
     },
     {
       name: 'credit',
       label: 'Photo credit',
       type: 'text',
       maxLength: 160,
+      admin: {
+        description: 'Optional photographer or creative credit.',
+      },
     },
   ],
   upload: {
