@@ -2,7 +2,14 @@ import { cache } from 'react'
 import { draftMode } from 'next/headers'
 import { getPayload } from 'payload'
 
-import type { About, Contact, Service, SiteSetting, Testimonial } from '@/payload-types'
+import type {
+  About,
+  Contact,
+  PortfolioProject,
+  Service,
+  SiteSetting,
+  Testimonial,
+} from '@/payload-types'
 import config from '@/payload.config'
 import {
   demoAbout,
@@ -18,6 +25,8 @@ export type ServicesPageData = {
 
 export type AboutPageData = {
   about: About | null
+  projects: PortfolioProject[]
+  services: Service[]
   siteSettings: SiteSetting | null
   testimonials: Testimonial[]
 }
@@ -75,7 +84,7 @@ export const getAboutPageData = cache(async (): Promise<AboutPageData> => {
   try {
     const payload = await getPayload({ config })
 
-    const [about, siteSettings, testimonials] = await Promise.all([
+    const [about, siteSettings, testimonials, projects, services] = await Promise.all([
       payload.findGlobal({
         slug: 'about',
         depth: 2,
@@ -89,14 +98,23 @@ export const getAboutPageData = cache(async (): Promise<AboutPageData> => {
       payload.find({
         collection: 'testimonials',
         depth: 2,
-        limit: 3,
+        limit: 5,
         overrideAccess: false,
         sort: 'sortOrder',
-        where: {
-          featured: {
-            equals: true,
-          },
-        },
+      }),
+      payload.find({
+        collection: 'portfolio-projects',
+        depth: 2,
+        limit: 4,
+        overrideAccess: false,
+        sort: 'sortOrder',
+      }),
+      payload.find({
+        collection: 'services',
+        depth: 1,
+        limit: 5,
+        overrideAccess: false,
+        sort: 'sortOrder',
       }),
     ])
 
@@ -110,12 +128,16 @@ export const getAboutPageData = cache(async (): Promise<AboutPageData> => {
 
     return {
       about: hasAboutContent ? about : demoAbout,
+      projects: projects.docs.length ? projects.docs : [],
+      services: services.docs.length ? services.docs : demoServices,
       siteSettings,
       testimonials: testimonials.docs.length ? testimonials.docs : demoTestimonials,
     }
   } catch {
     return {
       about: demoAbout,
+      projects: [],
+      services: demoServices,
       siteSettings: null,
       testimonials: demoTestimonials,
     }
