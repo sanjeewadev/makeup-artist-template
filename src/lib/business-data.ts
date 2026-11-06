@@ -13,6 +13,7 @@ import type {
 import config from '@/payload.config'
 import {
   demoAbout,
+  demoPortfolioProjects,
   demoServices,
   demoTestimonials,
 } from '@/lib/demo-content'
@@ -128,7 +129,7 @@ export const getAboutPageData = cache(async (): Promise<AboutPageData> => {
 
     return {
       about: hasAboutContent ? about : demoAbout,
-      projects: projects.docs.length ? projects.docs : [],
+      projects: projects.docs.length ? projects.docs : demoPortfolioProjects.slice(0, 4),
       services: services.docs.length ? services.docs : demoServices,
       siteSettings,
       testimonials: testimonials.docs.length ? testimonials.docs : demoTestimonials,
@@ -136,7 +137,7 @@ export const getAboutPageData = cache(async (): Promise<AboutPageData> => {
   } catch {
     return {
       about: demoAbout,
-      projects: [],
+      projects: demoPortfolioProjects.slice(0, 4),
       services: demoServices,
       siteSettings: null,
       testimonials: demoTestimonials,
