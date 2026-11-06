@@ -7,7 +7,7 @@ export const Contact: GlobalConfig = {
   label: 'Contact',
   admin: {
     group: 'Website Pages',
-    description: 'Copy for the private consultation / availability experience. Keep it calm, clear, and low-pressure.'
+    description: 'Copy for the private consultation / availability experience. Keep it calm, clear, and low-pressure.',
     hideAPIURL: true,
   },
   access: {
@@ -37,7 +37,7 @@ export const Contact: GlobalConfig = {
       type: 'textarea',
       maxLength: 600,
       admin: {
-        description: 'Explain what to include in the first message and reassure visitors that the enquiry is an availability check, not an instant booking.'
+        description: 'Explain what to include in the first message and reassure visitors that the enquiry is an availability check, not an instant booking.',
       },
     },
     {
@@ -46,7 +46,7 @@ export const Contact: GlobalConfig = {
       type: 'text',
       maxLength: 140,
       admin: {
-        description: 'Heading above the four-part consultation brief. Keep it short, e.g. “Share the details.”'
+        description: 'Heading above the four-part consultation brief. Keep it short, e.g. “Share the details.”',
       },
     },
     {
@@ -54,7 +54,7 @@ export const Contact: GlobalConfig = {
       type: 'textarea',
       maxLength: 500,
       admin: {
-        description: 'Optional current availability, travel, lead-time, or booking-window note. Keep it factual and update it when circumstances change.'
+        description: 'Optional current availability, travel, lead-time, or booking-window note. Keep it factual and update it when circumstances change.',
       },
     },
     {
@@ -72,7 +72,7 @@ export const Contact: GlobalConfig = {
       type: 'textarea',
       maxLength: 500,
       admin: {
-        description: 'Shown immediately after a successful submission. Confirm receipt and explain the expected next step without implying the booking is confirmed.'
+        description: 'Shown immediately after a successful submission. Confirm receipt and explain the expected next step without implying the booking is confirmed.',
       },
     },
     seoGroup(),
