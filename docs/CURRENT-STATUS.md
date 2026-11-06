@@ -1,81 +1,62 @@
 # Current Status
 
-## Chat 1 — Foundation & Payload CMS
+## Chat 2 — Design System & Homepage
 
-**Status: complete**
+**Status: implemented**
 
-The CMS/data foundation is established on the `dev` branch.
+Chat 1 established the CMS/data foundation. Chat 2 replaces the Payload starter frontend with the public visual system and homepage.
 
-### Completed
+### Implemented
 
-- Cloudflare D1 + R2 architecture retained from the official starter
-- Payload configuration reorganized for the commercial site
-- Team-member roles and access control
-- Media metadata/access policy
-- Portfolio Categories
-- Portfolio Projects with drafts/version history
-- Services with drafts/version history
-- Testimonials with drafts/version history
-- Journal with drafts/version history
-- Enquiries business collection
-- Site Settings global
-- Navigation global
-- Home global
-- About global
-- Contact global
-- Reusable slug field
-- Reusable SEO field group
-- Generated Payload TypeScript types
-- Generated D1 schema migration
-- Next.js 16-compatible ESLint flat configuration
-- Lint validation
-- TypeScript validation
-- Project/CMS/architecture documentation
-- No-Tailwind rule documented
+- Cormorant Garamond display typography
+- Manrope UI/body typography
+- Warm ivory / ink / muted rose design tokens
+- Fluid gutters and section spacing
+- Global CSS reset and accessibility foundations
+- Skip link and visible focus states
+- Responsive site header
+- Native, accessible mobile navigation
+- Responsive site footer
+- Reusable solid/outline/text link-button component
+- Reusable Payload media image component
+- CMS data-loading helpers
+- Luxury editorial homepage
+- CMS-driven hero
+- Editorial introduction
+- Featured-project mosaic
+- Featured-services section
+- Testimonial/experience statement
+- Closing enquiry CTA
+- Graceful placeholders when the CMS is empty
+- CSS-only transitions
+- Reduced-motion support
+- Responsive desktop/tablet/mobile behavior
+- Updated frontend e2e smoke test
+- Design-system documentation
+- No Tailwind
 
-### Validation result
+### CMS behavior
 
-Chat 1 schema validation completed successfully on GitHub Actions:
+The homepage reads Site Settings, Navigation, Home, featured Portfolio Projects, featured Services, and the featured Testimonial.
 
-- Payload type generation: pass
-- D1 migration generation: pass
-- ESLint: pass
-- TypeScript: pass
+If explicit Home selections are missing, the page falls back to published content marked `featured`.
 
-Generated schema artifacts are committed to `dev`.
+If the CMS is still empty, the public page renders a polished editorial shell without fake third-party stock imagery.
 
-### Deliberately not started
+### Deliberately not implemented yet
 
-The public visual website remains the Payload starter. Chat 1 did not implement:
+- `/portfolio` listing/filter experience
+- `/portfolio/[slug]` project pages
+- Services page
+- About page
+- Contact/enquiry form
+- Journal listing/article pages
+- Preview workflow/admin polish
 
-- Typography/design tokens
-- Header/footer UI
-- Homepage UI
-- Portfolio UI
-- Services/About/Contact frontend pages
-- Journal frontend
-- Public enquiry form
-- Animations/transitions
-
-Those belong to later milestones.
+Those belong to Chats 3–5.
 
 ## Next milestone
 
-Chat 2 — Design System & Homepage
+Chat 3 — Portfolio Experience
 
-Scope:
-
-- Typography
-- Color system
-- Spacing/layout tokens
-- Plain CSS / CSS Modules architecture
-- Navigation
-- Footer
-- Responsive shell
-- Luxury editorial homepage
-- Photography treatment
-- Buttons/interactions
-- Restrained transitions
-- Reusable frontend primitives
-
-**Tailwind must not be introduced.**
+The next milestone builds the portfolio listing, categories/filters, project pages, premium gallery layouts, image loading behavior, CMS integration, responsive behavior, and transitions.
