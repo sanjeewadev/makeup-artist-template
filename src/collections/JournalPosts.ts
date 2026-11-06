@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 import { authenticated, authenticatedOrPublished } from '../access'
 import { seoGroup } from '../fields/seo'
 import { slugField } from '../fields/slug'
+import { journalPreviewURL } from '../lib/admin-preview'
 
 export const JournalPosts: CollectionConfig = {
   slug: 'journal-posts',
@@ -12,10 +13,12 @@ export const JournalPosts: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    group: 'Content',
+    group: 'Journal',
     defaultColumns: ['title', 'publishedAt', 'featured', '_status', 'updatedAt'],
     listSearchableFields: ['title', 'slug', 'excerpt'],
     description: 'Editorial stories, beauty guidance, and search-focused articles.',
+    hideAPIURL: true,
+    preview: (doc) => journalPreviewURL(doc),
   },
   access: {
     create: authenticated,
