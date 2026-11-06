@@ -11,8 +11,17 @@ import styles from './portfolio.module.css'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: '/portfolio',
+  },
   description:
     'A curated portfolio of bridal, editorial, engagement, and occasion makeup artistry presented as complete visual stories.',
+  openGraph: {
+    description:
+      'A curated portfolio of bridal, editorial, engagement, and occasion makeup artistry presented as complete visual stories.',
+    title: 'Portfolio',
+    type: 'website',
+  },
   title: 'Portfolio',
 }
 
