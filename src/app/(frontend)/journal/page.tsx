@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { JournalArchive } from '@/components/journal/JournalArchive'
 import { CmsImage } from '@/components/media/CmsImage'
 import { getJournalIndexData, getJournalMedia } from '@/lib/journal-data'
 import { getReadingTime } from '@/lib/reading-time'
@@ -10,9 +11,24 @@ import styles from './journal.module.css'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: '/journal',
+  },
   description:
-    'Beauty notes, artist perspectives, wedding guidance, and editorial stories from the studio.',
+    'Beauty notes, artist perspectives, wedding guidance, preparation advice, and editorial stories from the studio.',
+  openGraph: {
+    description:
+      'Beauty notes, artist perspectives, wedding guidance, preparation advice, and editorial stories from the studio.',
+    title: 'Journal',
+    type: 'website',
+  },
   title: 'Journal',
+  twitter: {
+    card: 'summary',
+    description:
+      'Beauty notes, artist perspectives, wedding guidance, preparation advice, and editorial stories from the studio.',
+    title: 'Journal',
+  },
 }
 
 const formatDate = (value: string | null | undefined) => {
@@ -28,7 +44,7 @@ const formatDate = (value: string | null | undefined) => {
 }
 
 export default async function JournalPage() {
-  const { featured, posts } = await getJournalIndexData()
+  const { featured, posts, topics } = await getJournalIndexData()
 
   return (
     <div className={styles.page}>
@@ -37,10 +53,16 @@ export default async function JournalPage() {
         <div>
           <p className={styles.eyebrow}>From the studio</p>
           <h1>Beauty, beyond the finished look.</h1>
-          <p className={styles.lead}>
-            Practical guidance, thoughtful observations, and stories from weddings, editorials,
-            and the work behind the work.
-          </p>
+          <div className={styles.heroFooter}>
+            <p className={styles.lead}>
+              Practical guidance, thoughtful observations, and stories from weddings, editorials,
+              preparation, and the work behind the work.
+            </p>
+            <div className={styles.heroMeta}>
+              <span>{String(posts.length + (featured ? 1 : 0)).padStart(2, '0')} stories</span>
+              <span>{String(topics.length).padStart(2, '0')} topics</span>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -67,6 +89,15 @@ export default async function JournalPage() {
                 {formatDate(featured.publishedAt) && <span>{formatDate(featured.publishedAt)}</span>}
                 <span>{getReadingTime(featured.content)} min read</span>
               </div>
+
+              {featured.tags?.length ? (
+                <div className={styles.featuredTags}>
+                  {featured.tags.slice(0, 4).map((tag) => (
+                    <span key={tag.id || tag.label}>{tag.label}</span>
+                  ))}
+                </div>
+              ) : null}
+
               <span className={styles.readLink}>Read the story ↗</span>
             </div>
           </Link>
@@ -77,7 +108,7 @@ export default async function JournalPage() {
           <h2>The editorial space is ready.</h2>
           <p>
             Publish Journal posts in Payload and they will appear here automatically with
-            photography, tags, metadata, and article pages.
+            photography, topics, metadata, and article pages.
           </p>
         </section>
       )}
@@ -85,49 +116,17 @@ export default async function JournalPage() {
       {posts.length ? (
         <section className={styles.archive}>
           <div className={styles.archiveHeading}>
-            <p className={styles.index}>Archive</p>
-            <h2>More from the journal.</h2>
+            <p className={styles.index}>Editorial desk / 02</p>
+            <div>
+              <h2>Read by topic, not by noise.</h2>
+              <p>
+                Browse the complete Journal or narrow the edit to the subject that matters to you
+                right now.
+              </p>
+            </div>
           </div>
 
-          <div className={styles.grid}>
-            {posts.map((post, index) => {
-              const image = getJournalMedia(post.featuredImage)
-
-              return (
-                <article className={styles.card} key={post.id}>
-                  <Link href={'/journal/' + post.slug}>
-                    <div className={styles.cardImage}>
-                      {image ? (
-                        <CmsImage
-                          image={image}
-                          sizes="(max-width: 680px) 100vw, (max-width: 1000px) 50vw, 33vw"
-                        />
-                      ) : (
-                        <div className={styles.placeholder} />
-                      )}
-                    </div>
-
-                    <div className={styles.cardBody}>
-                      <div className={styles.cardMeta}>
-                        <span>{String(index + 1).padStart(2, '0')}</span>
-                        {formatDate(post.publishedAt) && <span>{formatDate(post.publishedAt)}</span>}
-                        <span>{getReadingTime(post.content)} min</span>
-                      </div>
-                      <h3>{post.title}</h3>
-                      <p>{post.excerpt}</p>
-                      {post.tags?.length ? (
-                        <div className={styles.tags}>
-                          {post.tags.slice(0, 3).map((tag) => (
-                            <span key={tag.id || tag.label}>{tag.label}</span>
-                          ))}
-                        </div>
-                      ) : null}
-                    </div>
-                  </Link>
-                </article>
-              )
-            })}
-          </div>
+          <JournalArchive posts={posts} topics={topics} />
         </section>
       ) : null}
     </div>
