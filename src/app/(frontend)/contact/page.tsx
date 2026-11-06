@@ -4,6 +4,8 @@ import { EnquiryForm } from '@/components/contact/EnquiryForm'
 import { LinkButton } from '@/components/ui/LinkButton'
 import { getContactPageData } from '@/lib/business-data'
 import { makeTelURL, makeWhatsAppURL } from '@/lib/contact'
+import { absoluteURL } from '@/lib/seo'
+import type { Media } from '@/payload-types'
 
 import styles from './contact.module.css'
 
@@ -17,14 +19,37 @@ type ContactPageProps = {
 
 export async function generateMetadata(): Promise<Metadata> {
   const { contact } = await getContactPageData()
+  const seoImage =
+    contact?.seo?.image && typeof contact.seo.image === 'object' && 'url' in contact.seo.image
+      ? (contact.seo.image as Media)
+      : null
+  const imageURL = absoluteURL(seoImage?.url)
+  const title = contact?.seo?.title || 'Contact'
+  const description =
+    contact?.seo?.description ||
+    contact?.intro ||
+    'Request makeup availability and share the details of your wedding, event, or editorial project.'
 
   return {
-    description:
-      contact?.seo?.description ||
-      contact?.intro ||
-      'Request makeup availability and share the details of your wedding, event, or editorial project.',
+    alternates: {
+      canonical: '/contact',
+    },
+    description,
+    openGraph: {
+      description,
+      images: imageURL ? [{ alt: seoImage?.alt || title, url: imageURL }] : undefined,
+      title,
+      type: 'website',
+      url: '/contact',
+    },
     robots: contact?.seo?.noIndex ? { follow: false, index: false } : undefined,
-    title: contact?.seo?.title || 'Contact',
+    title,
+    twitter: {
+      card: imageURL ? 'summary_large_image' : 'summary',
+      description,
+      images: imageURL ? [imageURL] : undefined,
+      title,
+    },
   }
 }
 
