@@ -42,6 +42,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   )
   const tel = makeTelURL(phone)
   const serviceArea = siteSettings?.contact?.serviceArea
+  const initialServiceSlug = services.some((item) => item.slug === service)
+    ? service
+    : undefined
 
   return (
     <div className={styles.page}>
@@ -106,7 +109,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </div>
 
           <EnquiryForm
-            initialServiceSlug={service}
+            initialServiceSlug={initialServiceSlug}
             services={services}
             successMessage={
               contact?.successMessage ||
