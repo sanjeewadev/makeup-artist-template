@@ -4,6 +4,11 @@ import { getPayload } from 'payload'
 
 import type { Media, PortfolioCategory, PortfolioProject } from '@/payload-types'
 import config from '@/payload.config'
+import {
+  demoPortfolioCards,
+  demoPortfolioCategories,
+  demoPortfolioProjects,
+} from '@/lib/demo-content'
 
 export type PortfolioCardData = {
   categorySlug: string
@@ -63,6 +68,16 @@ export async function getPortfolioIndexData(): Promise<PortfolioIndexData> {
       }),
     ])
 
+    if (!projectResult.docs.length) {
+      return {
+        categories: demoPortfolioCategories.map((category) => ({
+          slug: category.slug,
+          title: category.title,
+        })),
+        projects: demoPortfolioCards,
+      }
+    }
+
     return {
       categories: categoryResult.docs.map((category) => ({
         slug: category.slug,
@@ -85,8 +100,11 @@ export async function getPortfolioIndexData(): Promise<PortfolioIndexData> {
     }
   } catch {
     return {
-      categories: [],
-      projects: [],
+      categories: demoPortfolioCategories.map((category) => ({
+        slug: category.slug,
+        title: category.title,
+      })),
+      projects: demoPortfolioCards,
     }
   }
 }
@@ -114,9 +132,16 @@ export const getPortfolioProjectPageData = cache(
       const project = projectResult.docs[0] || null
 
       if (!project) {
+        const demoIndex = demoPortfolioProjects.findIndex((item) => item.slug === slug)
+        const demoProject = demoIndex >= 0 ? demoPortfolioProjects[demoIndex] : null
+        const demoNext =
+          demoProject && demoPortfolioProjects.length > 1
+            ? demoPortfolioProjects[(demoIndex + 1) % demoPortfolioProjects.length]
+            : null
+
         return {
-          nextProject: null,
-          project: null,
+          nextProject: demoNext?.id === demoProject?.id ? null : demoNext,
+          project: demoProject,
         }
       }
 
@@ -140,9 +165,16 @@ export const getPortfolioProjectPageData = cache(
         project,
       }
     } catch {
+      const demoIndex = demoPortfolioProjects.findIndex((item) => item.slug === slug)
+      const demoProject = demoIndex >= 0 ? demoPortfolioProjects[demoIndex] : null
+      const demoNext =
+        demoProject && demoPortfolioProjects.length > 1
+          ? demoPortfolioProjects[(demoIndex + 1) % demoPortfolioProjects.length]
+          : null
+
       return {
-        nextProject: null,
-        project: null,
+        nextProject: demoNext?.id === demoProject?.id ? null : demoNext,
+        project: demoProject,
       }
     }
   },
