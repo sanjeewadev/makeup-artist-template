@@ -113,7 +113,7 @@ Production persistence is intentionally separated:
 
 Do not replace production D1 with a local SQLite file.
 
-For local production-build validation, set `CLOUDFLARE_REMOTE_BINDINGS=false`. Real Cloudflare deployment keeps remote bindings enabled unless explicitly overridden.
+For local production-build validation, set `CLOUDFLARE_REMOTE_BINDINGS=false`. In that mode, Next.js build workers are intentionally serialized because local D1 is SQLite-backed and concurrent page-data workers can otherwise hit `SQLITE_BUSY`. Real Cloudflare deployment keeps remote bindings enabled and normal build parallelism unless explicitly overridden.
 
 The starter deliberately disables Sharp-dependent upload transforms because the target runtime is Cloudflare Workers. Image presentation/optimization decisions belong in the frontend layer.
 
@@ -152,4 +152,4 @@ pnpm typecheck
 
 Before promoting a release to `main`, also run the appropriate tests and production build checks for that milestone.
 
-GitHub Actions runs lint and TypeScript checks on development pushes and pull requests.
+GitHub Actions runs lint, TypeScript checks, and a production Next.js build on development pushes and pull requests.

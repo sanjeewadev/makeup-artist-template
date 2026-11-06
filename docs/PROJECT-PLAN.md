@@ -117,8 +117,8 @@ Before release, the project should include:
 
 - Chat 1 — Foundation & Payload CMS: **complete**
 - Chat 2 — Design System & Homepage: **complete**
-- Chat 3 — Portfolio Experience: next
-- Chat 4 — Services, About & Contact: planned
+- Chat 3 — Portfolio Experience: **complete**
+- Chat 4 — Services, About & Contact: next
 - Chat 5 — Journal + CMS Experience: planned
 
 ## Delivery phases

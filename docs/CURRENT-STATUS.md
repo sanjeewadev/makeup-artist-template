@@ -1,70 +1,95 @@
 # Current Status
 
-## Chat 2 — Design System & Homepage
+## Chat 3 — Portfolio Experience
 
 **Status: complete**
 
-Chat 1 established the CMS/data foundation. Chat 2 replaces the Payload starter frontend with the public visual system and homepage.
+Chat 1 established the CMS/data foundation and Chat 2 established the public design system/homepage. Chat 3 completes the public portfolio experience.
 
 ### Implemented
 
-- Cormorant Garamond display typography
-- Manrope UI/body typography
-- Warm ivory / ink / muted rose design tokens
-- Fluid gutters and section spacing
-- Global CSS reset and accessibility foundations
-- Skip link and visible focus states
-- Responsive site header
-- Native, accessible mobile navigation
-- Responsive site footer
-- Reusable solid/outline/text link-button component
-- Reusable Payload media image component
-- CMS data-loading helpers
-- Luxury editorial homepage
-- CMS-driven hero
-- Editorial introduction
-- Featured-project mosaic
-- Featured-services section
-- Testimonial/experience statement
-- Closing enquiry CTA
-- Graceful placeholders when the CMS is empty
-- CSS-only transitions
+- `/portfolio` editorial portfolio index
+- CMS-driven Portfolio Categories
+- Instant client-side category filtering
+- Accessible filter buttons with project counts
+- Asymmetrical 12-column desktop portfolio grid
+- Responsive two-column tablet layout
+- Linear full-width mobile portfolio layout
+- Published-project counts and graceful empty state
+- `/portfolio/[slug]` project routes
+- Project-specific metadata
+- Portfolio-specific not-found state
+- Project hero with category, title, excerpt, client/project name, location, and event date
+- Payload Lexical story rendering
+- Art-directed gallery renderer
+- `wide`, `portrait`, `landscape`, and `auto` gallery presentation handling
+- Figure captions
+- Responsive Next.js image sizing
+- Priority loading for hero / first visible listing imagery
+- Lazy loading for the remaining gallery/listing imagery
+- Portfolio route loading skeleton
+- Next-project navigation
+- Project enquiry CTA
+- Restrained filter/gallery/hover transitions
 - Reduced-motion support
-- Responsive desktop/tablet/mobile behavior
-- Updated frontend e2e smoke test
-- Design-system documentation
+- Homepage/portfolio routes marked dynamic for CMS freshness
+- Portfolio route smoke test
+- Portfolio experience documentation
 - No Tailwind
 
 ### CMS behavior
 
-The homepage reads Site Settings, Navigation, Home, featured Portfolio Projects, featured Services, and the featured Testimonial.
+The portfolio index reads public Portfolio Categories and published Portfolio Projects.
 
-If explicit Home selections are missing, the page falls back to published content marked `featured`.
+Filters are derived from real categories, and categories with zero published projects are omitted from the public filter controls.
 
-If the CMS is still empty, the public page renders a polished editorial shell without fake third-party stock imagery.
+Project pages use the existing Payload slug, category, hero image, story, gallery, location, event date, and SEO fields.
 
-### Deliberately not implemented yet
+The existing gallery `presentation` field is now fully honored by the frontend, so an editor can art-direct individual gallery images without changing code.
 
-- `/portfolio` listing/filter experience
-- `/portfolio/[slug]` project pages
-- Services page
-- About page
-- Contact/enquiry form
-- Journal listing/article pages
-- Preview workflow/admin polish
+### Image behavior
 
-Those belong to Chats 3–5.
+- Hero image: priority loaded
+- First visible index images: prioritized
+- Remaining index/gallery images: normal Next.js lazy loading
+- Responsive `sizes` hints are defined
+- Layout frames reserve image space before loading
+- Required Payload alt text remains the accessibility source
+- Missing images fall back to controlled editorial placeholders
 
-## Next milestone
+### Validation
 
-Chat 3 — Portfolio Experience
-
-The next milestone builds the portfolio listing, categories/filters, project pages, premium gallery layouts, image loading behavior, CMS integration, responsive behavior, and transitions.
-
-## Validation
-
-Final Chat 2 validation is green through repository CI:
+Final Chat 3 validation is green through repository CI:
 
 - ESLint: pass
 - TypeScript: pass
 - Production Next.js build: pass
+
+During validation, local D1 production builds exposed a concurrent SQLite lock. CI/local validation now serializes Next.js build workers only when `CLOUDFLARE_REMOTE_BINDINGS=false`. Real Cloudflare deployment retains normal parallelism.
+
+### Deliberately not implemented yet
+
+- Services page
+- About page
+- Public contact/enquiry form
+- WhatsApp/contact integration
+- Journal listing/article pages
+- Payload admin/preview polish
+
+Those belong to Chats 4–5.
+
+## Next milestone
+
+Chat 4 — Services, About & Contact
+
+Scope:
+
+- Services page
+- Artist story/About page
+- Testimonials presentation
+- CTA system expansion
+- Sophisticated enquiry form
+- Server-side validation
+- Payload Enquiry storage
+- WhatsApp/contact integration
+- Mobile UX
