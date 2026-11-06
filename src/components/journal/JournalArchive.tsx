@@ -4,9 +4,8 @@ import { useMemo, useState } from 'react'
 import Link from 'next/link'
 
 import { CmsImage } from '@/components/media/CmsImage'
-import type { JournalPost } from '@/payload-types'
+import type { JournalPost, Media } from '@/payload-types'
 import type { JournalTopic } from '@/lib/journal-data'
-import { getJournalMedia } from '@/lib/journal-data'
 import { getReadingTime } from '@/lib/reading-time'
 
 import styles from './JournalArchive.module.css'
@@ -15,6 +14,9 @@ type JournalArchiveProps = {
   posts: JournalPost[]
   topics: JournalTopic[]
 }
+
+const getJournalMedia = (value: number | Media | null | undefined): Media | null =>
+  value && typeof value === 'object' && 'url' in value ? value : null
 
 const topicSlug = (value: string) =>
   value
