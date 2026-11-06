@@ -354,3 +354,49 @@ Final Chat 10 code validation:
 - ESLint: pass
 - TypeScript: pass
 - Production Next.js build: pass
+
+
+## Chat 11 — Artist Brand, Trust & Social Proof
+
+**Status: complete**
+
+Chat 11 makes the artist identity and genuine trust evidence a first-class part of the website.
+
+### Implemented
+
+- About page rebuilt as the primary trust center
+- Stronger artist identity hero
+- Artist name, tagline, service area, and real brand copy surfaced
+- Authentic trust strip using real Site Settings data
+- Artist story / point-of-view chapter strengthened
+- Sticky practice/notes rail
+- Published Portfolio work surfaced as visual proof
+- Real Portfolio project links directly from About
+- Credentials re-art-directed as specific credibility evidence
+- Explicit anti-fabrication guidance for credentials
+- Services connected into the About practice chapter
+- Working-together conversion chapter
+- Real social profiles surfaced prominently on About
+- Testimonial component enriched with linked Service context
+- Testimonial service/location context surfaced publicly
+- Homepage Client Notes enriched with linked Service context
+- Footer now uses real tagline and short brand description
+- Site Settings identity guidance strengthened
+- About CMS writing guidance strengthened
+- Testimonial authenticity/permission guidance strengthened
+- Real client content still overrides demo content
+- No new database fields or migrations
+- No fake awards, press, client logos, ratings, or claims introduced
+- No Tailwind
+
+Detailed rules:
+
+- `docs/ARTIST-BRAND-TRUST.md`
+
+### Validation
+
+Final Chat 11 code validation:
+
+- ESLint: pass
+- TypeScript: pass
+- Production Next.js build: pass
