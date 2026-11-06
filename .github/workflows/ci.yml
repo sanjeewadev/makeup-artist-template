@@ -43,3 +43,5 @@ jobs:
 
       - name: Production build
         run: pnpm build
+        env:
+          CLOUDFLARE_REMOTE_BINDINGS: 'false'
