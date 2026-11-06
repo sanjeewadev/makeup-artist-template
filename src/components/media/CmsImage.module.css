@@ -2,6 +2,13 @@
   opacity: 1;
 }
 
+.fallback {
+  background: linear-gradient(145deg, #cbbdb0 0%, #a89484 52%, #79695f 100%);
+  display: block;
+  inset: 0;
+  position: absolute;
+}
+
 .loaded {
   animation: image-arrive var(--motion-image) ease-out both;
 }
