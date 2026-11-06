@@ -11,10 +11,10 @@ type SiteFooterProps = {
 }
 
 const fallbackLinks = [
-  { label: 'Portfolio', url: '/portfolio' },
-  { label: 'Services', url: '/services' },
-  { label: 'About', url: '/about' },
-  { label: 'Contact', url: '/contact' },
+  { label: 'Portfolio', url: '/portfolio', newTab: false },
+  { label: 'Services', url: '/services', newTab: false },
+  { label: 'About', url: '/about', newTab: false },
+  { label: 'Contact', url: '/contact', newTab: false },
 ]
 
 const isExternal = (url: string) => /^https?:\/\//i.test(url)
