@@ -42,21 +42,26 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   )
   const tel = makeTelURL(phone)
   const serviceArea = siteSettings?.contact?.serviceArea
-  const initialServiceSlug = services.some((item) => item.slug === service)
-    ? service
-    : undefined
+  const selectedService = services.find((item) => item.slug === service)
+  const initialServiceSlug = selectedService?.slug
 
   return (
     <div className={styles.page}>
       <header className={styles.hero}>
         <p className={styles.index}>Contact / Availability</p>
         <div>
-          <p className={styles.eyebrow}>{contact?.eyebrow || 'Let’s begin'}</p>
+          <p className={styles.eyebrow}>{contact?.eyebrow || 'Private consultation'}</p>
           <h1>{contact?.heading || 'Tell me what you’re planning.'}</h1>
-          <p className={styles.lead}>
-            {contact?.intro ||
-              'Share the date, location, service, and a little about the occasion. This first message is simply to check availability and understand what you need.'}
-          </p>
+          <div className={styles.heroFooter}>
+            <p className={styles.lead}>
+              {contact?.intro ||
+                'Share the date, location, service, and a little about the occasion. This first message is simply to check availability and understand what you need.'}
+            </p>
+            <div className={styles.heroMeta}>
+              <span>4-part enquiry brief</span>
+              {serviceArea && <span>{serviceArea}</span>}
+            </div>
+          </div>
         </div>
       </header>
 
@@ -100,12 +105,44 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           {contact?.responseTime && (
             <p className={styles.response}>{contact.responseTime}</p>
           )}
+
+          <div className={styles.nextSteps}>
+            <p>After you send</p>
+            <ol>
+              <li>
+                <span>01</span>
+                <strong>Availability is checked.</strong>
+              </li>
+              <li>
+                <span>02</span>
+                <strong>The service and timing are clarified.</strong>
+              </li>
+              <li>
+                <span>03</span>
+                <strong>Pricing and next steps are confirmed personally.</strong>
+              </li>
+            </ol>
+          </div>
         </aside>
 
         <div className={styles.formArea}>
           <div className={styles.formHeading}>
             <p>Availability enquiry</p>
             <h2>{contact?.enquiryHeading || 'Share the details.'}</h2>
+            {selectedService && (
+              <div className={styles.selectedService}>
+                <span>Starting with</span>
+                <div>
+                  <strong>{selectedService.title}</strong>
+                  <p>{selectedService.shortDescription}</p>
+                  <div>
+                    {selectedService.durationLabel && <span>{selectedService.durationLabel}</span>}
+                    {selectedService.priceLabel && <span>{selectedService.priceLabel}</span>}
+                  </div>
+                </div>
+                <a href="/services">Review services ↗</a>
+              </div>
+            )}
           </div>
 
           <EnquiryForm
@@ -121,12 +158,30 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
 
       <section className={styles.closing}>
         <p>Before you send</p>
-        <div>
+        <div className={styles.closingCopy}>
           <h2>No pressure, no instant booking.</h2>
           <p>
             An enquiry opens the conversation. Availability, timing, final pricing, and any
             booking details are confirmed personally afterward.
           </p>
+
+          <div className={styles.closingNotes}>
+            <div>
+              <span>01</span>
+              <strong>Estimates are okay.</strong>
+              <p>You do not need every timeline detail finalized before asking about availability.</p>
+            </div>
+            <div>
+              <span>02</span>
+              <strong>You can be undecided.</strong>
+              <p>If you are unsure which service fits, choose “Not sure yet” and describe the occasion.</p>
+            </div>
+            <div>
+              <span>03</span>
+              <strong>References can come later.</strong>
+              <p>The first message only needs enough context to understand the date, scope, and direction.</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
