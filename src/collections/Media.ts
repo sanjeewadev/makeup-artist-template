@@ -8,7 +8,7 @@ export const Media: CollectionConfig = {
     useAsTitle: 'filename',
     group: 'Media Library',
     defaultColumns: ['filename', 'alt', 'mimeType', 'filesize', 'updatedAt'],
-    description: 'Photography and other visual assets used across the website.',
+    description: 'Photography and visual assets. For premium results, upload original high-resolution images with intentional portrait/wide crops, accurate alt text, and photographer credit where appropriate.',
     hideAPIURL: true,
   },
   access: {
@@ -25,7 +25,7 @@ export const Media: CollectionConfig = {
       required: true,
       maxLength: 240,
       admin: {
-        description: 'Describe the image for accessibility and search engines.',
+        description: 'Describe what is visibly important in the image. Avoid phrases like “image of”. Keep it useful for accessibility first, SEO second.',
       },
     },
     {
@@ -33,7 +33,7 @@ export const Media: CollectionConfig = {
       type: 'textarea',
       maxLength: 500,
       admin: {
-        description: 'Optional editorial caption. Only used where a page chooses to display it.',
+        description: 'Optional editorial caption. Use it for useful story/context, not to repeat the alternative text.',
       },
     },
     {
@@ -42,7 +42,7 @@ export const Media: CollectionConfig = {
       type: 'text',
       maxLength: 160,
       admin: {
-        description: 'Optional photographer or creative credit.',
+        description: 'Optional photographer or creative credit. Add it whenever attribution is appropriate or contractually required.',
       },
     },
   ],
