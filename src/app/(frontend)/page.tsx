@@ -8,6 +8,8 @@ import type { Media } from '@/payload-types'
 
 import styles from './home.module.css'
 
+export const dynamic = 'force-dynamic'
+
 const fallbackProjects = [
   {
     category: 'Bridal',

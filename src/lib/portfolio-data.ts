@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { getPayload } from 'payload'
 
 import type { Media, PortfolioCategory, PortfolioProject } from '@/payload-types'
@@ -86,55 +87,55 @@ export async function getPortfolioIndexData(): Promise<PortfolioIndexData> {
   }
 }
 
-export async function getPortfolioProjectPageData(
-  slug: string,
-): Promise<PortfolioProjectPageData> {
-  try {
-    const payload = await getPayload({ config })
+export const getPortfolioProjectPageData = cache(
+  async (slug: string): Promise<PortfolioProjectPageData> => {
+    try {
+      const payload = await getPayload({ config })
 
-    const projectResult = await payload.find({
-      collection: 'portfolio-projects',
-      depth: 2,
-      limit: 1,
-      overrideAccess: false,
-      where: {
-        slug: {
-          equals: slug,
+      const projectResult = await payload.find({
+        collection: 'portfolio-projects',
+        depth: 2,
+        limit: 1,
+        overrideAccess: false,
+        where: {
+          slug: {
+            equals: slug,
+          },
         },
-      },
-    })
+      })
 
-    const project = projectResult.docs[0] || null
+      const project = projectResult.docs[0] || null
 
-    if (!project) {
+      if (!project) {
+        return {
+          nextProject: null,
+          project: null,
+        }
+      }
+
+      const allProjects = await payload.find({
+        collection: 'portfolio-projects',
+        depth: 2,
+        limit: 100,
+        overrideAccess: false,
+        sort: 'sortOrder',
+      })
+
+      const currentIndex = allProjects.docs.findIndex((item) => item.id === project.id)
+      const nextProject =
+        allProjects.docs.length > 1
+          ? allProjects.docs[(currentIndex + 1) % allProjects.docs.length] || null
+          : null
+
+      return {
+        nextProject: nextProject?.id === project.id ? null : nextProject,
+        project,
+      }
+    } catch {
       return {
         nextProject: null,
         project: null,
       }
     }
-
-    const allProjects = await payload.find({
-      collection: 'portfolio-projects',
-      depth: 2,
-      limit: 100,
-      overrideAccess: false,
-      sort: 'sortOrder',
-    })
-
-    const currentIndex = allProjects.docs.findIndex((item) => item.id === project.id)
-    const nextProject =
-      allProjects.docs.length > 1
-        ? allProjects.docs[(currentIndex + 1) % allProjects.docs.length] || null
-        : null
-
-    return {
-      nextProject: nextProject?.id === project.id ? null : nextProject,
-      project,
-    }
-  } catch {
-    return {
-      nextProject: null,
-      project: null,
-    }
-  }
-}
+  },
+)
