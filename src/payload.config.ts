@@ -72,8 +72,20 @@ const cloudflare =
 export default buildConfig({
   admin: {
     user: Users.slug,
+    dateFormat: 'MMM d, yyyy',
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    components: {
+      beforeDashboard: ['/components/payload/DashboardWelcome#DashboardWelcome'],
+      graphics: {
+        Icon: '/components/payload/AdminIcon#AdminIcon',
+        Logo: '/components/payload/AdminLogo#AdminLogo',
+      },
+    },
+    meta: {
+      description: 'Manage website content, portfolio work, journal stories, and enquiries.',
+      titleSuffix: '— Studio CMS',
     },
   },
   collections: [
