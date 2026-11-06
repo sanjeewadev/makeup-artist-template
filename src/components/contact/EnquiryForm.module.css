@@ -31,7 +31,7 @@
 
 .legend > span {
   color: var(--color-muted);
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.12em;
   padding-top: 0.4rem;
@@ -47,7 +47,7 @@
 
 .legend > small {
   color: var(--color-muted);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   line-height: 1.6;
   padding-top: 0.2rem;
 }
@@ -89,7 +89,7 @@
 .choiceContent > small {
   color: var(--color-muted);
   display: block;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   line-height: 1.55;
   margin-top: 0.45rem;
   max-width: 36rem;
@@ -99,7 +99,7 @@
   color: var(--color-muted);
   display: flex;
   flex-wrap: wrap;
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   font-weight: 650;
   gap: 0.35rem 0.8rem;
   letter-spacing: 0.1em;
@@ -159,7 +159,7 @@
 
 .field label {
   color: var(--color-muted);
-  font-size: 0.56rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -226,7 +226,7 @@
 
 .help,
 .error {
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   line-height: 1.55;
   margin: 0;
 }
@@ -264,7 +264,7 @@
 
 .formFooter p {
   color: var(--color-muted);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   line-height: 1.65;
   margin: 0.35rem 0 0;
   max-width: 31rem;
@@ -278,7 +278,7 @@
   cursor: pointer;
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 650;
   gap: 1.4rem;
   justify-content: center;
@@ -364,7 +364,7 @@
 
 .successNext > span {
   color: var(--color-muted);
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -381,7 +381,7 @@
   border-bottom: 1px solid currentColor;
   color: var(--color-ink);
   display: inline-block;
-  font-size: 0.64rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.12em;
   padding-bottom: 0.25rem;
