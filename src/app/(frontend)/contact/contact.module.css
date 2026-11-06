@@ -4,11 +4,28 @@
 
 .hero {
   display: grid;
-  gap: clamp(3rem, 10vw, 10rem);
-  grid-template-columns: minmax(10rem, 0.28fr) 1fr;
+  gap: clamp(3rem, 9vw, 9rem);
+  grid-template-columns: minmax(10rem, 0.22fr) 1fr;
   margin: 0 auto;
   max-width: var(--site-max);
-  padding: clamp(5rem, 10vw, 9rem) var(--gutter) clamp(4rem, 8vw, 7rem);
+  min-height: min(42rem, calc(100svh - 5rem));
+  padding: clamp(5rem, 10vw, 9rem) var(--gutter) clamp(5rem, 9vw, 8rem);
+  position: relative;
+}
+
+.hero::after {
+  bottom: -0.08em;
+  color: rgba(23, 20, 17, 0.035);
+  content: 'CONTACT';
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 20vw, 22rem);
+  font-style: italic;
+  left: var(--gutter);
+  letter-spacing: -0.08em;
+  line-height: 0.68;
+  pointer-events: none;
+  position: absolute;
+  white-space: nowrap;
 }
 
 .index,
@@ -17,49 +34,65 @@
 .formHeading > p,
 .closing > p {
   color: var(--color-muted);
-  font-size: 0.62rem;
-  font-weight: 600;
+  font-size: var(--label-size);
+  font-weight: 650;
   letter-spacing: 0.14em;
   margin: 0;
   text-transform: uppercase;
 }
 
 .index {
-  padding-top: 0.8rem;
+  padding-top: 0.9rem;
 }
 
 .eyebrow {
   margin-bottom: 1.4rem;
 }
 
+.hero > div {
+  position: relative;
+  z-index: 1;
+}
+
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(4.2rem, 8.6vw, 9rem);
+  font-size: clamp(5rem, 9.5vw, 10.3rem);
   font-weight: 400;
-  letter-spacing: -0.06em;
-  line-height: 0.84;
+  letter-spacing: -0.07em;
+  line-height: 0.73;
   margin: 0;
-  max-width: 8ch;
+  max-width: 7.2ch;
+}
+
+.hero h1::first-letter {
+  font-style: italic;
 }
 
 .lead {
+  border-top: 1px solid var(--color-line);
   color: var(--color-muted);
   line-height: 1.85;
-  margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+  margin: clamp(3rem, 6vw, 5rem) 0 0;
   max-width: 37rem;
+  padding-top: 1.2rem;
 }
 
 .contactGrid {
-  border-top: 1px solid var(--color-line);
   display: grid;
-  grid-template-columns: minmax(18rem, 0.72fr) minmax(28rem, 1.28fr);
+  grid-template-columns: minmax(21rem, 0.68fr) minmax(30rem, 1.32fr);
   margin: 0 auto;
   max-width: var(--site-max);
 }
 
 .sidebar {
-  border-right: 1px solid var(--color-line);
-  padding: clamp(3rem, 6vw, 5.5rem) var(--gutter);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  min-height: 48rem;
+  padding: clamp(4rem, 7vw, 6rem) clamp(2rem, 4vw, 4.5rem);
+}
+
+.sidebarIntro > p {
+  color: rgba(241, 236, 229, 0.45);
 }
 
 .sidebarIntro h2,
@@ -67,56 +100,65 @@
 .closing h2 {
   font-family: var(--font-display);
   font-weight: 400;
-  letter-spacing: -0.045em;
-  line-height: 0.98;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
 }
 
 .sidebarIntro h2 {
-  font-size: clamp(2.4rem, 4vw, 4rem);
-  margin: 1rem 0 2.5rem;
-  max-width: 9ch;
+  font-size: clamp(3rem, 5vw, 5.2rem);
+  font-style: italic;
+  margin: 1.2rem 0 3rem;
+  max-width: 8ch;
 }
 
 .contactMethods {
-  border-top: 1px solid var(--color-line);
-  margin-bottom: 2rem;
+  border-top: 1px solid rgba(241, 236, 229, 0.17);
+  margin-bottom: 2.4rem;
 }
 
 .contactMethods a,
 .contactMethods > div {
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid rgba(241, 236, 229, 0.17);
   display: grid;
-  gap: 0.3rem;
-  padding: 1rem 0;
+  gap: 0.35rem;
+  padding: 1.15rem 0;
   text-decoration: none;
 }
 
 .contactMethods span {
-  color: var(--color-muted);
-  font-size: 0.58rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  color: rgba(241, 236, 229, 0.42);
+  font-size: 0.54rem;
+  font-weight: 650;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
 .contactMethods strong {
+  color: rgba(241, 236, 229, 0.9);
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   font-weight: 500;
   overflow-wrap: anywhere;
 }
 
+.contactMethods a strong {
+  transition:
+    color 180ms ease,
+    transform 220ms var(--ease-editorial);
+}
+
 .contactMethods a:hover strong {
-  color: var(--color-accent-dark);
+  color: var(--color-paper);
+  transform: translateX(0.25rem);
 }
 
 .note,
 .response {
-  color: var(--color-muted);
-  font-size: 0.78rem;
-  line-height: 1.7;
+  color: rgba(241, 236, 229, 0.56);
+  font-size: 0.75rem;
+  line-height: 1.75;
   margin: 2rem 0 0;
-  max-width: 26rem;
+  max-width: 25rem;
 }
 
 .response {
@@ -125,44 +167,54 @@
 }
 
 .formArea {
-  padding: clamp(3rem, 6vw, 5.5rem) var(--gutter);
+  background: var(--color-paper-soft);
+  padding: clamp(4rem, 7vw, 6rem) clamp(2rem, 5vw, 6rem);
 }
 
 .formHeading {
+  border-bottom: 1px solid var(--color-line);
   margin-bottom: 3rem;
+  padding-bottom: 2.3rem;
 }
 
 .formHeading h2 {
-  font-size: clamp(3rem, 5vw, 5rem);
+  font-size: clamp(4rem, 6vw, 6.4rem);
   margin: 1rem 0 0;
+  max-width: 8ch;
 }
 
 .closing {
   border-top: 1px solid var(--color-line);
   display: grid;
-  gap: clamp(3rem, 10vw, 10rem);
-  grid-template-columns: minmax(10rem, 0.28fr) 1fr;
+  gap: clamp(3rem, 9vw, 9rem);
+  grid-template-columns: minmax(10rem, 0.22fr) 1fr;
   margin: 0 auto;
   max-width: var(--site-max);
   padding: var(--section-space) var(--gutter);
 }
 
 .closing h2 {
-  font-size: clamp(3rem, 5.5vw, 5.5rem);
-  margin: 0 0 1.4rem;
-  max-width: 10ch;
+  font-size: clamp(4rem, 7vw, 7rem);
+  margin: 0 0 1.6rem;
+  max-width: 8.5ch;
+}
+
+.closing h2::first-letter {
+  font-style: italic;
 }
 
 .closing div > p {
+  border-top: 1px solid var(--color-line);
   color: var(--color-muted);
-  line-height: 1.8;
+  line-height: 1.85;
   margin: 0;
   max-width: 34rem;
+  padding-top: 1.2rem;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .contactGrid {
-    grid-template-columns: 0.8fr 1.2fr;
+    grid-template-columns: 0.78fr 1.22fr;
   }
 }
 
@@ -173,8 +225,17 @@
     grid-template-columns: 1fr;
   }
 
+  .hero {
+    min-height: auto;
+  }
+
+  .hero::after {
+    bottom: 1rem;
+    font-size: 30vw;
+  }
+
   .hero h1 {
-    font-size: clamp(4rem, 17vw, 6.7rem);
+    font-size: clamp(4.8rem, 20vw, 7.5rem);
   }
 
   .contactGrid {
@@ -182,7 +243,25 @@
   }
 
   .sidebar {
-    border-bottom: 1px solid var(--color-line);
-    border-right: 0;
+    min-height: auto;
+    padding: 4.5rem var(--gutter);
+  }
+
+  .formArea {
+    padding: 4.5rem var(--gutter);
+  }
+
+  .closing h2 {
+    font-size: clamp(4rem, 17vw, 6.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contactMethods a strong {
+    transition: none;
+  }
+
+  .contactMethods a:hover strong {
+    transform: none;
   }
 }
