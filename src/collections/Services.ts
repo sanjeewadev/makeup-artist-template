@@ -41,6 +41,9 @@ export const Services: CollectionConfig = {
       required: true,
       maxLength: 120,
       index: true,
+      admin: {
+        description: 'Public service name shown on the Services page and enquiry form.',
+      },
     },
     slugField(),
     {
@@ -48,15 +51,24 @@ export const Services: CollectionConfig = {
       type: 'textarea',
       required: true,
       maxLength: 320,
+      admin: {
+        description: 'Concise service summary used near the service heading and on featured sections.',
+      },
     },
     {
       name: 'description',
       type: 'richText',
+      admin: {
+        description: 'Optional full service details, inclusions, preparation notes, or booking context.',
+      },
     },
     {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
+      admin: {
+        description: 'Editorial image representing this service on the public Services page.',
+      },
     },
     {
       name: 'priceLabel',
@@ -72,6 +84,9 @@ export const Services: CollectionConfig = {
       label: 'Duration label',
       type: 'text',
       maxLength: 80,
+      admin: {
+        description: 'Optional display text such as “90 minutes” or “Half day”.',
+      },
     },
     {
       name: 'featured',
@@ -79,6 +94,7 @@ export const Services: CollectionConfig = {
       defaultValue: false,
       admin: {
         position: 'sidebar',
+        description: 'Featured services can appear in prominent homepage/service sections.',
       },
     },
     {
