@@ -45,6 +45,21 @@ export default async function HomePage() {
   const heroImage = isResolvedRelationship<Media>(hero?.image) ? hero.image : demoHeroImage
   const siteName = siteSettings?.artistName || siteSettings?.siteName || 'Makeup Artist'
   const introText = richTextToPlainText(home?.introduction?.body)
+  const essayImages = projects
+    .slice(0, 3)
+    .map((project, index) => {
+      const galleryItem = project.gallery?.[index] || project.gallery?.[0]
+      const galleryImage =
+        galleryItem && isResolvedRelationship<Media>(galleryItem.image)
+          ? galleryItem.image
+          : null
+      const heroFallback = isResolvedRelationship<Media>(project.heroImage)
+        ? project.heroImage
+        : null
+
+      return galleryImage || heroFallback
+    })
+    .filter((image): image is Media => Boolean(image))
 
   return (
     <div className={styles.home}>
@@ -117,6 +132,41 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {essayImages.length >= 2 && (
+        <section className={styles.imageEssay} aria-label="Beauty photography study">
+          <div className={styles.imageEssayLead}>
+            <span>Photography study / 02</span>
+            <p>
+              Skin. Gesture. Preparation. The quiet details that make the finished portrait feel
+              complete.
+            </p>
+          </div>
+
+          <div className={styles.imageEssayGrid}>
+            {essayImages.map((image, index) => (
+              <figure className={styles.imageEssayFigure} key={image.id}>
+                <div className={styles.imageEssayFrame}>
+                  <CmsImage
+                    image={image}
+                    sizes={
+                      index === 0
+                        ? '(max-width: 760px) 100vw, 56vw'
+                        : '(max-width: 760px) 100vw, 28vw'
+                    }
+                  />
+                </div>
+                <figcaption>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <span>
+                    {index === 0 ? 'Preparation' : index === 1 ? 'Portrait' : 'Detail'}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className={styles.work}>
         <div className={styles.workHeading}>
