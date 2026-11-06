@@ -125,8 +125,8 @@ The starter deliberately disables Sharp-dependent upload transforms because the 
 - User management is administrator-only in the Admin UI.
 - Editors cannot promote themselves or change roles.
 - Enquiries are not writable through the anonymous Payload REST API.
-- The future public enquiry flow must validate input server-side before using trusted server-side Payload access.
-- Never trust public form input.
+- The public enquiry flow validates and sanitizes input in a Next.js server action before using trusted server-side Payload access.
+- Never trust public form input. Keep the Enquiries collection closed to anonymous direct writes; public submissions must continue through the validated server action.
 - Never commit `.env`, production secrets, Cloudflare credentials, or service tokens.
 - When a Local API operation acts on behalf of a signed-in user, use `overrideAccess: false` so Payload access control is enforced.
 
@@ -153,3 +153,16 @@ pnpm typecheck
 Before promoting a release to `main`, also run the appropriate tests and production build checks for that milestone.
 
 GitHub Actions runs lint, TypeScript checks, and a production Next.js build on development pushes and pull requests.
+
+
+## Public enquiry flow
+
+The public availability form lives at `/contact`.
+
+Service CTAs may preselect a published service with:
+
+`/contact?service=<service-slug>`
+
+The server action is the security boundary. Do not replace it with anonymous Payload collection create access.
+
+WhatsApp numbers should be stored in Site Settings using international format. Automated notification email remains optional until a production email adapter is configured.

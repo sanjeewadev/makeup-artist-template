@@ -1,95 +1,98 @@
 # Current Status
 
-## Chat 3 — Portfolio Experience
+## Chat 4 — Services, About & Contact
 
 **Status: complete**
 
-Chat 1 established the CMS/data foundation and Chat 2 established the public design system/homepage. Chat 3 completes the public portfolio experience.
+Chats 1–3 established the CMS foundation, editorial design system, homepage, and complete portfolio experience. Chat 4 adds the client-facing business and conversion layer.
 
 ### Implemented
 
-- `/portfolio` editorial portfolio index
-- CMS-driven Portfolio Categories
-- Instant client-side category filtering
-- Accessible filter buttons with project counts
-- Asymmetrical 12-column desktop portfolio grid
-- Responsive two-column tablet layout
-- Linear full-width mobile portfolio layout
-- Published-project counts and graceful empty state
-- `/portfolio/[slug]` project routes
-- Project-specific metadata
-- Portfolio-specific not-found state
-- Project hero with category, title, excerpt, client/project name, location, and event date
-- Payload Lexical story rendering
-- Art-directed gallery renderer
-- `wide`, `portrait`, `landscape`, and `auto` gallery presentation handling
-- Figure captions
-- Responsive Next.js image sizing
-- Priority loading for hero / first visible listing imagery
-- Lazy loading for the remaining gallery/listing imagery
-- Portfolio route loading skeleton
-- Next-project navigation
-- Project enquiry CTA
-- Restrained filter/gallery/hover transitions
-- Reduced-motion support
-- Homepage/portfolio routes marked dynamic for CMS freshness
-- Portfolio route smoke test
-- Portfolio experience documentation
+- `/services` editorial services page
+- Published Services loaded directly from Payload
+- Alternating service photography layouts
+- Service short/long descriptions
+- Optional price and duration labels
+- Service-specific enquiry CTAs
+- Service links that preselect `/contact?service=<slug>`
+- Reusable testimonials presentation
+- Reusable editorial CTA component
+- `/about` artist-story page
+- CMS-driven artist portrait, story, credentials, CTA, and SEO
+- Featured testimonials on About
+- `/contact` availability/enquiry page
+- CMS-driven contact-page copy and SEO
+- Direct email, phone, service-area, and WhatsApp presentation
+- WhatsApp `wa.me` integration with prefilled message
+- Sophisticated availability enquiry form
+- Name/email/phone/contact-preference/service/date/location/people/message fields
+- Server-side form validation
+- Exact calendar-date validation
+- Honeypot spam protection
+- Published-service verification before storage
+- Trusted server-side Payload Enquiry creation
+- Anonymous Payload REST writes remain closed
+- New enquiries stored as `status = new` and `source = website`
+- Internal notes/status management remain private
+- Accessible field-level errors, pending state, and success state
+- Responsive/mobile form and page layouts
+- Route smoke coverage for Services, About, and Contact
+- Secure enquiry-flow documentation
 - No Tailwind
 
-### CMS behavior
+### Enquiry security boundary
 
-The portfolio index reads public Portfolio Categories and published Portfolio Projects.
+The Enquiries collection still requires authentication for direct collection writes.
 
-Filters are derived from real categories, and categories with zero published projects are omitted from the public filter controls.
+The public form does not weaken that access policy. Instead it submits through a Next.js server action which:
 
-Project pages use the existing Payload slug, category, hero image, story, gallery, location, event date, and SEO fields.
+1. trims and caps public input,
+2. validates required fields and allowed values,
+3. verifies any selected service is still publicly available,
+4. drops honeypot submissions,
+5. creates the Enquiry through trusted server-side Payload access.
 
-The existing gallery `presentation` field is now fully honored by the frontend, so an editor can art-direct individual gallery images without changing code.
+Public form data cannot set internal notes or lead-management state.
 
-### Image behavior
+### Contact behavior
 
-- Hero image: priority loaded
-- First visible index images: prioritized
-- Remaining index/gallery images: normal Next.js lazy loading
-- Responsive `sizes` hints are defined
-- Layout frames reserve image space before loading
-- Required Payload alt text remains the accessibility source
-- Missing images fall back to controlled editorial placeholders
+Contact information comes from Site Settings.
+
+For reliable WhatsApp links, store the WhatsApp number in international format, for example `+94771234567`.
+
+Submitting the enquiry is explicitly presented as an availability request rather than a confirmed booking.
+
+Automated notification email is not configured yet because the project does not currently have a production email adapter. Enquiries are safely stored in Payload and direct email/phone/WhatsApp channels are available.
 
 ### Validation
 
-Final Chat 3 validation is green through repository CI:
+Final Chat 4 validation is green on the latest code head:
 
 - ESLint: pass
 - TypeScript: pass
 - Production Next.js build: pass
 
-During validation, local D1 production builds exposed a concurrent SQLite lock. CI/local validation now serializes Next.js build workers only when `CLOUDFLARE_REMOTE_BINDINGS=false`. Real Cloudflare deployment retains normal parallelism.
-
 ### Deliberately not implemented yet
 
-- Services page
-- About page
-- Public contact/enquiry form
-- WhatsApp/contact integration
-- Journal listing/article pages
-- Payload admin/preview polish
+- Journal listing
+- Journal article pages
+- Draft/preview workflow improvements
+- Payload Admin organization/polish
+- Client-facing CMS field guidance/branding improvements
 
-Those belong to Chats 4–5.
+Those belong to Chat 5.
 
 ## Next milestone
 
-Chat 4 — Services, About & Contact
+Chat 5 — Journal + CMS Experience
 
 Scope:
 
-- Services page
-- Artist story/About page
-- Testimonials presentation
-- CTA system expansion
-- Sophisticated enquiry form
-- Server-side validation
-- Payload Enquiry storage
-- WhatsApp/contact integration
-- Mobile UX
+- Journal/blog listing
+- Journal article pages
+- SEO content structure
+- Drafts and preview workflow
+- Better Payload Admin organization
+- Field descriptions
+- Client-friendly CMS
+- Admin branding/usability
