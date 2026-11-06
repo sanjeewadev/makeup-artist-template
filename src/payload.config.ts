@@ -41,7 +41,8 @@ const isCLI = process.argv.some((value) => {
   )
 })
 const isProduction = process.env.NODE_ENV === 'production'
-const useRemoteBindings = isProduction && process.env.CLOUDFLARE_REMOTE_BINDINGS !== 'false'
+const forceLocalBindings = process.env.CLOUDFLARE_REMOTE_BINDINGS === 'false'
+const useRemoteBindings = isProduction && !forceLocalBindings
 
 const createLog =
   (level: string, fn: typeof console.log) => (objOrMsg: object | string, msg?: string) => {
@@ -64,7 +65,7 @@ const cloudflareLogger = {
 } as any // Use PayloadLogger type when it's exported
 
 const cloudflare =
-  isCLI || !isProduction
+  isCLI || !isProduction || forceLocalBindings
     ? await getCloudflareContextFromWrangler()
     : await getCloudflareContext({ async: true })
 
