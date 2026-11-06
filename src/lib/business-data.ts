@@ -4,6 +4,11 @@ import { getPayload } from 'payload'
 
 import type { About, Contact, Service, SiteSetting, Testimonial } from '@/payload-types'
 import config from '@/payload.config'
+import {
+  demoAbout,
+  demoServices,
+  demoTestimonials,
+} from '@/lib/demo-content'
 
 export type ServicesPageData = {
   services: Service[]
@@ -47,13 +52,13 @@ export const getServicesPageData = cache(async (): Promise<ServicesPageData> => 
     ])
 
     return {
-      services: services.docs,
-      testimonials: testimonials.docs,
+      services: services.docs.length ? services.docs : demoServices,
+      testimonials: testimonials.docs.length ? testimonials.docs : demoTestimonials,
     }
   } catch {
     return {
-      services: [],
-      testimonials: [],
+      services: demoServices,
+      testimonials: demoTestimonials,
     }
   }
 })
@@ -87,16 +92,24 @@ export const getAboutPageData = cache(async (): Promise<AboutPageData> => {
       }),
     ])
 
+    const hasAboutContent = Boolean(
+      about.heading ||
+        about.lead ||
+        about.portrait ||
+        about.story ||
+        about.credentials?.length,
+    )
+
     return {
-      about,
+      about: hasAboutContent ? about : demoAbout,
       siteSettings,
-      testimonials: testimonials.docs,
+      testimonials: testimonials.docs.length ? testimonials.docs : demoTestimonials,
     }
   } catch {
     return {
-      about: null,
+      about: demoAbout,
       siteSettings: null,
-      testimonials: [],
+      testimonials: demoTestimonials,
     }
   }
 })
@@ -127,13 +140,13 @@ export const getContactPageData = cache(async (): Promise<ContactPageData> => {
 
     return {
       contact,
-      services: services.docs,
+      services: services.docs.length ? services.docs : demoServices,
       siteSettings,
     }
   } catch {
     return {
       contact: null,
-      services: [],
+      services: demoServices,
       siteSettings: null,
     }
   }
