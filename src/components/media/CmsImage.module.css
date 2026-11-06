@@ -1,0 +1,27 @@
+.image {
+  opacity: 0;
+}
+
+.loaded {
+  animation: image-arrive var(--motion-image) ease-out both;
+}
+
+@keyframes image-arrive {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    opacity: 1;
+  }
+
+  .loaded {
+    animation: none;
+  }
+}
