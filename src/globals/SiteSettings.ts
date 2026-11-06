@@ -138,7 +138,8 @@ export const SiteSettings: GlobalConfig = {
     seoGroup({
       name: 'defaultSEO',
       label: 'Default SEO',
-      description: 'Fallback metadata used when a page or project does not provide its own SEO values.',
+      description:
+        'Site-wide fallback metadata and social image. Important: enabling “Hide from search engines” here applies the no-index fallback across the public site and also removes entries from the dynamic sitemap.',
     }),
   ],
 }
