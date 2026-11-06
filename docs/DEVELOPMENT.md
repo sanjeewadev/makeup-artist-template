@@ -113,6 +113,8 @@ Production persistence is intentionally separated:
 
 Do not replace production D1 with a local SQLite file.
 
+For local production-build validation, set `CLOUDFLARE_REMOTE_BINDINGS=false`. Real Cloudflare deployment keeps remote bindings enabled unless explicitly overridden.
+
 The starter deliberately disables Sharp-dependent upload transforms because the target runtime is Cloudflare Workers. Image presentation/optimization decisions belong in the frontend layer.
 
 ## Access-control rules

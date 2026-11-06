@@ -2,7 +2,7 @@
 
 ## Chat 2 — Design System & Homepage
 
-**Status: implemented**
+**Status: complete**
 
 Chat 1 established the CMS/data foundation. Chat 2 replaces the Payload starter frontend with the public visual system and homepage.
 
@@ -63,4 +63,8 @@ The next milestone builds the portfolio listing, categories/filters, project pag
 
 ## Validation
 
-Final Chat 2 validation runs lint, TypeScript, and a production Next.js build through repository CI.
+Final Chat 2 validation is green through repository CI:
+
+- ESLint: pass
+- TypeScript: pass
+- Production Next.js build: pass
