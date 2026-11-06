@@ -23,9 +23,6 @@ export const Home: GlobalConfig = {
       admin: {
         description: 'The cinematic opening message and lead photograph. Use one exceptional portrait with enough negative space for oversized typography.',
       },
-      admin: {
-        description: 'Final full-photography booking invitation. Keep the message simple and confident; this is the strongest conversion moment on the page.',
-      },
       fields: [
         {
           name: 'eyebrow',
@@ -118,6 +115,9 @@ export const Home: GlobalConfig = {
       name: 'closingCTA',
       label: 'Closing call to action',
       type: 'group',
+      admin: {
+        description: 'Final full-photography booking invitation. Keep the message simple and confident; this is the strongest conversion moment on the page.',
+      },
       fields: [
         {
           name: 'eyebrow',
