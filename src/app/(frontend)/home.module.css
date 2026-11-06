@@ -43,7 +43,7 @@
   align-items: center;
   color: var(--color-muted);
   display: flex;
-  font-size: 0.53rem;
+  font-size: 0.72rem;
   font-weight: 650;
   grid-column: 1 / -1;
   justify-content: space-between;
@@ -276,7 +276,7 @@
 .signatureTop {
   color: rgba(248, 244, 238, 0.6);
   display: flex;
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   font-weight: 650;
   grid-column: 1 / -1;
   justify-content: space-between;
@@ -339,7 +339,7 @@
   border-top: 1px solid rgba(248, 244, 238, 0.25);
   color: rgba(248, 244, 238, 0.58);
   display: flex;
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   font-weight: 650;
   justify-content: space-between;
   letter-spacing: 0.12em;
@@ -418,7 +418,7 @@
   border-top: 1px solid var(--color-line);
   color: var(--color-muted);
   display: flex;
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   font-weight: 650;
   justify-content: space-between;
   letter-spacing: 0.12em;
@@ -536,14 +536,14 @@
 .serviceNumber,
 .voiceNumber {
   color: var(--color-muted);
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
   padding-top: 0.35rem;
 }
 
 .projectMeta p {
   color: var(--color-muted);
-  font-size: 0.56rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.13em;
   margin: 0 0 0.42rem;
@@ -626,7 +626,7 @@
 .serviceVisual > span {
   bottom: 1rem;
   color: rgba(241, 236, 229, 0.72);
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   font-weight: 650;
   left: 1rem;
   letter-spacing: 0.13em;
@@ -764,7 +764,7 @@
 
 .artistCredentials span {
   color: var(--color-muted);
-  font-size: 0.52rem;
+  font-size: 0.72rem;
 }
 
 .artistCredentials strong {
@@ -931,7 +931,7 @@
 .journalMeta {
   color: var(--color-muted);
   display: flex;
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   font-weight: 650;
   gap: 0.9rem;
   letter-spacing: 0.1em;
@@ -1001,7 +1001,7 @@
 .closingFoot {
   color: rgba(248, 244, 238, 0.58);
   display: flex;
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   font-weight: 650;
   justify-content: space-between;
   letter-spacing: 0.14em;
