@@ -7,7 +7,7 @@ export const SiteSettings: GlobalConfig = {
   label: 'Site Settings',
   admin: {
     group: 'Site Settings',
-    description: 'Source of truth for the artist/business identity, direct contact details, real social profiles, and default search metadata.'
+    description: 'Source of truth for the artist/business identity, direct contact details, real social profiles, and default search metadata.',
     hideAPIURL: true,
   },
   access: {
@@ -33,7 +33,7 @@ export const SiteSettings: GlobalConfig = {
       type: 'text',
       maxLength: 120,
       admin: {
-        description: 'Use the exact professional name the artist wants clients to see across the website.'
+        description: 'Use the exact professional name the artist wants clients to see across the website.',
       },
     },
     {
@@ -41,7 +41,7 @@ export const SiteSettings: GlobalConfig = {
       type: 'text',
       maxLength: 180,
       admin: {
-        description: 'A short, ownable brand line. Avoid vague luxury language that could belong to any makeup artist.'
+        description: 'A short, ownable brand line. Avoid vague luxury language that could belong to any makeup artist.',
       },
     },
     {
@@ -49,7 +49,7 @@ export const SiteSettings: GlobalConfig = {
       type: 'textarea',
       maxLength: 500,
       admin: {
-        description: 'Two or three concise sentences describing the real practice, type of work, and point of view. This now supports high-visibility brand areas such as the footer.'
+        description: 'Two or three concise sentences describing the real practice, type of work, and point of view. This now supports high-visibility brand areas such as the footer.',
       },
     },
     {
@@ -105,7 +105,7 @@ export const SiteSettings: GlobalConfig = {
       name: 'socialLinks',
       type: 'array',
       admin: {
-        description: 'Only add real, active public profiles the artist wants clients to visit. These are used as visible trust/contact signals in the footer and About page.'
+        description: 'Only add real, active public profiles the artist wants clients to visit. These are used as visible trust/contact signals in the footer and About page.',
       },
       maxRows: 10,
       fields: [
