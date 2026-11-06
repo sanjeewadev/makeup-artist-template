@@ -4,17 +4,21 @@
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(22rem, 0.92fr) minmax(26rem, 1.08fr);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   margin: 0 auto;
   max-width: var(--site-max);
-  min-height: min(54rem, calc(100svh - 5.4rem));
+  min-height: min(55rem, calc(100svh - 5rem));
   padding: 0 var(--gutter);
 }
 
 .heroCopy {
   align-self: center;
-  max-width: 44rem;
-  padding: clamp(4rem, 8vw, 8rem) clamp(2rem, 6vw, 6rem) clamp(4rem, 8vw, 8rem) 0;
+  grid-column: 1 / 8;
+  grid-row: 1;
+  max-width: 49rem;
+  padding: clamp(5rem, 9vw, 9rem) 0;
+  position: relative;
+  z-index: 2;
 }
 
 .back,
@@ -25,8 +29,8 @@
 .article aside span,
 .nextCopy p,
 .nextCopy span {
-  font-size: 0.62rem;
-  font-weight: 600;
+  font-size: var(--label-size);
+  font-weight: 650;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -34,7 +38,7 @@
 .back {
   color: var(--color-muted);
   display: inline-block;
-  margin-bottom: clamp(3rem, 6vw, 6rem);
+  margin-bottom: clamp(4rem, 8vw, 8rem);
   text-decoration: none;
 }
 
@@ -45,19 +49,23 @@
 
 .heroCopy h1 {
   font-family: var(--font-display);
-  font-size: clamp(3.9rem, 7.4vw, 7.7rem);
+  font-size: clamp(4.7rem, 8.4vw, 8.9rem);
   font-weight: 400;
-  letter-spacing: -0.058em;
-  line-height: 0.86;
-  margin: 1.25rem 0 1.6rem;
-  max-width: 9ch;
+  letter-spacing: -0.065em;
+  line-height: 0.76;
+  margin: 1.25rem 0 1.8rem;
+  max-width: 8.5ch;
+}
+
+.heroCopy h1::first-letter {
+  font-style: italic;
 }
 
 .excerpt {
   color: var(--color-muted);
-  line-height: 1.8;
+  line-height: 1.85;
   margin: 0;
-  max-width: 36rem;
+  max-width: 35rem;
 }
 
 .meta,
@@ -69,7 +77,8 @@
 
 .meta {
   border-top: 1px solid var(--color-line);
-  margin-top: 2.5rem;
+  margin-top: 2.7rem;
+  max-width: 34rem;
   padding-top: 1rem;
 }
 
@@ -78,42 +87,56 @@
 }
 
 .tags span {
-  border: 1px solid var(--color-line);
-  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--color-line);
+  padding-bottom: 0.25rem;
 }
 
 .heroImage {
-  min-height: 44rem;
+  grid-column: 6 / 13;
+  grid-row: 1;
+  min-height: 49rem;
   overflow: hidden;
   position: relative;
+}
+
+.heroImage::after {
+  background: linear-gradient(to left, transparent 70%, rgba(23, 20, 17, 0.12));
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
 }
 
 .heroImage > img,
 .nextImage > img {
   object-fit: cover;
-  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    filter 700ms ease,
+    transform 1000ms var(--ease-editorial);
 }
 
 .placeholder {
   background:
-    radial-gradient(circle at 70% 24%, rgba(255, 255, 255, 0.28), transparent 24%),
-    linear-gradient(145deg, #c8b8ad 0%, #9a7f75 48%, #594944 100%);
+    radial-gradient(circle at 70% 24%, rgba(255, 255, 255, 0.22), transparent 24%),
+    linear-gradient(145deg, #c6b5aa 0%, #977c72 48%, #554641 100%);
   inset: 0;
   position: absolute;
 }
 
 .article {
   display: grid;
-  gap: clamp(3rem, 10vw, 10rem);
-  grid-template-columns: minmax(10rem, 0.28fr) 1fr;
+  gap: clamp(3rem, 9vw, 9rem);
+  grid-template-columns: minmax(10rem, 0.22fr) 1fr;
   margin: 0 auto;
   max-width: var(--site-max);
   padding: var(--section-space) var(--gutter);
 }
 
 .article aside {
+  border-top: 1px solid var(--color-line);
   display: flex;
   flex-direction: column;
+  padding-top: 1rem;
 }
 
 .article aside p,
@@ -124,38 +147,47 @@
 
 .article aside strong {
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.45rem;
+  font-style: italic;
   font-weight: 500;
   margin: 0.5rem 0;
 }
 
 .body {
-  max-width: 48rem;
+  max-width: 51rem;
 }
 
 .cta {
-  background: var(--color-paper-soft);
+  background: var(--color-accent);
+  color: var(--color-paper-soft);
   display: grid;
-  gap: clamp(3rem, 10vw, 10rem);
-  grid-template-columns: minmax(10rem, 0.28fr) 1fr;
+  gap: clamp(3rem, 9vw, 9rem);
+  grid-template-columns: minmax(10rem, 0.22fr) 1fr;
   padding: var(--section-space) max(var(--gutter), calc((100vw - var(--site-max)) / 2 + var(--gutter)));
+}
+
+.cta .eyebrow {
+  color: rgba(248, 244, 238, 0.58);
 }
 
 .cta h2 {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 5.8vw, 5.8rem);
+  font-size: clamp(4rem, 7vw, 7.2rem);
+  font-style: italic;
   font-weight: 400;
-  letter-spacing: -0.05em;
-  line-height: 0.95;
-  margin: 0 0 1.4rem;
-  max-width: 10ch;
+  letter-spacing: -0.06em;
+  line-height: 0.84;
+  margin: 0 0 1.6rem;
+  max-width: 9ch;
 }
 
 .cta div > p {
-  color: var(--color-muted);
-  line-height: 1.8;
-  margin: 0 0 2.3rem;
+  border-top: 1px solid rgba(248, 244, 238, 0.28);
+  color: rgba(248, 244, 238, 0.72);
+  line-height: 1.85;
+  margin: 0 0 2.4rem;
   max-width: 34rem;
+  padding-top: 1.1rem;
 }
 
 .next {
@@ -166,42 +198,44 @@
 .next > a {
   color: inherit;
   display: grid;
-  grid-template-columns: 1fr minmax(20rem, 0.75fr);
+  grid-template-columns: 1fr minmax(22rem, 0.8fr);
   margin: 0 auto;
   max-width: var(--site-max);
-  min-height: 31rem;
+  min-height: 36rem;
   padding: 0 var(--gutter);
   text-decoration: none;
 }
 
 .nextCopy {
   align-self: center;
-  padding: 4rem clamp(2rem, 6vw, 7rem) 4rem 0;
+  padding: 5rem clamp(2rem, 7vw, 8rem) 5rem 0;
 }
 
 .nextCopy p,
 .nextCopy span {
-  color: rgba(247, 242, 235, 0.58);
+  color: rgba(241, 236, 229, 0.5);
   margin: 0;
 }
 
 .nextCopy h2 {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 5.6vw, 5.8rem);
+  font-size: clamp(4rem, 7vw, 7rem);
+  font-style: italic;
   font-weight: 400;
-  letter-spacing: -0.05em;
-  line-height: 0.92;
+  letter-spacing: -0.06em;
+  line-height: 0.84;
   margin: 1rem 0 2rem;
-  max-width: 10ch;
+  max-width: 9ch;
 }
 
 .nextImage {
-  min-height: 31rem;
+  min-height: 36rem;
   overflow: hidden;
   position: relative;
 }
 
 .next a:hover .nextImage > img {
+  filter: saturate(0.92);
   transform: scale(1.02);
 }
 
@@ -213,21 +247,21 @@
   }
 
   .heroImage {
-    min-height: 112vw;
+    min-height: 115vw;
   }
 
   .heroCopy {
     max-width: none;
-    padding: 3.5rem var(--gutter) 5rem;
+    padding: 3.8rem var(--gutter) 5rem;
   }
 
   .heroCopy h1 {
-    font-size: clamp(3.8rem, 16vw, 6.4rem);
+    font-size: clamp(4.4rem, 18vw, 6.8rem);
   }
 
   .article,
   .cta {
-    gap: 2rem;
+    gap: 2.2rem;
     grid-template-columns: 1fr;
   }
 
@@ -238,11 +272,15 @@
   }
 
   .nextImage {
-    min-height: 82vw;
+    min-height: 88vw;
   }
 
   .nextCopy {
-    padding: 4rem var(--gutter) 5rem;
+    padding: 4.5rem var(--gutter) 5rem;
+  }
+
+  .nextCopy h2 {
+    font-size: clamp(4rem, 17vw, 6.4rem);
   }
 }
 
