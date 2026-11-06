@@ -60,3 +60,7 @@ Those belong to Chats 3–5.
 Chat 3 — Portfolio Experience
 
 The next milestone builds the portfolio listing, categories/filters, project pages, premium gallery layouts, image loading behavior, CMS integration, responsive behavior, and transitions.
+
+## Validation
+
+Final Chat 2 validation runs lint, TypeScript, and a production Next.js build through repository CI.
