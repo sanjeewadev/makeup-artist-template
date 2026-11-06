@@ -25,8 +25,9 @@ export const Navigation: GlobalConfig = {
   slug: 'navigation',
   label: 'Navigation',
   admin: {
-    group: 'Settings',
+    group: 'Site Settings',
     description: 'Header and footer navigation shown throughout the public website.',
+    hideAPIURL: true,
   },
   access: {
     read: () => true,
@@ -41,12 +42,18 @@ export const Navigation: GlobalConfig = {
       name: 'headerLinks',
       type: 'array',
       maxRows: 8,
+      admin: {
+        description: 'Main navigation links shown in the website header.',
+      },
       fields: linkFields,
     },
     {
       name: 'primaryCTA',
       label: 'Primary call to action',
       type: 'group',
+      admin: {
+        description: 'Primary header button, usually the enquiry/contact action.',
+      },
       fields: [
         {
           name: 'label',
@@ -64,6 +71,9 @@ export const Navigation: GlobalConfig = {
       name: 'footerLinks',
       type: 'array',
       maxRows: 12,
+      admin: {
+        description: 'Secondary navigation links shown in the footer.',
+      },
       fields: linkFields,
     },
     {
