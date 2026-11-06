@@ -6,7 +6,7 @@ import { demoHeroImage } from '@/lib/demo-content'
 import { getReadingTime } from '@/lib/reading-time'
 import { richTextToPlainText } from '@/lib/rich-text'
 import { getHomePageData, getShellData, isResolvedRelationship } from '@/lib/site-data'
-import type { Media } from '@/payload-types'
+import type { Media, Service } from '@/payload-types'
 
 import styles from './home.module.css'
 
@@ -36,6 +36,9 @@ export default async function HomePage() {
   const serviceArea = siteSettings?.contact?.serviceArea || 'Sri Lanka'
   const introText = richTextToPlainText(home?.introduction?.body)
   const artistPortrait = isResolvedRelationship<Media>(about?.portrait) ? about.portrait : null
+
+  const testimonialService = (value: number | Service | null | undefined) =>
+    value && typeof value === 'object' && 'title' in value ? value : null
 
   const signatureProject = projects[0] || null
   const signatureHero =
@@ -405,6 +408,7 @@ export default async function HomePage() {
             .slice(0, 3)
             .map((item, index) => {
               const portrait = isResolvedRelationship<Media>(item.portrait) ? item.portrait : null
+              const service = testimonialService(item.service)
 
               return (
                 <article className={styles.voice} key={item.id}>
@@ -418,7 +422,9 @@ export default async function HomePage() {
                     )}
                     <div>
                       <strong>{item.clientName}</strong>
-                      {item.location && <span>{item.location}</span>}
+                      <span>
+                        {[service?.title, item.location].filter(Boolean).join(' / ') || 'Client note'}
+                      </span>
                     </div>
                   </div>
                 </article>
