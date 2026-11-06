@@ -463,3 +463,55 @@ Final Chat 12 code validation:
 - ESLint: pass
 - TypeScript: pass
 - Production Next.js build: pass
+
+
+## Chat 13 — Premium Motion & Detail Obsession
+
+**Status: complete**
+
+Chat 13 gives the public site one restrained, coherent motion and interaction language.
+
+### Implemented
+
+- Shared motion timing tokens
+- Shared editorial easing preserved
+- Route-level page entrance motion
+- Global premium frontend loading state
+- CMS image arrival treatment
+- Progressive-enhancement-safe image rendering
+- Scroll-aware sticky header refinement
+- Active primary-navigation route state
+- Nested route recognition for Portfolio / Journal
+- Native mobile Menu / Close labels
+- Native mobile menu body scroll locking
+- Route-remount mobile menu close behavior
+- Staged mobile-menu panel entrance
+- Staggered mobile navigation labels
+- Active-route mobile navigation treatment
+- Tactile LinkButton press state
+- Hover effects limited to hover-capable fine-pointer devices where appropriate
+- Portfolio lightbox entrance refinement
+- Services FAQ disclosure entrance
+- Enquiry pending-state motion feedback
+- Quieter CSS view-timeline section reveal
+- Subtle fine-pointer scrollbar treatment
+- Existing visible focus states preserved
+- Comprehensive prefers-reduced-motion fallbacks
+- No animation library added
+- No custom cursor
+- No scroll-jacking
+- No parallax overload
+- No schema changes or migrations
+- No Tailwind
+
+Detailed rules:
+
+- `docs/PREMIUM-MOTION-DETAILS.md`
+
+### Validation
+
+Final Chat 13 code validation:
+
+- ESLint: pass
+- TypeScript: pass
+- Production Next.js build: pass
