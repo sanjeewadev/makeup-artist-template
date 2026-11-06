@@ -1,4 +1,5 @@
 import { cache } from 'react'
+import { draftMode } from 'next/headers'
 import { getPayload } from 'payload'
 
 import type { Media, PortfolioCategory, PortfolioProject } from '@/payload-types'
@@ -39,6 +40,8 @@ const resolvedMedia = (media: number | Media | null | undefined): Media | null =
   media && typeof media === 'object' && 'url' in media ? media : null
 
 export async function getPortfolioIndexData(): Promise<PortfolioIndexData> {
+  const preview = (await draftMode()).isEnabled
+
   try {
     const payload = await getPayload({ config })
 
@@ -53,8 +56,9 @@ export async function getPortfolioIndexData(): Promise<PortfolioIndexData> {
       payload.find({
         collection: 'portfolio-projects',
         depth: 2,
+        draft: preview,
         limit: 100,
-        overrideAccess: false,
+        overrideAccess: preview,
         sort: 'sortOrder',
       }),
     ])
@@ -89,14 +93,17 @@ export async function getPortfolioIndexData(): Promise<PortfolioIndexData> {
 
 export const getPortfolioProjectPageData = cache(
   async (slug: string): Promise<PortfolioProjectPageData> => {
+    const preview = (await draftMode()).isEnabled
+
     try {
       const payload = await getPayload({ config })
 
       const projectResult = await payload.find({
         collection: 'portfolio-projects',
         depth: 2,
+        draft: preview,
         limit: 1,
-        overrideAccess: false,
+        overrideAccess: preview,
         where: {
           slug: {
             equals: slug,
@@ -116,8 +123,9 @@ export const getPortfolioProjectPageData = cache(
       const allProjects = await payload.find({
         collection: 'portfolio-projects',
         depth: 2,
+        draft: preview,
         limit: 100,
-        overrideAccess: false,
+        overrideAccess: preview,
         sort: 'sortOrder',
       })
 
