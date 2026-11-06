@@ -33,7 +33,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Configure CI Payload secret
-        run: echo "PAYLOAD_SECRET=ci-validation-only" > .env
+        run: printf "PAYLOAD_SECRET=ci-validation-only\\nCLOUDFLARE_REMOTE_BINDINGS=false\\n" > .env
 
       - name: Lint
         run: pnpm lint
