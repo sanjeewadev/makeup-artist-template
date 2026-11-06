@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 import { authenticated, authenticatedOrPublished } from '../access'
 import { seoGroup } from '../fields/seo'
 import { slugField } from '../fields/slug'
+import { portfolioPreviewURL } from '../lib/admin-preview'
 
 export const PortfolioProjects: CollectionConfig = {
   slug: 'portfolio-projects',
@@ -12,10 +13,12 @@ export const PortfolioProjects: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    group: 'Content',
+    group: 'Portfolio',
     defaultColumns: ['title', 'category', 'featured', '_status', 'updatedAt'],
     listSearchableFields: ['title', 'slug', 'clientName', 'location'],
     description: 'Curated makeup work, weddings, editorials, events, and individual looks.',
+    hideAPIURL: true,
+    preview: (doc) => portfolioPreviewURL(doc),
   },
   access: {
     create: authenticated,
