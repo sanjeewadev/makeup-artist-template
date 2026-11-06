@@ -1,5 +1,9 @@
-export const getSiteURL = () =>
-  (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '')
+export const getSiteURL = () => {
+  const configured = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').trim()
+  const withProtocol = /^https?:\/\//i.test(configured) ? configured : 'https://' + configured
+
+  return withProtocol.replace(/\/$/, '')
+}
 
 export const absoluteURL = (value: string | null | undefined) => {
   if (!value) return undefined
