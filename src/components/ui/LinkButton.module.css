@@ -1,0 +1,93 @@
+.button {
+  align-items: center;
+  border: 1px solid transparent;
+  display: inline-flex;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  gap: 1.2rem;
+  justify-content: center;
+  letter-spacing: 0.13em;
+  min-height: 3.2rem;
+  padding: 0.1rem 1.35rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.solid {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.solid:hover {
+  background: var(--color-accent-dark);
+}
+
+.outline {
+  border-color: color-mix(in srgb, currentColor 45%, transparent);
+  color: currentColor;
+}
+
+.outline:hover {
+  border-color: currentColor;
+}
+
+.text {
+  min-height: 0;
+  padding: 0.35rem 0;
+  position: relative;
+}
+
+.text::after {
+  background: currentColor;
+  bottom: 0;
+  content: '';
+  height: 1px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(0.35);
+  transform-origin: left;
+  transition: transform 220ms ease;
+  width: 100%;
+}
+
+.text:hover::after {
+  transform: scaleX(1);
+}
+
+.arrow {
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: transform 180ms ease;
+}
+
+.button:hover .arrow {
+  transform: translate(2px, -2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .arrow,
+  .text::after {
+    transition: none;
+  }
+
+  .button:hover,
+  .button:hover .arrow {
+    transform: none;
+  }
+}
