@@ -6,16 +6,24 @@ import type { JournalPost, Media } from '@/payload-types'
 import config from '@/payload.config'
 import { demoJournalPosts } from '@/lib/demo-content'
 
+export type JournalTopic = {
+  count: number
+  label: string
+  slug: string
+}
+
 export type JournalIndexData = {
   featured: JournalPost | null
   posts: JournalPost[]
   preview: boolean
+  topics: JournalTopic[]
 }
 
 export type JournalPostData = {
   nextPost: JournalPost | null
   post: JournalPost | null
   preview: boolean
+  relatedPosts: JournalPost[]
 }
 
 export const getJournalMedia = (value: number | Media | null | undefined): Media | null =>
@@ -25,6 +33,55 @@ const previewState = async () => {
   const draft = await draftMode()
   return draft.isEnabled
 }
+
+const topicSlug = (value: string) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+
+const getTopics = (posts: JournalPost[]): JournalTopic[] => {
+  const topics = new Map<string, JournalTopic>()
+
+  posts.forEach((post) => {
+    post.tags?.forEach((tag) => {
+      const label = tag.label.trim()
+      const slug = topicSlug(label)
+      if (!slug) return
+
+      const current = topics.get(slug)
+      topics.set(slug, {
+        count: (current?.count || 0) + 1,
+        label: current?.label || label,
+        slug,
+      })
+    })
+  })
+
+  return [...topics.values()].sort((a, b) => b.count - a.count || a.label.localeCompare(b.label))
+}
+
+const sharedTopicCount = (current: JournalPost, candidate: JournalPost) => {
+  const currentTopics = new Set((current.tags ?? []).map((tag) => topicSlug(tag.label)))
+
+  return (candidate.tags ?? []).reduce(
+    (score, tag) => score + (currentTopics.has(topicSlug(tag.label)) ? 1 : 0),
+    0,
+  )
+}
+
+const relatedFrom = (post: JournalPost, source: JournalPost[]) =>
+  source
+    .filter((candidate) => candidate.id !== post.id)
+    .map((candidate, order) => ({
+      candidate,
+      order,
+      score: sharedTopicCount(post, candidate),
+    }))
+    .sort((a, b) => b.score - a.score || a.order - b.order)
+    .slice(0, 3)
+    .map(({ candidate }) => candidate)
 
 export const getJournalIndexData = cache(async (): Promise<JournalIndexData> => {
   const preview = await previewState()
@@ -44,13 +101,14 @@ export const getJournalIndexData = cache(async (): Promise<JournalIndexData> => 
     const featured = source.find((post) => post.featured) || source[0] || null
     const posts = featured ? source.filter((post) => post.id !== featured.id) : source
 
-    return { featured, posts, preview }
+    return { featured, posts, preview, topics: getTopics(source) }
   } catch {
     const featured = demoJournalPosts.find((post) => post.featured) || demoJournalPosts[0] || null
     const posts = featured
       ? demoJournalPosts.filter((post) => post.id !== featured.id)
       : demoJournalPosts
-    return { featured, posts, preview }
+
+    return { featured, posts, preview, topics: getTopics(demoJournalPosts) }
   }
 })
 
@@ -75,7 +133,7 @@ export const getJournalPostData = cache(async (slug: string): Promise<JournalPos
     const post = result.docs[0] || demoJournalPosts.find((item) => item.slug === slug) || null
 
     if (!post) {
-      return { nextPost: null, post: null, preview }
+      return { nextPost: null, post: null, preview, relatedPosts: [] }
     }
 
     if (post.id < 0) {
@@ -89,12 +147,13 @@ export const getJournalPostData = cache(async (slug: string): Promise<JournalPos
         nextPost: nextPost?.id === post.id ? null : nextPost,
         post,
         preview,
+        relatedPosts: relatedFrom(post, demoJournalPosts),
       }
     }
 
     const all = await payload.find({
       collection: 'journal-posts',
-      depth: 1,
+      depth: 2,
       draft: preview,
       limit: 100,
       overrideAccess: preview,
@@ -111,6 +170,7 @@ export const getJournalPostData = cache(async (slug: string): Promise<JournalPos
       nextPost: nextPost?.id === post.id ? null : nextPost,
       post,
       preview,
+      relatedPosts: relatedFrom(post, all.docs),
     }
   } catch {
     const demoIndex = demoJournalPosts.findIndex((item) => item.slug === slug)
@@ -124,6 +184,7 @@ export const getJournalPostData = cache(async (slug: string): Promise<JournalPos
       nextPost: nextPost?.id === post?.id ? null : nextPost,
       post,
       preview,
+      relatedPosts: post ? relatedFrom(post, demoJournalPosts) : [],
     }
   }
 })
