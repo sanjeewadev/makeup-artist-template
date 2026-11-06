@@ -50,10 +50,11 @@ export function ProjectGallery({ gallery }: ProjectGalleryProps) {
                 }
               />
             </div>
-            {item.caption && (
+            {(item.caption || image.credit) && (
               <figcaption>
                 <span>{String(index + 1).padStart(2, '0')}</span>
-                <span>{item.caption}</span>
+                <span>{item.caption || image.alt}</span>
+                {image.credit && <span>{image.credit}</span>}
               </figcaption>
             )}
           </figure>
