@@ -4,6 +4,7 @@ import { getPayload } from 'payload'
 
 import type { JournalPost, Media } from '@/payload-types'
 import config from '@/payload.config'
+import { demoJournalPosts } from '@/lib/demo-content'
 
 export type JournalIndexData = {
   featured: JournalPost | null
@@ -39,14 +40,17 @@ export const getJournalIndexData = cache(async (): Promise<JournalIndexData> => 
       sort: '-publishedAt',
     })
 
-    const featured = result.docs.find((post) => post.featured) || result.docs[0] || null
-    const posts = featured
-      ? result.docs.filter((post) => post.id !== featured.id)
-      : result.docs
+    const source = result.docs.length ? result.docs : demoJournalPosts
+    const featured = source.find((post) => post.featured) || source[0] || null
+    const posts = featured ? source.filter((post) => post.id !== featured.id) : source
 
     return { featured, posts, preview }
   } catch {
-    return { featured: null, posts: [], preview }
+    const featured = demoJournalPosts.find((post) => post.featured) || demoJournalPosts[0] || null
+    const posts = featured
+      ? demoJournalPosts.filter((post) => post.id !== featured.id)
+      : demoJournalPosts
+    return { featured, posts, preview }
   }
 })
 
@@ -68,10 +72,24 @@ export const getJournalPostData = cache(async (slug: string): Promise<JournalPos
       },
     })
 
-    const post = result.docs[0] || null
+    const post = result.docs[0] || demoJournalPosts.find((item) => item.slug === slug) || null
 
     if (!post) {
       return { nextPost: null, post: null, preview }
+    }
+
+    if (post.id < 0) {
+      const demoIndex = demoJournalPosts.findIndex((item) => item.id === post.id)
+      const nextPost =
+        demoJournalPosts.length > 1
+          ? demoJournalPosts[(demoIndex + 1) % demoJournalPosts.length] || null
+          : null
+
+      return {
+        nextPost: nextPost?.id === post.id ? null : nextPost,
+        post,
+        preview,
+      }
     }
 
     const all = await payload.find({
@@ -95,6 +113,17 @@ export const getJournalPostData = cache(async (slug: string): Promise<JournalPos
       preview,
     }
   } catch {
-    return { nextPost: null, post: null, preview }
+    const demoIndex = demoJournalPosts.findIndex((item) => item.slug === slug)
+    const post = demoIndex >= 0 ? demoJournalPosts[demoIndex] : null
+    const nextPost =
+      post && demoJournalPosts.length > 1
+        ? demoJournalPosts[(demoIndex + 1) % demoJournalPosts.length] || null
+        : null
+
+    return {
+      nextPost: nextPost?.id === post?.id ? null : nextPost,
+      post,
+      preview,
+    }
   }
 })
