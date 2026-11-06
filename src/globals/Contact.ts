@@ -7,7 +7,7 @@ export const Contact: GlobalConfig = {
   label: 'Contact',
   admin: {
     group: 'Website Pages',
-    description: 'Copy surrounding the contact and availability enquiry experience.',
+    description: 'Copy for the private consultation / availability experience. Keep it calm, clear, and low-pressure.'
     hideAPIURL: true,
   },
   access: {
@@ -29,7 +29,7 @@ export const Contact: GlobalConfig = {
       type: 'text',
       maxLength: 180,
       admin: {
-        description: 'Simple expectation such as “Replies within 1–2 business days.”',
+        description: 'Primary Contact-page statement. Keep it conversational and action-oriented, for example “Tell me what you’re planning.”',
       },
     },
     {
@@ -37,7 +37,7 @@ export const Contact: GlobalConfig = {
       type: 'textarea',
       maxLength: 600,
       admin: {
-        description: 'Opening explanation shown before the contact options and enquiry form.',
+        description: 'Explain what to include in the first message and reassure visitors that the enquiry is an availability check, not an instant booking.'
       },
     },
     {
@@ -46,7 +46,7 @@ export const Contact: GlobalConfig = {
       type: 'text',
       maxLength: 140,
       admin: {
-        description: 'Heading displayed directly above the availability enquiry form.',
+        description: 'Heading above the four-part consultation brief. Keep it short, e.g. “Share the details.”'
       },
     },
     {
@@ -54,7 +54,7 @@ export const Contact: GlobalConfig = {
       type: 'textarea',
       maxLength: 500,
       admin: {
-        description: 'Optional note about current availability, travel, or booking windows.',
+        description: 'Optional current availability, travel, lead-time, or booking-window note. Keep it factual and update it when circumstances change.'
       },
     },
     {
@@ -62,6 +62,9 @@ export const Contact: GlobalConfig = {
       label: 'Response-time note',
       type: 'text',
       maxLength: 180,
+      admin: {
+        description: 'Set a realistic reply expectation only if the artist can consistently meet it.',
+      },
     },
     {
       name: 'successMessage',
@@ -69,7 +72,7 @@ export const Contact: GlobalConfig = {
       type: 'textarea',
       maxLength: 500,
       admin: {
-        description: 'Message shown after a successful enquiry submission.',
+        description: 'Shown immediately after a successful submission. Confirm receipt and explain the expected next step without implying the booking is confirmed.'
       },
     },
     seoGroup(),
