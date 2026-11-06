@@ -1,26 +1,24 @@
 import type { MetadataRoute } from 'next'
 import { getPayload } from 'payload'
 
+import { getSiteURL } from '@/lib/seo'
 import config from '@/payload.config'
 
 export const dynamic = 'force-dynamic'
 
-const baseURL = () =>
-  (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '')
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const site = baseURL()
+  const site = getSiteURL()
 
   const staticEntries: MetadataRoute.Sitemap = [
-    '',
-    '/portfolio',
-    '/services',
-    '/about',
-    '/journal',
-    '/contact',
-  ].map((path) => ({
-    changeFrequency: path === '' ? 'weekly' : 'monthly',
-    priority: path === '' ? 1 : 0.8,
+    ['', 'weekly', 1],
+    ['/portfolio', 'weekly', 0.9],
+    ['/services', 'monthly', 0.85],
+    ['/about', 'monthly', 0.8],
+    ['/journal', 'weekly', 0.85],
+    ['/contact', 'monthly', 0.7],
+  ].map(([path, changeFrequency, priority]) => ({
+    changeFrequency: changeFrequency as MetadataRoute.Sitemap[number]['changeFrequency'],
+    priority: priority as number,
     url: site + path,
   }))
 
@@ -33,38 +31,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         depth: 0,
         limit: 1000,
         overrideAccess: false,
-        select: {
-          slug: true,
-          updatedAt: true,
-        },
+        sort: '-updatedAt',
       }),
       payload.find({
         collection: 'journal-posts',
         depth: 0,
         limit: 1000,
         overrideAccess: false,
-        select: {
-          slug: true,
-          updatedAt: true,
-        },
+        sort: '-publishedAt',
       }),
     ])
 
-    return [
-      ...staticEntries,
-      ...projects.docs.map((project) => ({
-        changeFrequency: 'monthly' as const,
+    const projectEntries: MetadataRoute.Sitemap = projects.docs
+      .filter((project) => !project.seo?.noIndex)
+      .map((project) => ({
+        changeFrequency: 'monthly',
         lastModified: new Date(project.updatedAt),
-        priority: 0.7,
+        priority: project.featured ? 0.8 : 0.7,
         url: site + '/portfolio/' + project.slug,
-      })),
-      ...posts.docs.map((post) => ({
-        changeFrequency: 'monthly' as const,
+      }))
+
+    const journalEntries: MetadataRoute.Sitemap = posts.docs
+      .filter((post) => !post.seo?.noIndex)
+      .map((post) => ({
+        changeFrequency: 'monthly',
         lastModified: new Date(post.updatedAt),
-        priority: 0.65,
+        priority: post.featured ? 0.75 : 0.65,
         url: site + '/journal/' + post.slug,
-      })),
-    ]
+      }))
+
+    return [...staticEntries, ...projectEntries, ...journalEntries]
   } catch {
     return staticEntries
   }
