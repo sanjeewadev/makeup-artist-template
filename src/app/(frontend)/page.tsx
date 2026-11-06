@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { CmsImage } from '@/components/media/CmsImage'
 import { LinkButton } from '@/components/ui/LinkButton'
 import { richTextToPlainText } from '@/lib/rich-text'
+import { demoHeroImage } from '@/lib/demo-content'
 import { getHomePageData, getShellData, isResolvedRelationship } from '@/lib/site-data'
 import type { Media } from '@/payload-types'
 
@@ -41,7 +42,7 @@ export default async function HomePage() {
   ])
 
   const hero = home?.hero
-  const heroImage = isResolvedRelationship<Media>(hero?.image) ? hero.image : null
+  const heroImage = isResolvedRelationship<Media>(hero?.image) ? hero.image : demoHeroImage
   const siteName = siteSettings?.artistName || siteSettings?.siteName || 'Makeup Artist'
   const introText = richTextToPlainText(home?.introduction?.body)
 
