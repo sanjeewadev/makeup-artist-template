@@ -104,19 +104,40 @@ Images should:
 
 ## Motion
 
-Motion is CSS-led.
+Motion is CSS-led and uses one shared timing system.
 
 Current behavior includes:
 
+- route-level editorial entrance
+- premium frontend loading state
+- CMS image arrival
+- scroll-aware header refinement
+- active-route navigation
+- staged full-screen mobile-menu entrance
+- tactile button press / hover states
 - clipped/faded hero image entrance
 - editorial text rise
-- image micro-scale
+- image micro-scale on intentional interactive photography
 - directional underline motion
 - subtle arrow motion
-- full-screen mobile-menu transitions
+- Portfolio lightbox entrance
+- Services FAQ disclosure motion
+- enquiry pending-state feedback
 - progressive section reveal using CSS view timelines when supported
 
+Shared motion tokens:
+
+- `--motion-fast`
+- `--motion-base`
+- `--motion-slow`
+- `--motion-page`
+- `--motion-image`
+- `--motion-menu`
+- `--ease-editorial`
+
 Every motion treatment must respect `prefers-reduced-motion`.
+
+Detailed rules live in `docs/PREMIUM-MOTION-DETAILS.md`.
 
 ## Accessibility
 
