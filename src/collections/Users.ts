@@ -31,9 +31,10 @@ export const Users: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'email',
-    group: 'System',
+    group: 'Team',
     defaultColumns: ['name', 'email', 'role', 'updatedAt'],
     description: 'People who can sign in to manage the website.',
+    hideAPIURL: true,
   },
   auth: {
     maxLoginAttempts: 5,
@@ -61,6 +62,9 @@ export const Users: CollectionConfig = {
       name: 'name',
       type: 'text',
       maxLength: 120,
+      admin: {
+        description: 'Display name used to identify this CMS user.',
+      },
     },
     {
       name: 'role',
