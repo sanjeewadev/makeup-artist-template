@@ -1,0 +1,347 @@
+.browser {
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.topicBar {
+  backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--color-paper) 94%, transparent);
+  border-bottom: 1px solid var(--color-line);
+  border-top: 1px solid var(--color-line);
+  display: flex;
+  gap: clamp(1.2rem, 3vw, 2.8rem);
+  overflow-x: auto;
+  padding: 1rem 0;
+  position: sticky;
+  scrollbar-width: none;
+  top: 5rem;
+  z-index: 20;
+}
+
+.topicBar::-webkit-scrollbar {
+  display: none;
+}
+
+.topicBar button {
+  background: transparent;
+  border: 0;
+  color: var(--color-muted);
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 0.58rem;
+  font-weight: 650;
+  gap: 0.5rem;
+  letter-spacing: 0.13em;
+  padding: 0.35rem 0;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.topicBar button::after {
+  background: var(--color-ink);
+  bottom: -1.37rem;
+  content: '';
+  height: 1px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 220ms var(--ease-editorial);
+  width: 100%;
+}
+
+.topicBar button[aria-pressed='true'] {
+  color: var(--color-ink);
+}
+
+.topicBar button[aria-pressed='true']::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.topicBar button span {
+  color: color-mix(in srgb, var(--color-muted) 62%, transparent);
+  font-size: 0.48rem;
+  transform: translateY(-0.18rem);
+}
+
+.context {
+  align-items: end;
+  border-bottom: 1px solid var(--color-line);
+  display: grid;
+  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: 9rem minmax(15rem, 0.5fr) 1fr;
+  padding: clamp(2.8rem, 5vw, 4.5rem) 0;
+}
+
+.context > span {
+  color: var(--color-muted);
+  font-size: 0.52rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.context h3 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.8vw, 4.8rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  margin: 0;
+}
+
+.context p {
+  color: var(--color-muted);
+  line-height: 1.75;
+  margin: 0;
+  max-width: 34rem;
+}
+
+.grid {
+  animation: journal-enter 520ms var(--ease-editorial) both;
+  display: grid;
+  gap: clamp(4rem, 8vw, 8rem) clamp(1rem, 2.6vw, 2.8rem);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  padding-top: clamp(4rem, 8vw, 7rem);
+}
+
+.card {
+  grid-column: span 4;
+}
+
+.card:nth-child(5n + 1) {
+  grid-column: 1 / span 6;
+}
+
+.card:nth-child(5n + 2) {
+  grid-column: 8 / span 4;
+  margin-top: clamp(6rem, 11vw, 11rem);
+}
+
+.card:nth-child(5n + 3) {
+  grid-column: 2 / span 4;
+}
+
+.card:nth-child(5n + 4) {
+  grid-column: 7 / span 5;
+  margin-top: clamp(2rem, 5vw, 5rem);
+}
+
+.card:nth-child(5n + 5) {
+  grid-column: 3 / span 8;
+}
+
+.card a {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
+.image {
+  aspect-ratio: 4 / 5.15;
+  background: var(--color-paper-deep);
+  overflow: hidden;
+  position: relative;
+}
+
+.card:nth-child(5n + 1) .image {
+  aspect-ratio: 5 / 5.6;
+}
+
+.card:nth-child(5n + 5) .image {
+  aspect-ratio: 16 / 10;
+}
+
+.image > img {
+  object-fit: cover;
+  transition:
+    filter 650ms ease,
+    transform 950ms var(--ease-editorial);
+}
+
+.placeholder {
+  background:
+    radial-gradient(circle at 70% 24%, rgba(255, 255, 255, 0.22), transparent 24%),
+    linear-gradient(145deg, #c6b5aa 0%, #977c72 48%, #554641 100%);
+  inset: 0;
+  position: absolute;
+}
+
+.readCue {
+  background: color-mix(in srgb, var(--color-ink) 82%, transparent);
+  bottom: 0.8rem;
+  color: var(--color-paper);
+  font-size: 0.52rem;
+  font-weight: 650;
+  left: 0.8rem;
+  letter-spacing: 0.12em;
+  opacity: 0;
+  padding: 0.55rem 0.7rem;
+  position: absolute;
+  text-transform: uppercase;
+  transform: translateY(0.3rem);
+  transition:
+    opacity 180ms ease,
+    transform 220ms var(--ease-editorial);
+}
+
+.card:hover .image > img {
+  filter: saturate(0.92);
+  transform: scale(1.018);
+}
+
+.card:hover .readCue {
+  opacity: 1;
+  transform: none;
+}
+
+.meta,
+.tags {
+  color: var(--color-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.52rem;
+  font-weight: 650;
+  gap: 0.45rem 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.meta {
+  margin-top: 0.9rem;
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 3.7vw, 3.9rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  margin: 0.8rem 0 1rem;
+}
+
+.card:nth-child(even) h3 {
+  font-style: italic;
+}
+
+.card p {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  line-height: 1.78;
+  margin: 0;
+  max-width: 31rem;
+}
+
+.tags {
+  margin-top: 1.2rem;
+}
+
+.tags span {
+  border-bottom: 1px solid var(--color-line);
+  padding-bottom: 0.2rem;
+}
+
+.empty {
+  border-bottom: 1px solid var(--color-line);
+  color: var(--color-muted);
+  padding: 4rem 0;
+}
+
+.empty p {
+  margin: 0;
+}
+
+@keyframes journal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .context {
+    grid-template-columns: 8rem 1fr;
+  }
+
+  .context p {
+    grid-column: 2;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card,
+  .card:nth-child(5n + 1),
+  .card:nth-child(5n + 2),
+  .card:nth-child(5n + 3),
+  .card:nth-child(5n + 4),
+  .card:nth-child(5n + 5) {
+    grid-column: auto;
+    margin-top: 0;
+  }
+
+  .card:nth-child(even) {
+    margin-top: 4rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .topicBar {
+    margin-right: calc(var(--gutter) * -1);
+    padding-right: var(--gutter);
+  }
+
+  .context {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
+  .context p {
+    grid-column: auto;
+  }
+
+  .grid {
+    display: block;
+  }
+
+  .card,
+  .card:nth-child(even) {
+    display: block;
+    margin: 0 0 4.5rem;
+  }
+
+  .image,
+  .card:nth-child(5n + 1) .image,
+  .card:nth-child(5n + 5) .image {
+    aspect-ratio: 4 / 5;
+  }
+
+  .readCue {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid {
+    animation: none;
+  }
+
+  .topicBar button::after,
+  .image > img,
+  .readCue {
+    transition: none;
+  }
+
+  .card:hover .image > img {
+    transform: none;
+  }
+}
