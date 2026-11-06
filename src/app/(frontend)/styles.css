@@ -15,6 +15,12 @@
   --section-space-small: clamp(3.5rem, 7vw, 7rem);
   --label-size: 0.61rem;
   --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-fast: 180ms;
+  --motion-base: 280ms;
+  --motion-slow: 520ms;
+  --motion-page: 560ms;
+  --motion-image: 720ms;
+  --motion-menu: 620ms;
 }
 
 *,
@@ -29,6 +35,8 @@ html {
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  scrollbar-color: color-mix(in srgb, var(--color-ink) 28%, transparent) transparent;
+  scrollbar-width: thin;
 }
 
 body {
@@ -71,6 +79,27 @@ summary {
   -webkit-tap-highlight-color: transparent;
 }
 
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 0.62rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--color-ink) 24%, transparent);
+    border: 0.16rem solid transparent;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--color-ink) 38%, transparent);
+    background-clip: padding-box;
+  }
+}
+
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
@@ -107,7 +136,7 @@ main {
   position: fixed;
   top: 1rem;
   transform: translateY(-160%);
-  transition: transform 160ms ease;
+  transition: transform var(--motion-fast) var(--ease-editorial);
   z-index: 1000;
 }
 
@@ -213,8 +242,8 @@ main {
 
 @keyframes section-reveal {
   from {
-    opacity: 0.78;
-    transform: translateY(18px);
+    opacity: 0.9;
+    transform: translateY(12px);
   }
 
   to {
@@ -226,7 +255,7 @@ main {
 @supports (animation-timeline: view()) {
   main section:not(:first-child) {
     animation: section-reveal linear both;
-    animation-range: entry 0% entry 24%;
+    animation-range: entry 2% entry 22%;
     animation-timeline: view();
   }
 }
