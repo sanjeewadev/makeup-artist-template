@@ -16,7 +16,7 @@ export const PortfolioProjects: CollectionConfig = {
     group: 'Portfolio',
     defaultColumns: ['title', 'category', 'featured', '_status', 'updatedAt'],
     listSearchableFields: ['title', 'slug', 'clientName', 'location'],
-    description: 'Curated makeup work, weddings, editorials, events, and individual looks.',
+    description: 'Curated beauty stories. Treat each project like a case study: one exceptional hero, a concise hook, meaningful context, and a varied 4–8 image gallery.'
     hideAPIURL: true,
     preview: (doc) => portfolioPreviewURL(doc),
   },
@@ -70,7 +70,7 @@ export const PortfolioProjects: CollectionConfig = {
       type: 'textarea',
       maxLength: 320,
       admin: {
-        description: 'Short summary used in portfolio listings and featured sections.',
+        description: 'A concise 1–2 sentence hook explaining the mood, finish, or intention of the project. This sells the story in Portfolio cards and featured sections.'
       },
     },
     {
@@ -79,14 +79,14 @@ export const PortfolioProjects: CollectionConfig = {
       relationTo: 'media',
       required: true,
       admin: {
-        description: 'Primary image used on portfolio cards and the project-page hero.',
+        description: 'Choose the strongest finished portrait. Prefer a high-resolution 2:3 or 4:5 image with clean framing and enough breathing room for editorial crops.'
       },
     },
     {
       name: 'story',
       type: 'richText',
       admin: {
-        description: 'Optional story behind the look, occasion, brief, or creative direction.',
+        description: 'Write the project as a short case study: the brief/occasion, the visual direction, and why the makeup choices worked for the person, light, or photography.'
       },
     },
     {
@@ -94,7 +94,7 @@ export const PortfolioProjects: CollectionConfig = {
       type: 'array',
       minRows: 1,
       admin: {
-        description: 'Ordered gallery shown on the project page. Use presentation hints to shape the editorial layout.',
+        description: 'Aim for 4–8 varied frames. Mix finished portraits, preparation, details, and wider images. Order them like a visual story and use presentation hints to control pacing.'
       },
       fields: [
         {
@@ -119,7 +119,7 @@ export const PortfolioProjects: CollectionConfig = {
             { label: 'Wide feature', value: 'wide' },
           ],
           admin: {
-            description: 'Optional art-direction hint for the portfolio layout.',
+            description: 'Art-direction hint only. Use Wide for genuine horizontal storytelling frames, Portrait for face/detail emphasis, and Landscape for supporting environmental images.'
           },
         },
       ],
