@@ -2,6 +2,10 @@ import { withPayload } from '@payloadcms/next/withPayload'
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Local D1 uses SQLite. Keep build workers serial in CI/local validation to avoid SQLITE_BUSY.
+    cpus: process.env.CLOUDFLARE_REMOTE_BINDINGS === 'false' ? 1 : undefined,
+  },
   images: {
     localPatterns: [
       {
