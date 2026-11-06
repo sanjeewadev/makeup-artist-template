@@ -164,6 +164,22 @@
     display: block;
   }
 
+  :global(body):has(.mobileNav[open]) {
+    overflow: hidden;
+  }
+
+  .menuOpenLabel {
+    display: none;
+  }
+
+  .mobileNav[open] .menuClosedLabel {
+    display: none;
+  }
+
+  .mobileNav[open] .menuOpenLabel {
+    display: inline;
+  }
+
   .mobileNav summary {
     align-items: center;
     cursor: pointer;
