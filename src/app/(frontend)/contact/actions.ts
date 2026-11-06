@@ -74,8 +74,14 @@ export async function submitEnquiry(
   }
 
   if (eventDate) {
-    const parsedDate = new Date(eventDate + 'T12:00:00Z')
-    if (Number.isNaN(parsedDate.getTime())) {
+    const matchesDateShape = /^\d{4}-\d{2}-\d{2}$/.test(eventDate)
+    const parsedDate = matchesDateShape ? new Date(eventDate + 'T12:00:00Z') : null
+    const isExactDate =
+      parsedDate &&
+      !Number.isNaN(parsedDate.getTime()) &&
+      parsedDate.toISOString().slice(0, 10) === eventDate
+
+    if (!isExactDate) {
       fieldErrors.eventDate = 'Choose a valid event date.'
     }
   }
