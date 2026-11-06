@@ -7,6 +7,7 @@ import { ProjectGallery } from '@/components/portfolio/ProjectGallery'
 import { RichText } from '@/components/rich-text/RichText'
 import { LinkButton } from '@/components/ui/LinkButton'
 import { getPortfolioProjectPageData } from '@/lib/portfolio-data'
+import { absoluteURL } from '@/lib/seo'
 import type { Media, PortfolioCategory, PortfolioProject } from '@/payload-types'
 
 import styles from './project.module.css'
@@ -76,13 +77,35 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     }
   }
 
+  const canonicalPath = '/portfolio/' + project.slug
+  const seoImage = getMedia(project.seo?.image) || getMedia(project.heroImage)
+  const imageURL = absoluteURL(seoImage?.url)
+  const title = project.seo?.title || project.title
+  const description =
+    project.seo?.description ||
+    project.excerpt ||
+    'A makeup artistry project from the portfolio.'
+
   return {
-    description:
-      project.seo?.description ||
-      project.excerpt ||
-      'A makeup artistry project from the portfolio.',
+    alternates: {
+      canonical: canonicalPath,
+    },
+    description,
+    openGraph: {
+      description,
+      images: imageURL ? [{ alt: seoImage?.alt || project.title, url: imageURL }] : undefined,
+      title,
+      type: 'website',
+      url: canonicalPath,
+    },
     robots: project.seo?.noIndex ? { follow: false, index: false } : undefined,
-    title: project.seo?.title || project.title,
+    title,
+    twitter: {
+      card: imageURL ? 'summary_large_image' : 'summary',
+      description,
+      images: imageURL ? [imageURL] : undefined,
+      title,
+    },
   }
 }
 
