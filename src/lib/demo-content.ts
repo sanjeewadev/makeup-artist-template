@@ -234,8 +234,8 @@ export const demoImages = {
   ),
   artistEyeliner: pexels(
     -122,
-    40654330,
-    'Makeup artist applying eyeliner with precision in a studio',
+    37710475,
+    'Professional makeup artist carefully applying eye makeup',
     4000,
     6000,
   ),
