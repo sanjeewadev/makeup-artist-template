@@ -25,17 +25,22 @@ export function SiteFooter({ navigation, siteSettings }: SiteFooterProps) {
   const email = siteSettings?.contact?.email
   const area = siteSettings?.contact?.serviceArea
   const socialLinks = siteSettings?.socialLinks ?? []
+  const tagline = siteSettings?.tagline
+  const description = siteSettings?.shortDescription
 
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.top}>
           <div>
-            <p className={styles.kicker}>Makeup artistry</p>
+            <p className={styles.kicker}>{tagline || 'Makeup artistry'}</p>
             <p className={styles.brand}>{brand}</p>
           </div>
           <div className={styles.invitation}>
-            <p>For weddings, editorials, and beautifully considered occasions.</p>
+            <p>
+              {description ||
+                'For weddings, editorials, portraits, and beautifully considered occasions.'}
+            </p>
             <LinkButton href="/contact" variant="outline">
               Start an enquiry
             </LinkButton>
@@ -93,7 +98,11 @@ export function SiteFooter({ navigation, siteSettings }: SiteFooterProps) {
           <p>
             © {new Date().getFullYear()} {brand}
           </p>
-          <p>{navigation?.footerNote || 'Artistry with a quiet, editorial point of view.'}</p>
+          <p>
+            {navigation?.footerNote ||
+              tagline ||
+              'Artistry with a quiet, editorial point of view.'}
+          </p>
         </div>
       </div>
     </footer>
