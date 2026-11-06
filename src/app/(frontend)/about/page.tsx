@@ -7,6 +7,7 @@ import { CmsImage } from '@/components/media/CmsImage'
 import { RichText } from '@/components/rich-text/RichText'
 import { LinkButton } from '@/components/ui/LinkButton'
 import { getAboutPageData } from '@/lib/business-data'
+import { absoluteURL } from '@/lib/seo'
 import type { Media } from '@/payload-types'
 
 import styles from './about.module.css'
@@ -19,15 +20,36 @@ const getMedia = (value: number | Media | null | undefined): Media | null =>
 const isExternal = (url: string) => /^https?:\/\//i.test(url)
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { about } = await getAboutPageData()
+  const { about, siteSettings } = await getAboutPageData()
+  const seoImage = getMedia(about?.seo?.image) || getMedia(about?.portrait)
+  const imageURL = absoluteURL(seoImage?.url)
+  const title = about?.seo?.title || 'About'
+  const description =
+    about?.seo?.description ||
+    about?.lead ||
+    siteSettings?.shortDescription ||
+    'Meet the makeup artist and discover the philosophy behind the work.'
 
   return {
-    description:
-      about?.seo?.description ||
-      about?.lead ||
-      'Meet the makeup artist and discover the philosophy behind the work.',
+    alternates: {
+      canonical: '/about',
+    },
+    description,
+    openGraph: {
+      description,
+      images: imageURL ? [{ alt: seoImage?.alt || title, url: imageURL }] : undefined,
+      title,
+      type: 'profile',
+      url: '/about',
+    },
     robots: about?.seo?.noIndex ? { follow: false, index: false } : undefined,
-    title: about?.seo?.title || 'About',
+    title,
+    twitter: {
+      card: imageURL ? 'summary_large_image' : 'summary',
+      description,
+      images: imageURL ? [imageURL] : undefined,
+      title,
+    },
   }
 }
 
