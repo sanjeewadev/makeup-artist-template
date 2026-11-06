@@ -98,7 +98,10 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       type: 'website',
       url: canonicalPath,
     },
-    robots: project.seo?.noIndex ? { follow: false, index: false } : undefined,
+    robots:
+      project.seo?.noIndex || project._status === 'draft'
+        ? { follow: false, index: false }
+        : undefined,
     title,
     twitter: {
       card: imageURL ? 'summary_large_image' : 'summary',
