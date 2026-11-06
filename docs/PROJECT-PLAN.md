@@ -121,7 +121,7 @@ Before release, the project should include:
 - Chat 4 — Services, About & Contact: **complete**
 - Chat 5 — Journal + CMS Experience: **complete**
 - Chat 6 — Signature Art Direction & Next-Level UI/UX: **complete**
-- Chat 7 — $2K Visual Identity & Photography Direction: **complete**\n- Chat 8 — Cinematic Homepage 3.0: **complete**\n- Chat 9 — Portfolio as the Main Sales Weapon: **complete**\n- Chat 10 — Services + Booking Conversion: **complete**\n- Chat 11 — Artist Brand, Trust & Social Proof: **complete**
+- Chat 7 — $2K Visual Identity & Photography Direction: **complete**\n- Chat 8 — Cinematic Homepage 3.0: **complete**\n- Chat 9 — Portfolio as the Main Sales Weapon: **complete**\n- Chat 10 — Services + Booking Conversion: **complete**\n- Chat 11 — Artist Brand, Trust & Social Proof: **complete**\n- Chat 12 — Editorial Journal + Serious SEO: **complete**
 
 ## Delivery phases
 
@@ -196,3 +196,10 @@ See `docs/SERVICES-BOOKING-CONVERSION.md`.
 Chat 11 makes authentic identity and proof part of the product: a stronger artist profile, Portfolio evidence, Service context, genuine testimonial attribution, real social profiles, global footer identity, and explicit safeguards against fabricated credibility.
 
 See `docs/ARTIST-BRAND-TRUST.md`.
+
+
+## Editorial Journal and SEO completion
+
+Chat 12 turns the Journal into an editorial authority surface and hardens technical search/share behavior across the public website: topic discovery, related reading, canonical URLs, social metadata, structured data, sitemap/no-index integration, crawler-safe public media, and practical CMS publishing guidance.
+
+See `docs/EDITORIAL-SEO-AUTHORITY.md`.
