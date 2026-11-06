@@ -139,3 +139,56 @@ Final image-enabled code validation:
 - Production Next.js build: pass
 
 For a real client launch, replace the demo layer by publishing real Payload content and media. The relevant demo content disappears automatically as real CMS content becomes available.
+
+
+## Chat 7 — $2K Visual Identity & Photography Direction
+
+**Status: complete**
+
+Chat 7 upgrades the visual material behind the Chat 6 art direction so the website reads like a real premium beauty business rather than a polished template with a small repeated stock set.
+
+### Implemented
+
+- 44-image curated beauty/bridal/editorial demo library
+- 10 complete Portfolio stories
+- 4 Portfolio categories
+- 5 Services
+- 5 testimonials
+- 5 Journal stories
+- Bridal, editorial, engagement, occasion, monochrome, process, detail, and still-life image families
+- 4–5 image gallery sequencing per demo project
+- CMS-driven homepage photography essay
+- Portfolio gallery photo credits
+- Premium Media-library upload guidance
+- Photo-credit metadata on demo Media
+- Better separation between hero / portrait / process / detail / wide / still-life roles
+- Real Payload content continues to override demo content automatically
+- No fake demo records are inserted into Payload
+- No Tailwind
+
+### Photography rule
+
+More images are not treated as automatic value.
+
+The system now prioritizes:
+
+- visual variety
+- deliberate shot roles
+- project-level consistency
+- reduced image repetition
+- strong mobile/desktop crops
+- accurate alt text
+- appropriate photographer credit
+
+See:
+
+- `docs/PHOTOGRAPHY-DIRECTION.md`
+- `docs/DEMO-PHOTOGRAPHY.md`
+
+### Validation
+
+Final Chat 7 code validation:
+
+- ESLint: pass
+- TypeScript: pass
+- Production Next.js build: pass
