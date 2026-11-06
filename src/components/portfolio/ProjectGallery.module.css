@@ -158,6 +158,7 @@
 }
 
 .lightboxInner {
+  animation: lightbox-enter var(--motion-slow) var(--ease-editorial) both;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   height: 100%;
@@ -209,6 +210,18 @@
 
 .lightboxImage > img {
   object-fit: contain;
+}
+
+@keyframes lightbox-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.7rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .lightboxFooter {
@@ -336,6 +349,10 @@
   .viewCue,
   .lightboxNav button {
     transition: none;
+  }
+
+  .lightboxInner {
+    animation: none;
   }
 
   .figure:hover .imageFrame > img,
