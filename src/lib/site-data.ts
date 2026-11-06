@@ -9,6 +9,7 @@ import type {
   Testimonial,
 } from '@/payload-types'
 import config from '@/payload.config'
+import { demoPortfolioProjects, demoServices, demoTestimonials } from '@/lib/demo-content'
 
 export type ShellData = {
   navigation: Navigation | null
@@ -122,18 +123,26 @@ export async function getHomePageData(): Promise<HomePageData> {
           }),
     ])
 
+    const resolvedProjects = selectedProjects.length
+      ? selectedProjects.slice(0, 3)
+      : (projectResult?.docs ?? [])
+    const resolvedServices = selectedServices.length
+      ? selectedServices.slice(0, 3)
+      : (serviceResult?.docs ?? [])
+    const resolvedTestimonial = selectedTestimonial ?? testimonialResult?.docs[0] ?? null
+
     return {
       home,
-      projects: selectedProjects.length ? selectedProjects.slice(0, 3) : (projectResult?.docs ?? []),
-      services: selectedServices.length ? selectedServices.slice(0, 3) : (serviceResult?.docs ?? []),
-      testimonial: selectedTestimonial ?? testimonialResult?.docs[0] ?? null,
+      projects: resolvedProjects.length ? resolvedProjects : demoPortfolioProjects.slice(0, 3),
+      services: resolvedServices.length ? resolvedServices : demoServices.slice(0, 3),
+      testimonial: resolvedTestimonial ?? demoTestimonials[0] ?? null,
     }
   } catch {
     return {
       home: null,
-      projects: [],
-      services: [],
-      testimonial: null,
+      projects: demoPortfolioProjects.slice(0, 3),
+      services: demoServices.slice(0, 3),
+      testimonial: demoTestimonials[0] ?? null,
     }
   }
 }
