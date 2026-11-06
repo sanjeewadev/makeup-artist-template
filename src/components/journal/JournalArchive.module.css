@@ -28,7 +28,7 @@
   cursor: pointer;
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   font-weight: 650;
   gap: 0.5rem;
   letter-spacing: 0.13em;
@@ -60,8 +60,8 @@
 }
 
 .topicBar button span {
-  color: color-mix(in srgb, var(--color-muted) 62%, transparent);
-  font-size: 0.48rem;
+  color: var(--color-muted);
+  font-size: 0.72rem;
   transform: translateY(-0.18rem);
 }
 
@@ -76,7 +76,7 @@
 
 .context > span {
   color: var(--color-muted);
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -173,7 +173,7 @@
   background: color-mix(in srgb, var(--color-ink) 82%, transparent);
   bottom: 0.8rem;
   color: var(--color-paper);
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   font-weight: 650;
   left: 0.8rem;
   letter-spacing: 0.12em;
@@ -202,7 +202,7 @@
   color: var(--color-muted);
   display: flex;
   flex-wrap: wrap;
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   font-weight: 650;
   gap: 0.45rem 0.9rem;
   letter-spacing: 0.1em;
