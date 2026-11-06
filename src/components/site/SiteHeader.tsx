@@ -20,16 +20,39 @@ const fallbackLinks = [
 
 const isExternal = (url: string) => /^https?:\/\//i.test(url)
 
-function NavLink({ label, newTab, url }: { label: string; newTab?: boolean | null; url: string }) {
+function NavLink({
+  index,
+  label,
+  newTab,
+  showIndex = false,
+  url,
+}: {
+  index?: number
+  label: string
+  newTab?: boolean | null
+  showIndex?: boolean
+  url: string
+}) {
+  const content = (
+    <>
+      {showIndex && typeof index === 'number' && (
+        <span aria-hidden="true" className={styles.navIndex}>
+          {String(index + 1).padStart(2, '0')}
+        </span>
+      )}
+      <span>{label}</span>
+    </>
+  )
+
   if (isExternal(url) || newTab) {
     return (
       <a href={url} rel={newTab ? 'noreferrer' : undefined} target={newTab ? '_blank' : undefined}>
-        {label}
+        {content}
       </a>
     )
   }
 
-  return <Link href={url}>{label}</Link>
+  return <Link href={url}>{content}</Link>
 }
 
 export function SiteHeader({ navigation, siteSettings }: SiteHeaderProps) {
@@ -43,17 +66,17 @@ export function SiteHeader({ navigation, siteSettings }: SiteHeaderProps) {
       <div className={styles.inner}>
         <Link aria-label={brand + ' home'} className={styles.brand} href="/">
           <span>{brand}</span>
-          <small>Makeup artistry</small>
+          <small>Beauty / Artistry</small>
         </Link>
 
         <nav aria-label="Primary navigation" className={styles.desktopNav}>
-          {links.map((link) => (
-            <NavLink key={link.label + '-' + link.url} {...link} />
+          {links.map((link, index) => (
+            <NavLink index={index} key={link.label + '-' + link.url} {...link} />
           ))}
         </nav>
 
         <div className={styles.desktopCTA}>
-          <LinkButton href={ctaURL} variant="outline">
+          <LinkButton href={ctaURL} variant="text">
             {ctaLabel}
           </LinkButton>
         </div>
@@ -62,18 +85,34 @@ export function SiteHeader({ navigation, siteSettings }: SiteHeaderProps) {
           <summary aria-label="Open navigation">
             <span>Menu</span>
             <span aria-hidden="true" className={styles.menuMark}>
-              +
+              <i />
+              <i />
             </span>
           </summary>
+
           <div className={styles.mobilePanel}>
+            <div className={styles.mobileTopline}>
+              <span>Navigation</span>
+              <span>{brand}</span>
+            </div>
+
             <nav aria-label="Mobile navigation">
-              {links.map((link) => (
-                <NavLink key={link.label + '-' + link.url} {...link} />
+              {links.map((link, index) => (
+                <NavLink
+                  index={index}
+                  key={link.label + '-' + link.url}
+                  showIndex
+                  {...link}
+                />
               ))}
             </nav>
-            <LinkButton className={styles.mobileCTA} href={ctaURL}>
-              {ctaLabel}
-            </LinkButton>
+
+            <div className={styles.mobileBottom}>
+              <p>Refined makeup for weddings, editorial work and modern occasions.</p>
+              <LinkButton className={styles.mobileCTA} href={ctaURL} variant="outline">
+                {ctaLabel}
+              </LinkButton>
+            </div>
           </div>
         </details>
       </div>

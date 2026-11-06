@@ -3,24 +3,25 @@
   border: 1px solid transparent;
   display: inline-flex;
   font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  gap: 1.2rem;
+  font-size: 0.64rem;
+  font-weight: 650;
+  gap: 1.1rem;
   justify-content: center;
-  letter-spacing: 0.13em;
-  min-height: 3.2rem;
-  padding: 0.1rem 1.35rem;
+  letter-spacing: 0.14em;
+  min-height: 3.15rem;
+  padding: 0.1rem 1.25rem;
+  position: relative;
   text-decoration: none;
   text-transform: uppercase;
   transition:
-    background-color 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    transform 220ms var(--ease-editorial);
 }
 
 .button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .button:focus-visible {
@@ -38,7 +39,7 @@
 }
 
 .outline {
-  border-color: color-mix(in srgb, currentColor 45%, transparent);
+  border-color: color-mix(in srgb, currentColor 34%, transparent);
   color: currentColor;
 }
 
@@ -48,8 +49,7 @@
 
 .text {
   min-height: 0;
-  padding: 0.35rem 0;
-  position: relative;
+  padding: 0.4rem 0 0.3rem;
 }
 
 .text::after {
@@ -59,24 +59,41 @@
   height: 1px;
   left: 0;
   position: absolute;
-  transform: scaleX(0.35);
-  transform-origin: left;
-  transition: transform 220ms ease;
+  transform: scaleX(0.24);
+  transform-origin: right;
+  transition: transform 260ms var(--ease-editorial);
   width: 100%;
 }
 
 .text:hover::after {
   transform: scaleX(1);
+  transform-origin: left;
 }
 
 .arrow {
-  font-size: 0.9rem;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+  border-radius: 50%;
+  display: inline-flex;
+  font-size: 0.78rem;
   font-weight: 400;
-  transition: transform 180ms ease;
+  height: 1.65rem;
+  justify-content: center;
+  transition:
+    border-color 180ms ease,
+    transform 220ms var(--ease-editorial);
+  width: 1.65rem;
 }
 
 .button:hover .arrow {
+  border-color: currentColor;
   transform: translate(2px, -2px);
+}
+
+.text .arrow {
+  border: 0;
+  height: auto;
+  width: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -2,59 +2,64 @@
   background: var(--color-ink);
   color: var(--color-paper);
   margin-top: auto;
+  overflow: clip;
 }
 
 .inner {
   margin: 0 auto;
   max-width: var(--site-max);
-  padding: clamp(4.5rem, 9vw, 8rem) var(--gutter) 2rem;
+  padding: clamp(5rem, 10vw, 9rem) var(--gutter) 1.8rem;
 }
 
 .top {
   align-items: end;
-  border-bottom: 1px solid rgba(247, 242, 235, 0.18);
+  border-bottom: 1px solid rgba(241, 236, 229, 0.16);
   display: grid;
-  gap: 3rem;
-  grid-template-columns: 1fr minmax(18rem, 0.7fr);
-  padding-bottom: clamp(3rem, 7vw, 5.5rem);
+  gap: 4rem;
+  grid-template-columns: 1.25fr 0.75fr;
+  padding-bottom: clamp(4rem, 8vw, 7rem);
 }
 
 .kicker,
 .label {
-  color: rgba(247, 242, 235, 0.55);
-  font-size: 0.64rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  color: rgba(241, 236, 229, 0.48);
+  font-size: 0.58rem;
+  font-weight: 650;
+  letter-spacing: 0.17em;
   margin: 0 0 1rem;
   text-transform: uppercase;
 }
 
 .brand {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 7rem);
-  letter-spacing: -0.045em;
-  line-height: 0.86;
+  font-size: clamp(4.5rem, 10vw, 10rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.76;
   margin: 0;
+  max-width: 8ch;
 }
 
 .invitation {
   justify-self: end;
-  max-width: 30rem;
+  max-width: 32rem;
 }
 
 .invitation > p {
-  color: rgba(247, 242, 235, 0.72);
+  color: rgba(241, 236, 229, 0.72);
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.4vw, 2.1rem);
-  line-height: 1.2;
-  margin: 0 0 2rem;
+  font-size: clamp(1.8rem, 3vw, 3.1rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0 0 2.2rem;
 }
 
 .grid {
   display: grid;
   gap: 3rem;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 3rem 0 4rem;
+  grid-template-columns: 0.65fr 1fr 1fr;
+  padding: 3.2rem 0 clamp(4rem, 8vw, 7rem);
 }
 
 .grid nav,
@@ -65,27 +70,35 @@
 
 .grid a,
 .grid p:not(.label) {
-  color: rgba(247, 242, 235, 0.76);
-  font-size: 0.82rem;
-  line-height: 1.7;
+  color: rgba(241, 236, 229, 0.68);
+  font-size: 0.76rem;
+  line-height: 1.8;
   margin: 0;
   text-decoration: none;
-  text-transform: capitalize;
+}
+
+.grid a {
+  transition:
+    color 160ms ease,
+    transform 180ms var(--ease-editorial);
 }
 
 .grid a:hover {
   color: var(--color-paper);
+  transform: translateX(0.2rem);
 }
 
 .bottom {
-  border-top: 1px solid rgba(247, 242, 235, 0.18);
-  color: rgba(247, 242, 235, 0.48);
-  display: flex;
-  font-size: 0.65rem;
+  align-items: end;
+  border-top: 1px solid rgba(241, 236, 229, 0.16);
+  color: rgba(241, 236, 229, 0.4);
+  display: grid;
+  font-size: 0.6rem;
   gap: 2rem;
-  justify-content: space-between;
-  letter-spacing: 0.04em;
-  padding-top: 1.5rem;
+  grid-template-columns: 1fr auto;
+  letter-spacing: 0.06em;
+  padding-top: 1.4rem;
+  text-transform: uppercase;
 }
 
 .bottom p {
@@ -111,17 +124,32 @@
   }
 
   .bottom {
-    flex-direction: column;
-    gap: 0.45rem;
+    align-items: start;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 }
 
 @media (max-width: 480px) {
+  .brand {
+    font-size: clamp(4rem, 20vw, 7rem);
+  }
+
   .grid {
     grid-template-columns: 1fr;
   }
 
   .grid > :last-child {
     grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid a {
+    transition: none;
+  }
+
+  .grid a:hover {
+    transform: none;
   }
 }
