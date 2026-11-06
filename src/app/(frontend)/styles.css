@@ -210,3 +210,23 @@ main {
     transition-duration: 0.01ms !important;
   }
 }
+
+@keyframes section-reveal {
+  from {
+    opacity: 0.78;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  main section:not(:first-child) {
+    animation: section-reveal linear both;
+    animation-range: entry 0% entry 24%;
+    animation-timeline: view();
+  }
+}
