@@ -14,9 +14,24 @@ import styles from './services.module.css'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: '/services',
+  },
   description:
     'Bridal, engagement, editorial, occasion, and bespoke makeup services with a refined consultation-led approach.',
+  openGraph: {
+    description:
+      'Bridal, engagement, editorial, occasion, and bespoke makeup services with a refined consultation-led approach.',
+    title: 'Services',
+    type: 'website',
+  },
   title: 'Services',
+  twitter: {
+    card: 'summary',
+    description:
+      'Bridal, engagement, editorial, occasion, and bespoke makeup services with a refined consultation-led approach.',
+    title: 'Services',
+  },
 }
 
 const getMedia = (value: number | Media | null | undefined): Media | null =>
