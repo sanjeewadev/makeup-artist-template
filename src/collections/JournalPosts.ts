@@ -30,7 +30,7 @@ export const JournalPosts: CollectionConfig = {
     defaultColumns: ['title', 'publishedAt', 'featured', '_status', 'updatedAt'],
     listSearchableFields: ['title', 'slug', 'excerpt'],
     description:
-      'Write beauty guidance, artist stories, and search-friendly articles. Save drafts freely and use Preview before publishing.',
+      'Publish useful beauty guidance and artist stories that answer real client questions. Prioritize original experience, clear structure, and internal relevance over keyword volume. Save drafts freely and use Preview before publishing.',
     hideAPIURL: true,
     preview: (doc) => journalPreviewURL(doc),
   },
@@ -59,7 +59,8 @@ export const JournalPosts: CollectionConfig = {
       maxLength: 160,
       index: true,
       admin: {
-        description: 'The article headline shown on the Journal page and article page.',
+        description:
+          'The human-facing editorial headline. Make the topic clear enough that a reader understands the value immediately; the SEO group can provide a shorter search-title override when needed.',
       },
     },
     slugField(),
@@ -70,7 +71,7 @@ export const JournalPosts: CollectionConfig = {
       maxLength: 360,
       admin: {
         description:
-          'A short summary used on Journal cards and as the default search description when no SEO override is provided.',
+          'Write 1–2 useful sentences that explain what the reader will learn. This appears on Journal cards and becomes the default search description when no SEO override is provided.',
       },
     },
     {
@@ -81,7 +82,7 @@ export const JournalPosts: CollectionConfig = {
       required: true,
       admin: {
         description:
-          'The main editorial image used on the Journal listing, article hero, and social sharing fallback.',
+          'Choose an article-specific editorial image, not a generic repeated portrait. It appears in Journal listings, the article hero, and social sharing when no SEO image override exists.',
       },
     },
     {
@@ -90,7 +91,7 @@ export const JournalPosts: CollectionConfig = {
       required: true,
       admin: {
         description:
-          'Write the complete article here. Use headings to create a clear reading structure for visitors and search engines.',
+          'Write the complete article here. Use descriptive headings, firsthand expertise, concrete advice, and natural internal references to relevant Services/Portfolio topics. Avoid filler written only to increase word count.',
       },
     },
     {
@@ -122,7 +123,7 @@ export const JournalPosts: CollectionConfig = {
       maxRows: 8,
       admin: {
         description:
-          'Optional reader-facing topics such as Bridal, Skin, Editorial, Preparation, or Behind the Scenes.',
+          'Reader-facing topics used for Journal discovery and related-story matching. Reuse a small consistent vocabulary such as Bridal, Skin, Editorial, Preparation, or Behind the Scenes; do not create near-duplicate tags for keywords.',
       },
       fields: [
         {
@@ -131,7 +132,7 @@ export const JournalPosts: CollectionConfig = {
           required: true,
           maxLength: 50,
           admin: {
-            description: 'Short topic label.',
+            description: 'Short human-readable topic label. Prefer an existing topic spelling/capitalization when possible.',
           },
         },
       ],
