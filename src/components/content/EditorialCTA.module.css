@@ -1,0 +1,45 @@
+.cta {
+  display: grid;
+  gap: clamp(3rem, 10vw, 10rem);
+  grid-template-columns: minmax(10rem, 0.28fr) 1fr;
+  margin: 0 auto;
+  max-width: var(--site-max);
+  padding: var(--section-space) var(--gutter);
+}
+
+.index {
+  color: var(--color-muted);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.content {
+  max-width: 64rem;
+}
+
+.content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 6.4vw, 6.5rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+  margin: 0 0 1.5rem;
+  max-width: 10ch;
+}
+
+.content > p {
+  color: var(--color-muted);
+  line-height: 1.8;
+  margin: 0 0 2.3rem;
+  max-width: 34rem;
+}
+
+@media (max-width: 760px) {
+  .cta {
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+}

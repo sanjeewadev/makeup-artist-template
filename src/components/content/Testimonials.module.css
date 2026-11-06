@@ -1,0 +1,117 @@
+.section {
+  background: var(--color-paper-soft);
+  padding: var(--section-space) var(--gutter);
+}
+
+.heading,
+.list {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: calc(var(--site-max) - (var(--gutter) * 2));
+}
+
+.heading {
+  display: grid;
+  gap: clamp(3rem, 10vw, 10rem);
+  grid-template-columns: minmax(10rem, 0.28fr) 1fr;
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.heading > p {
+  color: var(--color-muted);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.heading h2 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  margin: 0;
+  max-width: 10ch;
+}
+
+.list {
+  border-top: 1px solid var(--color-line);
+}
+
+.item {
+  align-items: start;
+  border-bottom: 1px solid var(--color-line);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 4rem 1fr minmax(11rem, 0.28fr);
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+}
+
+.number {
+  color: var(--color-muted);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+}
+
+.item blockquote {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.4vw, 3.4rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin: 0;
+  max-width: 20ch;
+}
+
+.person {
+  align-items: center;
+  display: flex;
+  gap: 0.9rem;
+  justify-self: end;
+}
+
+.portrait {
+  border-radius: 50%;
+  height: 3.4rem;
+  overflow: hidden;
+  position: relative;
+  width: 3.4rem;
+}
+
+.portrait > img {
+  object-fit: cover;
+}
+
+.person strong,
+.person span {
+  display: block;
+}
+
+.person strong {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.person span {
+  color: var(--color-muted);
+  font-size: 0.65rem;
+  margin-top: 0.18rem;
+}
+
+@media (max-width: 760px) {
+  .heading {
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+
+  .item {
+    grid-template-columns: 2rem 1fr;
+  }
+
+  .person {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
