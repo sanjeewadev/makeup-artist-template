@@ -1,0 +1,224 @@
+.form {
+  display: grid;
+  gap: 1.6rem;
+}
+
+.honeypot {
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+.twoColumn {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.field {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.field label {
+  color: var(--color-muted);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.field input,
+.field select,
+.field textarea {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-line-strong);
+  border-radius: 0;
+  color: var(--color-ink);
+  font-size: 0.95rem;
+  min-height: 3.2rem;
+  outline: none;
+  padding: 0.65rem 0;
+  transition: border-color 160ms ease;
+  width: 100%;
+}
+
+.field textarea {
+  line-height: 1.7;
+  min-height: 10rem;
+  resize: vertical;
+}
+
+.field select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--color-muted) 50%),
+    linear-gradient(135deg, var(--color-muted) 50%, transparent 50%);
+  background-position:
+    calc(100% - 0.8rem) 50%,
+    calc(100% - 0.5rem) 50%;
+  background-repeat: no-repeat;
+  background-size: 0.3rem 0.3rem;
+  padding-right: 2rem;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-bottom-color: var(--color-ink);
+}
+
+.field input[aria-invalid='true'],
+.field select[aria-invalid='true'],
+.field textarea[aria-invalid='true'] {
+  border-bottom-color: #9a403c;
+}
+
+.help,
+.error {
+  font-size: 0.68rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.help {
+  color: var(--color-muted);
+}
+
+.error {
+  color: #8c3733;
+}
+
+.formError {
+  border-left: 2px solid #8c3733;
+  color: #8c3733;
+  font-size: 0.82rem;
+  margin: 0;
+  padding-left: 0.9rem;
+}
+
+.formFooter {
+  align-items: center;
+  border-top: 1px solid var(--color-line);
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding-top: 1.5rem;
+}
+
+.formFooter > p {
+  color: var(--color-muted);
+  font-size: 0.7rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 27rem;
+}
+
+.submit {
+  align-items: center;
+  background: var(--color-ink);
+  border: 1px solid var(--color-ink);
+  color: var(--color-paper);
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 0.69rem;
+  font-weight: 600;
+  gap: 1.4rem;
+  justify-content: center;
+  letter-spacing: 0.13em;
+  min-height: 3.4rem;
+  padding: 0 1.4rem;
+  text-transform: uppercase;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  transform: translateY(-1px);
+}
+
+.submit:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.success {
+  border-bottom: 1px solid var(--color-line);
+  border-top: 1px solid var(--color-line);
+  padding: clamp(3rem, 7vw, 5rem) 0;
+}
+
+.successLabel {
+  color: var(--color-muted);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.success h2 {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  margin: 0 0 1.5rem;
+}
+
+.success > p:not(.successLabel) {
+  color: var(--color-muted);
+  line-height: 1.8;
+  margin: 0 0 2rem;
+  max-width: 34rem;
+}
+
+.success button {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  color: var(--color-ink);
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 0 0 0.25rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 620px) {
+  .twoColumn {
+    grid-template-columns: 1fr;
+  }
+
+  .formFooter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .submit {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field input,
+  .field select,
+  .field textarea,
+  .submit {
+    transition: none;
+  }
+
+  .submit:hover:not(:disabled) {
+    transform: none;
+  }
+}
