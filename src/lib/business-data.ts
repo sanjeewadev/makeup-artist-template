@@ -12,6 +12,7 @@ import {
 
 export type ServicesPageData = {
   services: Service[]
+  siteSettings: SiteSetting | null
   testimonials: Testimonial[]
 }
 
@@ -33,7 +34,7 @@ export const getServicesPageData = cache(async (): Promise<ServicesPageData> => 
   try {
     const payload = await getPayload({ config })
 
-    const [services, testimonials] = await Promise.all([
+    const [services, testimonials, siteSettings] = await Promise.all([
       payload.find({
         collection: 'services',
         depth: 2,
@@ -49,15 +50,22 @@ export const getServicesPageData = cache(async (): Promise<ServicesPageData> => 
         overrideAccess: false,
         sort: 'sortOrder',
       }),
+      payload.findGlobal({
+        slug: 'site-settings',
+        depth: 1,
+        overrideAccess: false,
+      }),
     ])
 
     return {
       services: services.docs.length ? services.docs : demoServices,
+      siteSettings,
       testimonials: testimonials.docs.length ? testimonials.docs : demoTestimonials,
     }
   } catch {
     return {
       services: demoServices,
+      siteSettings: null,
       testimonials: demoTestimonials,
     }
   }
