@@ -153,3 +153,32 @@ main {
     transition-duration: 0.01ms !important;
   }
 }
+
+.preview-banner {
+  align-items: center;
+  background: var(--color-accent-dark);
+  color: var(--color-paper);
+  display: flex;
+  font-size: 0.68rem;
+  font-weight: 600;
+  gap: 1rem;
+  justify-content: center;
+  letter-spacing: 0.08em;
+  min-height: 2.4rem;
+  padding: 0.45rem var(--gutter);
+  text-transform: uppercase;
+  z-index: 60;
+}
+
+.preview-banner a {
+  border-bottom: 1px solid currentColor;
+  text-decoration: none;
+}
+
+@media (max-width: 620px) {
+  .preview-banner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+}
