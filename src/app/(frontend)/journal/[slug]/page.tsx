@@ -66,7 +66,10 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       type: 'article',
       url: canonicalPath,
     },
-    robots: post.seo?.noIndex ? { follow: false, index: false } : undefined,
+    robots:
+      post.seo?.noIndex || post._status === 'draft'
+        ? { follow: false, index: false }
+        : undefined,
     title,
     twitter: {
       card: imageURL ? 'summary_large_image' : 'summary',
@@ -97,7 +100,7 @@ export default async function JournalArticlePage({ params }: ArticlePageProps) {
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     author: {
       '@type': 'Person',
       name: artistName,
@@ -106,7 +109,7 @@ export default async function JournalArticlePage({ params }: ArticlePageProps) {
     dateModified: post.updatedAt,
     datePublished: post.publishedAt || post.createdAt,
     description: post.seo?.description || post.excerpt,
-    headline: post.seo?.title || post.title,
+    headline: post.title,
     image: imageURL ? [imageURL] : undefined,
     keywords: tags.length ? tags.join(', ') : undefined,
     mainEntityOfPage: canonicalURL,
