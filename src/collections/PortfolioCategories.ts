@@ -11,9 +11,10 @@ export const PortfolioCategories: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    group: 'Content',
+    group: 'Portfolio',
     defaultColumns: ['title', 'slug', 'sortOrder', 'updatedAt'],
     description: 'Curated categories used to organize portfolio projects.',
+    hideAPIURL: true,
   },
   access: {
     create: authenticated,
@@ -29,12 +30,18 @@ export const PortfolioCategories: CollectionConfig = {
       required: true,
       maxLength: 100,
       index: true,
+      admin: {
+        description: 'Public category name, for example Bridal, Editorial, or Events.',
+      },
     },
     slugField(),
     {
       name: 'description',
       type: 'textarea',
       maxLength: 500,
+      admin: {
+        description: 'Optional internal/public category context. Keep it concise.',
+      },
     },
     {
       name: 'sortOrder',
