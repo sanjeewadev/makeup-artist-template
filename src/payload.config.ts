@@ -41,6 +41,7 @@ const isCLI = process.argv.some((value) => {
   )
 })
 const isProduction = process.env.NODE_ENV === 'production'
+const useRemoteBindings = isProduction && process.env.CLOUDFLARE_REMOTE_BINDINGS !== 'false'
 
 const createLog =
   (level: string, fn: typeof console.log) => (objOrMsg: object | string, msg?: string) => {
@@ -108,7 +109,7 @@ function getCloudflareContextFromWrangler(): Promise<CloudflareContext> {
     ({ getPlatformProxy }) =>
       getPlatformProxy({
         environment: process.env.CLOUDFLARE_ENV,
-        remoteBindings: isProduction,
+        remoteBindings: useRemoteBindings,
       } satisfies GetPlatformProxyOptions),
   )
 }
