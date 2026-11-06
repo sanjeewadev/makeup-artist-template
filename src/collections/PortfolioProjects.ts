@@ -16,7 +16,7 @@ export const PortfolioProjects: CollectionConfig = {
     group: 'Portfolio',
     defaultColumns: ['title', 'category', 'featured', '_status', 'updatedAt'],
     listSearchableFields: ['title', 'slug', 'clientName', 'location'],
-    description: 'Curated beauty stories. Treat each project like a case study: one exceptional hero, a concise hook, meaningful context, and a varied 4–8 image gallery.'
+    description: 'Curated beauty stories. Treat each project like a case study: one exceptional hero, a concise hook, meaningful context, and a varied 4–8 image gallery.',
     hideAPIURL: true,
     preview: (doc) => portfolioPreviewURL(doc),
   },
