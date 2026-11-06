@@ -7,7 +7,7 @@ export const About: GlobalConfig = {
   label: 'About',
   admin: {
     group: 'Website Pages',
-    description: 'The artist story, portrait, credentials, and page metadata.',
+    description: 'The artist’s public profile: point of view, portrait, real credibility details, and conversion copy. Keep this personal and specific rather than generic biography text.',
     hideAPIURL: true,
   },
   access: {
@@ -34,7 +34,7 @@ export const About: GlobalConfig = {
       type: 'textarea',
       maxLength: 500,
       admin: {
-        description: 'Short introduction shown near the top of the About page.',
+        description: 'A concise personal positioning statement. Explain how the artist approaches beauty or how clients should expect the work to feel.'
       },
     },
     {
@@ -42,14 +42,14 @@ export const About: GlobalConfig = {
       type: 'upload',
       relationTo: 'media',
       admin: {
-        description: 'Primary artist portrait used in the About-page hero.',
+        description: 'Use a strong, current artist portrait or real artist-at-work image. Avoid generic stock photography for a real client launch.'
       },
     },
     {
       name: 'story',
       type: 'richText',
       admin: {
-        description: 'Long-form artist story, philosophy, and background.',
+        description: 'Tell the real story behind the practice: point of view, working philosophy, relevant background, and what matters in the client experience. First person is encouraged when it sounds natural.'
       },
     },
     {
@@ -57,7 +57,7 @@ export const About: GlobalConfig = {
       type: 'array',
       maxRows: 12,
       admin: {
-        description: 'Qualifications, experience, awards, or other concise credibility details.',
+        description: 'Only add credibility details that are true and useful: training, specialisms, real awards, years/roles that can be supported, or genuine experience. Never invent press, clients, awards, or numerical claims.'
       },
       fields: [
         {
