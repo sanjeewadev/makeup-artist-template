@@ -101,14 +101,14 @@ export const getJournalIndexData = cache(async (): Promise<JournalIndexData> => 
     const featured = source.find((post) => post.featured) || source[0] || null
     const posts = featured ? source.filter((post) => post.id !== featured.id) : source
 
-    return { featured, posts, preview, topics: getTopics(source) }
+    return { featured, posts, preview, topics: getTopics(posts) }
   } catch {
     const featured = demoJournalPosts.find((post) => post.featured) || demoJournalPosts[0] || null
     const posts = featured
       ? demoJournalPosts.filter((post) => post.id !== featured.id)
       : demoJournalPosts
 
-    return { featured, posts, preview, topics: getTopics(demoJournalPosts) }
+    return { featured, posts, preview, topics: getTopics(posts) }
   }
 })
 
